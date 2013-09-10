@@ -1,3 +1,12 @@
 language: java
 jdk:
-  - oraclejdk7
+- oraclejdk7
+deploy:
+  provider: openshift
+  user: christian.predikant@gmail.com
+  password:
+    secure: PtU3MhJ3CiqggbsiI4xL+rbNEtR2M9pNAur2FU1rKzTZCbR1toQiTvb2L44CsGF7ZbfDbcTezONjGCDnFrH9KK57Lett5gUf3Ly+iFGyyoS4399GPe1R0WIMtnMgd/xftsYr74I8E62Ib0+Ydjk9F65U0Jx3Cx2ez/mpxi0Z16I=
+  app: conference
+  domain: conference-cpredikant.rhcloud.com
+  on:
+    repo: cpredikant/pac-conference-jee6
