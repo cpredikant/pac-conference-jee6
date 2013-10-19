@@ -15,7 +15,7 @@ public interface SpeakerHasTalkService {
 	
 	void unassignSpeakersByTalkId(long talkId);
 	
-	List<Speaker> findSpeakersByTalk(long talkId);
+	List<Speaker> findSpeakersByTalkId(long talkId);
 	
-	List<Talk> findTalksBySpeaker(long talkId);
+	List<Talk> findTalksBySpeakerId(long speakerId);
 }

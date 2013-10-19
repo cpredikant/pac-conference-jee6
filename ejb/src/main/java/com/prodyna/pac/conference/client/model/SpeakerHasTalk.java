@@ -6,10 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="SPEAKER_HAS_TALK")
+@NamedQueries({
+	@NamedQuery(name = "findSpeakerByTakId", query = "SELECT s FROM Speaker s, SpeakerHasTalk sht WHERE s.id = sht.speakerId AND sht.talkId = :id"),
+	@NamedQuery(name = "findTalksBySpeakerId", query = "SELECT t FROM Talk t, SpeakerHasTalk sht WHERE t.id = sht.talkId AND sht.speakerId = :id" ),
+})
 public class SpeakerHasTalk implements Serializable {
 
 	private static final long serialVersionUID = 1L;

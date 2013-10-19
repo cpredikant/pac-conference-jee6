@@ -7,24 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CONFERENCE")
+@Table(name = "CONFERENCE")
+@NamedQueries({
+		@NamedQuery(name = "findConferenceById", query = "SELECT c FROM Conference c WHERE c.id = :id"),
+		@NamedQuery(name = "findConferenceByName", query = "SELECT c FROM Conference c WHERE c.name = :name"),
+})
 public class Conference implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private Date start;
-	
+
 	private Date end;
 
 	public long getId() {
@@ -113,5 +119,5 @@ public class Conference implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

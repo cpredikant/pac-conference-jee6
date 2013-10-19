@@ -8,10 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ROOM")
+@NamedQueries({
+	@NamedQuery(name = "findRoomById", query = "SELECT r FROM Room r WHERE r.id = :id"),
+	@NamedQuery(name = "findRoomByName", query = "SELECT r FROM Room r WHERE r.name = :name"),
+	@NamedQuery(name = "findRoomsByConferenceId", query = "SELECT r FROM Room r WHERE r.conference.id = :id"),
+})
 public class Room implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -18,6 +18,6 @@ public interface TalkService {
 	
 	List<Talk> findTalksByConferenceId(long conferenceId);
 	
-	List<Talk>findTalksByRoomId(long roomId);
+	List<Talk> findTalksByRoomId(long roomId);
 	
 }
