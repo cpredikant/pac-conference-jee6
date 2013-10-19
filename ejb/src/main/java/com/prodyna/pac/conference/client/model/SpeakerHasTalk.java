@@ -8,10 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="SPEAKER")
-public class Speaker implements Serializable {
+@Table(name="SPEAKER_HAS_TALK")
+public class SpeakerHasTalk implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,9 +18,9 @@ public class Speaker implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private String name;
+	private long speakerId;
 	
-	private String description;
+	private long talkId;
 
 	public long getId() {
 		return id;
@@ -31,30 +30,29 @@ public class Speaker implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public long getSpeakerId() {
+		return speakerId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSpeakerId(long speakerId) {
+		this.speakerId = speakerId;
 	}
 
-	public String getDescription() {
-		return description;
+	public long getTalkId() {
+		return talkId;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTalkId(long talkId) {
+		this.talkId = talkId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (int) (speakerId ^ (speakerId >>> 32));
+		result = prime * result + (int) (talkId ^ (talkId >>> 32));
 		return result;
 	}
 
@@ -66,22 +64,17 @@ public class Speaker implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Speaker other = (Speaker) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
+		SpeakerHasTalk other = (SpeakerHasTalk) obj;
 		if (id != other.id)
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
+		if (speakerId != other.speakerId)
+			return false;
+		if (talkId != other.talkId)
 			return false;
 		return true;
 	}
 	
 	
-
+	
+	
 }
