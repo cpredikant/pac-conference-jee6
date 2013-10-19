@@ -1,5 +1,7 @@
 package com.prodyna.pac.conference.service;
 
+import java.util.List;
+
 import com.prodyna.pac.conference.client.api.TalkService;
 import com.prodyna.pac.conference.client.model.Talk;
 
@@ -31,6 +33,18 @@ public class TalkServiceImpl implements TalkService {
 
 	@Override
 	public Talk findTalkByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Talk> findTalksByConferenceId(long conferenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Talk> findTalksByRoomId(long roomId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
