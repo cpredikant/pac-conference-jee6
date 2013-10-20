@@ -1,12 +1,16 @@
 package com.prodyna.pac.conference.service;
 
+import java.io.Serializable;
+
 import javax.ejb.Stateless;
 
 import com.prodyna.pac.conference.client.api.SpeakerService;
 import com.prodyna.pac.conference.client.model.Speaker;
 
 @Stateless
-public class SpeakerServiceImpl implements SpeakerService {
+public class SpeakerServiceImpl implements SpeakerService, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void createSpeaker(Speaker speaker) {

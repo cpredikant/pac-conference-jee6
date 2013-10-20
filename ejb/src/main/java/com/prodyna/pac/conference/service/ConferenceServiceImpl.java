@@ -1,5 +1,7 @@
 package com.prodyna.pac.conference.service;
 
+import java.io.Serializable;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -10,8 +12,10 @@ import com.prodyna.pac.conference.client.api.ConferenceService;
 import com.prodyna.pac.conference.client.model.Conference;
 
 @Stateless
-public class ConferenceServiceImpl implements ConferenceService {
+public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private Logger log;
 	

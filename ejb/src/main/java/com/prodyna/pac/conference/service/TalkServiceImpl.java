@@ -1,5 +1,6 @@
 package com.prodyna.pac.conference.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,7 +9,9 @@ import com.prodyna.pac.conference.client.api.TalkService;
 import com.prodyna.pac.conference.client.model.Talk;
 
 @Stateless
-public class TalkServiceImpl implements TalkService {
+public class TalkServiceImpl implements TalkService, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void createTalk(Talk talk) {

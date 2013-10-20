@@ -1,5 +1,6 @@
 package com.prodyna.pac.conference.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,7 +10,9 @@ import com.prodyna.pac.conference.client.model.Speaker;
 import com.prodyna.pac.conference.client.model.Talk;
 
 @Stateless
-public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService {
+public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void assign(long speakerId, long talkId) {
