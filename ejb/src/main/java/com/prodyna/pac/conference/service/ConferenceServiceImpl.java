@@ -1,5 +1,6 @@
 package com.prodyna.pac.conference.service;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import com.prodyna.pac.conference.client.api.ConferenceService;
 import com.prodyna.pac.conference.client.model.Conference;
 
+@Stateless
 public class ConferenceServiceImpl implements ConferenceService {
 	
 	@Inject

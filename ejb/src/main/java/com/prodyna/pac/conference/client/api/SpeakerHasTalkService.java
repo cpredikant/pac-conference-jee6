@@ -2,9 +2,12 @@ package com.prodyna.pac.conference.client.api;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import com.prodyna.pac.conference.client.model.Speaker;
 import com.prodyna.pac.conference.client.model.Talk;
 
+@Local
 public interface SpeakerHasTalkService {
 
 	void assign(long speakerId, long talkId);

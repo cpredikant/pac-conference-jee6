@@ -35,7 +35,6 @@ public class ConferenceServiceTest {
 		war.addAsResource("META-INF/test-beans.xml", "META-INF/beans.xml");
 		war.addAsResource("META-INF/test-persistence.xml",
 				"META-INF/persistence.xml");
-
 		return war;
 	}
 

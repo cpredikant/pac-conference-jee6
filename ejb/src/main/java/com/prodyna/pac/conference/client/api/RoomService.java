@@ -2,8 +2,11 @@ package com.prodyna.pac.conference.client.api;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import com.prodyna.pac.conference.client.model.Room;
 
+@Local
 public interface RoomService {
 
 	void createRoom(Room room);

@@ -1,8 +1,11 @@
 package com.prodyna.pac.conference.service;
 
+import javax.ejb.Stateless;
+
 import com.prodyna.pac.conference.client.api.SpeakerService;
 import com.prodyna.pac.conference.client.model.Speaker;
 
+@Stateless
 public class SpeakerServiceImpl implements SpeakerService {
 
 	@Override

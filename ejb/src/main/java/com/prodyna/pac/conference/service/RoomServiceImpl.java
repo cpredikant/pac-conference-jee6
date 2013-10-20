@@ -2,9 +2,12 @@ package com.prodyna.pac.conference.service;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import com.prodyna.pac.conference.client.api.RoomService;
 import com.prodyna.pac.conference.client.model.Room;
 
+@Stateless
 public class RoomServiceImpl implements RoomService {
 
 	@Override

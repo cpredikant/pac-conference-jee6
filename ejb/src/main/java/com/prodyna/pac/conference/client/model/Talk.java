@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TALK")
+@Table(name="talk")
 @NamedQueries({
 	@NamedQuery(name = "findTalkById", query = "SELECT t FROM Talk t WHERE t.id = :id"),
 	@NamedQuery(name = "findTalkByName", query = "SELECT t FROM Talk t WHERE t.name = :name"),

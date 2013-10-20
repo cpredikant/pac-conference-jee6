@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SPEAKER_HAS_TALK")
+@Table(name="speaker_has_talk")
 @NamedQueries({
 	@NamedQuery(name = "findSpeakerByTakId", query = "SELECT s FROM Speaker s, SpeakerHasTalk sht WHERE s.id = sht.speakerId AND sht.talkId = :id"),
 	@NamedQuery(name = "findTalksBySpeakerId", query = "SELECT t FROM Talk t, SpeakerHasTalk sht WHERE t.id = sht.talkId AND sht.speakerId = :id" ),
