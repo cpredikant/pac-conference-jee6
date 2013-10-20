@@ -33,13 +33,13 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService {
 	}
 
 	@Override
-	public List<Speaker> findSpeakersByTalk(long talkId) {
+	public List<Speaker> findSpeakersByTalkId(long talkId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Talk> findTalksBySpeaker(long talkId) {
+	public List<Talk> findTalksBySpeakerId(long speakerId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
