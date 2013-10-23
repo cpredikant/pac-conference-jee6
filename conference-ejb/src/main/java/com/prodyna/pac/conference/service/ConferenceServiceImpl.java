@@ -23,19 +23,17 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	private EntityManager em;
 
 	@Override
-	public void createConference(Conference conference) {
-		em.persist(conference);
-	}
-
-	@Override
-	public void updateConference(Conference conference) {
+	public void saveConference(Conference conference) {
 		
-		if (conference.getId() == 0){
+		if (conference.getId() > 0){
 			em.merge(conference);
+		} else {
+			em.persist(conference);
 		}
 		
-		em.persist(conference);
+		
 	}
+
 
 	@Override
 	public void deleteConference(Conference conference) {

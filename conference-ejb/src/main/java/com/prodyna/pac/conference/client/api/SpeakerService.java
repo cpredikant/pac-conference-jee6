@@ -7,9 +7,7 @@ import com.prodyna.pac.conference.client.model.Speaker;
 @Local
 public interface SpeakerService {
 
-	void createSpeaker(Speaker speaker);
-
-	void updateSpeaker(Speaker speaker);
+	void saveSpeaker(Speaker speaker);
 
 	void deleteSpeaker(Speaker speaker);
 

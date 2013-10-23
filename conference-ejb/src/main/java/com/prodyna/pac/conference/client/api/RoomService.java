@@ -9,9 +9,7 @@ import com.prodyna.pac.conference.client.model.Room;
 @Local
 public interface RoomService {
 
-	void createRoom(Room room);
-
-	void updateRoom(Room room);
+	void saveRoom(Room room);
 
 	void deleteRoom(Room room);
 	

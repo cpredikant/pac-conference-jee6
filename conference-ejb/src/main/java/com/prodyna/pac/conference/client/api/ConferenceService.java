@@ -7,9 +7,7 @@ import com.prodyna.pac.conference.client.model.Conference;
 @Local
 public interface ConferenceService {
 
-	void createConference(Conference conference);
-	
-	void updateConference(Conference conference);
+	void saveConference(Conference conference);
 	
 	void deleteConference(Conference conference);
 	

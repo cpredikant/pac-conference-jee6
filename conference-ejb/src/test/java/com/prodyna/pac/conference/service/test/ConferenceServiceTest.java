@@ -29,7 +29,7 @@ public class ConferenceServiceTest {
 	@Deployment
 	public static Archive<?> createTestArchive() {
 
-		WebArchive war = ShrinkWrap.create(WebArchive.class);
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "ConferenceServiceTest.war");
 		war.addPackages(true, "com.prodyna.pac.conference");
 		war.addAsResource("META-INF/test-beans.xml", "META-INF/beans.xml");
 		war.addAsResource("META-INF/test-persistence.xml",
@@ -38,15 +38,23 @@ public class ConferenceServiceTest {
 	}
 
 	@Test
-	public void createConferenceTest() throws Exception {
+	public void saveConferenceTest() throws Exception {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
 		conference.setEnd(new Date());
 
-		conferenceService.createConference(conference);
+		conferenceService.saveConference(conference);
 
 		Assert.assertTrue(conference.getId() > 0);
+		
+		conference.setName("Another name");
+		
+		conferenceService.saveConference(conference);
+		
+		Assert.assertTrue(conference.getId() > 0);
+		
+		Assert.assertEquals("Another name", conference.getName());
 
 	}
 

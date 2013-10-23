@@ -9,9 +9,7 @@ import com.prodyna.pac.conference.client.model.Talk;
 @Local
 public interface TalkService {
 
-	void createTalk(Talk talk);
-
-	void updateTalk(Talk talk);
+	void saveTalk(Talk talk);
 
 	void deleteTalk(Talk talk);
 

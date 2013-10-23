@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.client.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.client.model.Speaker;
@@ -13,6 +17,12 @@ import com.prodyna.pac.conference.client.model.Talk;
 public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService, Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private Logger log;
+	
+	@Inject
+	private EntityManager em;
 
 	@Override
 	public void assign(long speakerId, long talkId) {
