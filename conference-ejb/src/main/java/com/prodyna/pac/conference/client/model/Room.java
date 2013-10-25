@@ -104,6 +104,12 @@ public class Room implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", name=" + name + ", capacity=" + capacity
+				+ ", conference=" + conference + "]";
+	}
 	
 	
 

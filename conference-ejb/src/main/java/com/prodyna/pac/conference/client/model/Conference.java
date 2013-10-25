@@ -14,8 +14,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "conference")
 @NamedQueries({
-		@NamedQuery(name = "findConferenceById", query = "SELECT c FROM Conference c WHERE c.id = :id"),
-		@NamedQuery(name = "findConferenceByName", query = "SELECT c FROM Conference c WHERE c.name = :name"),
+		@NamedQuery(name = "Conference.findConferenceById", query = "SELECT c FROM Conference c WHERE c.id = :id"),
+		@NamedQuery(name = "Conference.findConferenceByName", query = "SELECT c FROM Conference c WHERE c.name = :name"),
+		@NamedQuery(name = "Conference.findAll", query = "SELECT c FROM Conference c"),
 })
 public class Conference implements Serializable {
 
@@ -24,7 +25,7 @@ public class Conference implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
+	
 	private String name;
 
 	private String description;
@@ -118,6 +119,12 @@ public class Conference implements Serializable {
 		} else if (!start.equals(other.start))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Conference [id=" + id + ", name=" + name + ", description="
+				+ description + ", start=" + start + ", end=" + end + "]";
 	}
 
 }

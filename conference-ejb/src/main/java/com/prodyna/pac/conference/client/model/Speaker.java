@@ -87,6 +87,12 @@ public class Speaker implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Speaker [id=" + id + ", name=" + name + ", description="
+				+ description + "]";
+	}
 	
 	
 

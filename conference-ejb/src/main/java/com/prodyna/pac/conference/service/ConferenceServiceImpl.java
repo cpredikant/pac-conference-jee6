@@ -1,10 +1,13 @@
 package com.prodyna.pac.conference.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 
@@ -13,47 +16,75 @@ import com.prodyna.pac.conference.client.model.Conference;
 
 @Stateless
 public class ConferenceServiceImpl implements ConferenceService, Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private Logger log;
-	
+
 	@Inject
 	private EntityManager em;
 
 	@Override
-	public void saveConference(Conference conference) {
+	public void createConference(Conference conference) {
 		
-		if (conference.getId() > 0){
-			em.merge(conference);
-		} else {
-			em.persist(conference);
-		}
-		
+		em.persist(conference);
 		
 	}
 
+	@Override
+	public Conference updateConference(Conference conference) {
+		
+		Conference c = conference;
+
+		if (!em.contains(conference)) {
+			c = em.merge(conference);
+		}
+		
+		return c;
+	}
 
 	@Override
 	public void deleteConference(Conference conference) {
-		if (conference.getId() == 0){
-			em.merge(conference);
-		}
-		em.remove(conference);
-
+		
+		Conference c = em.find(Conference.class, conference.getId());
+		
+		if (c != null) {
+			em.remove(c);
+		} 
 	}
 
 	@Override
 	public Conference findConferenceById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TypedQuery<Conference> query = em.createNamedQuery("Conference.findConferenceById", Conference.class);
+		query.setParameter("id", id);
+		
+		Conference conference = null;
+		
+		try{
+			conference = query.getSingleResult();
+		}catch (NoResultException exception){
+			log.info("No result for Entity {} with id {}", Conference.class.getName(), id);
+		}
+		
+		return conference;
 	}
 
+	
 	@Override
-	public Conference findConferenceByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Conference> findConferenceByName(String name) {
+		
+		TypedQuery<Conference> query = em.createNamedQuery("Conference.findConferenceByName", Conference.class);
+		query.setParameter("name", name);
+		
+		return query.getResultList();
+	}
+	
+	@Override
+	public List<Conference> findAll(){
+		TypedQuery<Conference> query = em.createNamedQuery("Conference.findAll", Conference.class);
+		return query.getResultList();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.prodyna.pac.conference.client.api;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import com.prodyna.pac.conference.client.model.Conference;
@@ -7,12 +9,16 @@ import com.prodyna.pac.conference.client.model.Conference;
 @Local
 public interface ConferenceService {
 
-	void saveConference(Conference conference);
+	void createConference(Conference conference);
+	
+	Conference updateConference(Conference conference);
 	
 	void deleteConference(Conference conference);
 	
 	Conference findConferenceById(long id);
 	
-	Conference findConferenceByName(String name);
+	List<Conference> findConferenceByName(String name);
+	
+	List<Conference> findAll();
 	
 }

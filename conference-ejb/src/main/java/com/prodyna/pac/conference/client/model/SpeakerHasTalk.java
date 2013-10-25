@@ -79,6 +79,12 @@ public class SpeakerHasTalk implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "SpeakerHasTalk [id=" + id + ", speakerId=" + speakerId
+				+ ", talkId=" + talkId + "]";
+	}
 	
 	
 	
