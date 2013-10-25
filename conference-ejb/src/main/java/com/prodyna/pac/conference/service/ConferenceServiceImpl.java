@@ -35,22 +35,22 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	@Override
 	public Conference updateConference(Conference conference) {
 		
-		Conference c = conference;
+		Conference updatedConference = conference;
 
 		if (!em.contains(conference)) {
-			c = em.merge(conference);
+			updatedConference = em.merge(conference);
 		}
 		
-		return c;
+		return updatedConference;
 	}
 
 	@Override
 	public void deleteConference(Conference conference) {
 		
-		Conference c = em.find(Conference.class, conference.getId());
+		Conference conferenceToDelete = findConferenceById(conference.getId());
 		
-		if (c != null) {
-			em.remove(c);
+		if (conferenceToDelete != null) {
+			em.remove(conferenceToDelete);
 		} 
 	}
 

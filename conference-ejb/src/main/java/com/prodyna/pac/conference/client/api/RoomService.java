@@ -9,7 +9,9 @@ import com.prodyna.pac.conference.client.model.Room;
 @Local
 public interface RoomService {
 
-	void saveRoom(Room room);
+	void createRoom(Room room);
+	
+	Room updateRoom(Room room);
 
 	void deleteRoom(Room room);
 	
@@ -17,6 +19,8 @@ public interface RoomService {
 
 	Room findRoomById(long id);
 
-	Room findRoomByName(String name);
+	List<Room> findRoomByName(String name);
+	
+	List<Room> findAll();
 
 }

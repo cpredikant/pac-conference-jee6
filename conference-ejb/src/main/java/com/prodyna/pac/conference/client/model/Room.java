@@ -15,9 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="room")
 @NamedQueries({
-	@NamedQuery(name = "findRoomById", query = "SELECT r FROM Room r WHERE r.id = :id"),
-	@NamedQuery(name = "findRoomByName", query = "SELECT r FROM Room r WHERE r.name = :name"),
-	@NamedQuery(name = "findRoomsByConferenceId", query = "SELECT r FROM Room r WHERE r.conference.id = :id"),
+	@NamedQuery(name = "Room.findRoomById", query = "SELECT r FROM Room r WHERE r.id = :id"),
+	@NamedQuery(name = "Room.findRoomByName", query = "SELECT r FROM Room r WHERE r.name = :name"),
+	@NamedQuery(name = "Room.findRoomsByConferenceId", query = "SELECT r FROM Room r WHERE r.conference.id = :id"),
+	@NamedQuery(name = "Room.findAll", query = "SELECT r FROM Room r"),
 })
 public class Room implements Serializable {
 
