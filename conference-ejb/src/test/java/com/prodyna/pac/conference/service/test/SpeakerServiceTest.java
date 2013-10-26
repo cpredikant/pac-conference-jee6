@@ -1,6 +1,5 @@
 package com.prodyna.pac.conference.service.test;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,10 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.client.api.ConferenceService;
 import com.prodyna.pac.conference.client.api.SpeakerService;
-import com.prodyna.pac.conference.client.api.SpeakerService;
-import com.prodyna.pac.conference.client.model.Conference;
 import com.prodyna.pac.conference.client.model.Speaker;
 
 @RunWith(Arquillian.class)
@@ -46,38 +42,114 @@ public class SpeakerServiceTest {
 	@Test
 	@InSequence(1)
 	public void createSpeakerTest() throws Exception {
+		Speaker speaker = new Speaker();
+		speaker.setDescription("Super Speaker");
+		speaker.setName("The Speaker");
 
+		speakerService.createSpeaker(speaker);
+
+		Assert.assertTrue(speaker.getId() > 0);
 	}
 
 	@Test
 	@InSequence(2)
 	public void updateSpeakerTest() throws Exception {
+		Speaker speaker = new Speaker();
+		speaker.setDescription("Super Speaker");
+		speaker.setName("The Speaker");
 
+		speakerService.createSpeaker(speaker);
+
+		speaker.setDescription("Super Duper Speaker");
+
+		Speaker updatedSpeaker = speakerService.updateSpeaker(speaker);
+
+		Assert.assertEquals("Super Duper Speaker",
+				updatedSpeaker.getDescription());
 	}
 
 	@Test
 	@InSequence(3)
 	public void deleteSpeakerTest() throws Exception {
+		Speaker speaker = new Speaker();
+		speaker.setDescription("Super Speaker");
+		speaker.setName("The Speaker");
+
+		speakerService.createSpeaker(speaker);
+
+		Assert.assertTrue(speaker.getId() > 0);
+
+		speakerService.deleteSpeaker(speaker);
+
+		Speaker deletedSpeaker = speakerService
+				.findSpeakerById(speaker.getId());
+
+		Assert.assertNull(deletedSpeaker);
 
 	}
 
 	@Test
 	@InSequence(4)
-	public void findSpeakereByIdTest() throws Exception {
-		Speaker room = new Speaker();
+	public void findSpeakerByIdTest() throws Exception {
+		Speaker speaker = new Speaker();
+		speaker.setDescription("Super Speaker");
+		speaker.setName("The Speaker");
 
+		speakerService.createSpeaker(speaker);
+
+		Assert.assertTrue(speaker.getId() > 0);
+
+		speakerService.deleteSpeaker(speaker);
+
+		Speaker deletedSpeaker = speakerService
+				.findSpeakerById(speaker.getId());
+
+		Assert.assertNull(deletedSpeaker);
 	}
 
 	@Test
 	@InSequence(5)
 	public void findSpeakersByNameTest() throws Exception {
+		Speaker s1 = new Speaker();
+		s1.setDescription("Super Speaker");
+		s1.setName("The Speaker");
 
+		speakerService.createSpeaker(s1);
+
+		Speaker s2 = new Speaker();
+		s2.setDescription("Super Speaker");
+		s2.setName("The Speaker");
+
+		speakerService.createSpeaker(s2);
+
+		List<Speaker> foundSpeakers = speakerService
+				.findSpeakersByName("The Speaker");
+
+		Assert.assertTrue(foundSpeakers.size() > 0);
+
+		Assert.assertEquals("The Speaker", foundSpeakers.get(0).getName());
 	}
 
 	@Test
 	@InSequence(6)
 	public void findAllTest() throws Exception {
+		Speaker s1 = new Speaker();
+		s1.setDescription("Super Speaker");
+		s1.setName("The Speaker");
 
+		speakerService.createSpeaker(s1);
+
+		Speaker s2 = new Speaker();
+		s2.setDescription("Super Speaker");
+		s2.setName("The Speaker");
+
+		speakerService.createSpeaker(s2);
+
+		List<Speaker> foundSpeakers = speakerService
+				.findAll();
+
+		Assert.assertTrue(foundSpeakers.size() > 0);
+		
 	}
 
 }
