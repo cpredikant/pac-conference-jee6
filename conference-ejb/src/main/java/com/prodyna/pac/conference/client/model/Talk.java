@@ -15,10 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="talk")
 @NamedQueries({
-	@NamedQuery(name = "findTalkById", query = "SELECT t FROM Talk t WHERE t.id = :id"),
-	@NamedQuery(name = "findTalkByName", query = "SELECT t FROM Talk t WHERE t.name = :name"),
-	@NamedQuery(name = "findTalksByConferenceId", query = "SELECT t FROM Talk t WHERE t.conference.id = :id"),
-	@NamedQuery(name = "findTalksByRoomId", query = "SELECT t FROM Talk t WHERE t.room.id = :id"),
+	@NamedQuery(name = "Talk.findTalkById", query = "SELECT t FROM Talk t WHERE t.id = :id"),
+	@NamedQuery(name = "Talk.findTalkByName", query = "SELECT t FROM Talk t WHERE t.name = :name"),
+	@NamedQuery(name = "Talk.findTalksByConferenceId", query = "SELECT t FROM Talk t WHERE t.conference.id = :id"),
+	@NamedQuery(name = "Talk.findTalksByRoomId", query = "SELECT t FROM Talk t WHERE t.room.id = :id"),
+	@NamedQuery(name = "Talk.findAll", query = "SELECT t FROM Talk t"),
 })
 public class Talk implements Serializable{
 
@@ -140,5 +141,14 @@ public class Talk implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Talk [id=" + id + ", name=" + name + ", description="
+				+ description + ", duration=" + duration + ", room=" + room
+				+ ", conference=" + conference + "]";
+	}
+	
+	
 	
 }

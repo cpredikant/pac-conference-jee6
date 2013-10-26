@@ -86,7 +86,4 @@ public class SpeakerHasTalk implements Serializable {
 				+ ", talkId=" + talkId + "]";
 	}
 	
-	
-	
-	
 }

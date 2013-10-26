@@ -6,6 +6,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 
@@ -24,44 +26,75 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	private EntityManager em;
 
 	@Override
-	public void saveTalk(Talk talk) {
-		
-		if (talk.getId() > 0) {
-			em.merge(talk);
-		} else {
-			em.persist(talk);
+	public void createTalk(Talk talk) {
+		em.persist(talk);
+	}
+
+	@Override
+	public Talk updateTalk(Talk talk) {
+		Talk updatedTalk = talk;
+
+		if (!em.contains(talk)) {
+			updatedTalk = em.merge(talk);
 		}
 
+		return updatedTalk;
 	}
 
 	@Override
 	public void deleteTalk(Talk talk) {
-		// TODO Auto-generated method stub
+		Talk talkToDelete = findTalkById(talk.getId());
 
+		if (talkToDelete != null) {
+			em.remove(talkToDelete);
+		}
 	}
 
 	@Override
 	public Talk findTalkById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkById",
+				Talk.class);
+		query.setParameter("id", id);
+
+		Talk talk = null;
+
+		try {
+			talk = query.getSingleResult();
+		} catch (NoResultException exception) {
+			log.info("No result for Entity {} with id {}",
+					Talk.class.getName(), id);
+		}
+		return talk;
 	}
 
 	@Override
-	public Talk findTalkByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Talk> findTalksByName(String name) {
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkByName", Talk.class);
+		query.setParameter("name", name);
+		
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Talk> findTalksByConferenceId(long conferenceId) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByConferenceId", Talk.class);
+		query.setParameter("id", conferenceId);
+		
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Talk> findTalksByRoomId(long roomId) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByRoomId", Talk.class);
+		query.setParameter("id", roomId);
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Talk> findAll() {
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findAll", Talk.class);
+		return query.getResultList();
 	}
 
 }

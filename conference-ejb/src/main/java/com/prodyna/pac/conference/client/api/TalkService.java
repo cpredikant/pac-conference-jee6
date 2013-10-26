@@ -9,16 +9,20 @@ import com.prodyna.pac.conference.client.model.Talk;
 @Local
 public interface TalkService {
 
-	void saveTalk(Talk talk);
+	void createTalk(Talk talk);
+	
+	Talk updateTalk(Talk talk);
 
 	void deleteTalk(Talk talk);
 
 	Talk findTalkById(long id);
 
-	Talk findTalkByName(String name);
+	List<Talk> findTalksByName(String name);
 	
 	List<Talk> findTalksByConferenceId(long conferenceId);
 	
 	List<Talk> findTalksByRoomId(long roomId);
+	
+	List<Talk> findAll();
 	
 }
