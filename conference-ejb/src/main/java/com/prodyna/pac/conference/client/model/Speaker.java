@@ -14,8 +14,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="speaker")
 @NamedQueries({
-	@NamedQuery(name = "findSpeakerById", query = "SELECT s FROM Speaker s WHERE s.id = :id"),
-	@NamedQuery(name = "findSpeakerByName", query = "SELECT s FROM Speaker s WHERE s.name = :name"),
+	@NamedQuery(name = "Speaker.findSpeakerById", query = "SELECT s FROM Speaker s WHERE s.id = :id"),
+	@NamedQuery(name = "Speaker.findSpeakersByName", query = "SELECT s FROM Speaker s WHERE s.name = :name"),
+	@NamedQuery(name = "Speaker.findAll", query = "SELECT s FROM Speaker s"),
 })
 public class Speaker implements Serializable {
 
