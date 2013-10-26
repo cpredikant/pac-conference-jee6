@@ -32,6 +32,9 @@ public class RoomServiceTest {
 
 	@Inject
 	private ConferenceService conferenceService;
+	
+	@Inject
+	private Date dateInFuture;
 
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -51,7 +54,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -74,7 +78,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -105,7 +110,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -198,7 +204,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);;
 
 		conferenceService.createConference(conference);
 

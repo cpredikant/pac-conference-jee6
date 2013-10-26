@@ -27,6 +27,9 @@ public class ConferenceServiceTest {
 
 	@Inject
 	private ConferenceService conferenceService;
+	
+	@Inject
+	private Date dateInFuture;
 
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -46,7 +49,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -60,7 +64,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -83,7 +88,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -104,7 +110,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("findyById");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -123,7 +130,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("findyByname");
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 
 		conferenceService.createConference(conference);
 
@@ -142,22 +150,24 @@ public class ConferenceServiceTest {
 	@InSequence(6)
 	public void findAllTest() throws Exception {
 		
-		Conference conference = new Conference();
-		conference.setDescription("A description");
-		conference.setName("findAll1");
-		conference.setEnd(new Date());
+		Conference c1 = new Conference();
+		c1.setDescription("A description");
+		c1.setName("findAll1");
+		c1.setStart(dateInFuture);
+		c1.setEnd(dateInFuture);
 
-		conferenceService.createConference(conference);
+		conferenceService.createConference(c1);
 		
 		
-		Conference conference1 = new Conference();
-		conference1.setDescription("A description");
-		conference1.setName("findAll2");
-		conference1.setEnd(new Date());
+		Conference c2 = new Conference();
+		c2.setDescription("A description");
+		c2.setName("findAll2");
+		c2.setStart(dateInFuture);
+		c2.setEnd(dateInFuture);
 
-		conferenceService.createConference(conference1);
+		conferenceService.createConference(c2);
 
-		Assert.assertTrue(conference.getId() > 0);
+		Assert.assertTrue(c1.getId() > 0);
 
 		List<Conference> foundConferences = conferenceService.findAll();
 

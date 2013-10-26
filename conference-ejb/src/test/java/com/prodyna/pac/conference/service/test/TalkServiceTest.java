@@ -37,7 +37,10 @@ public class TalkServiceTest {
 
 	@Inject
 	private TalkService talkService;
-
+	
+	@Inject
+	private Date dateInFuture;
+	
 	@Deployment
 	public static Archive<?> createTestArchive() {
 
@@ -57,6 +60,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
+		talk.setStart(dateInFuture);
 
 		talkService.createTalk(talk);
 
@@ -70,6 +74,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
+		talk.setStart(dateInFuture);
 
 		talkService.createTalk(talk);
 
@@ -89,6 +94,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
+		talk.setStart(dateInFuture);
 
 		talkService.createTalk(talk);
 
@@ -109,6 +115,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
+		talk.setStart(dateInFuture);
 
 		talkService.createTalk(talk);
 
@@ -126,6 +133,7 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
+		t1.setStart(dateInFuture);
 
 		talkService.createTalk(t1);
 
@@ -133,6 +141,7 @@ public class TalkServiceTest {
 		t2.setDescription("Description");
 		t2.setDuration(60);
 		t2.setName("Talk");
+		t2.setStart(dateInFuture);
 
 		talkService.createTalk(t2);
 
@@ -149,8 +158,8 @@ public class TalkServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("Desription");
 		conference.setName("Conference");
-		conference.setStart(new Date());
-		conference.setEnd(new Date());
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
 		
 		conferenceService.createConference(conference);
 		
@@ -159,6 +168,7 @@ public class TalkServiceTest {
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setConference(conference);
+		talk.setStart(dateInFuture);
 		
 		talkService.createTalk(talk);
 		
@@ -175,6 +185,7 @@ public class TalkServiceTest {
 		Room room = new Room();
 		room.setCapacity(10);
 		room.setName("Room");
+
 		
 		roomService.createRoom(room);
 		
@@ -184,6 +195,7 @@ public class TalkServiceTest {
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setRoom(room);
+		talk.setStart(dateInFuture);
 		
 		talkService.createTalk(talk);
 		
@@ -201,13 +213,14 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
-
+		t1.setStart(dateInFuture);
 		talkService.createTalk(t1);
 
 		Talk t2 = new Talk();
 		t2.setDescription("Description");
 		t2.setDuration(60);
 		t2.setName("Talk");
+		t2.setStart(dateInFuture);
 
 		talkService.createTalk(t2);
 

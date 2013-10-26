@@ -23,7 +23,7 @@ public class SpeakerServiceTest {
 
 	@Inject
 	Logger logger;
-
+	
 	@Inject
 	private SpeakerService speakerService;
 
@@ -99,8 +99,7 @@ public class SpeakerServiceTest {
 
 		Assert.assertTrue(speaker.getId() > 0);
 
-		Speaker foundSpeaker = speakerService
-				.findSpeakerById(speaker.getId());
+		Speaker foundSpeaker = speakerService.findSpeakerById(speaker.getId());
 
 		Assert.assertEquals(speaker.getId(), foundSpeaker.getId());
 	}
@@ -143,11 +142,10 @@ public class SpeakerServiceTest {
 
 		speakerService.createSpeaker(s2);
 
-		List<Speaker> foundSpeakers = speakerService
-				.findAll();
+		List<Speaker> foundSpeakers = speakerService.findAll();
 
 		Assert.assertTrue(foundSpeakers.size() > 0);
-		
+
 	}
 
 }
