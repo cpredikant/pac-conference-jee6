@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -26,8 +28,12 @@ public class Speaker implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@NotNull
+	@Size(min=1,max=100)
 	private String name;
 	
+	@NotNull
+	@Size(min=1,max=500)
 	private String description;
 
 	public long getId() {

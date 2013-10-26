@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "conference")
@@ -26,12 +29,20 @@ public class Conference implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@NotNull
+	@Size(min=1,max=100)
 	private String name;
-
+	
+	@NotNull
+	@Size(min=1,max=500)
 	private String description;
-
+	
+	@NotNull
+	@Future
 	private Date start;
-
+	
+	@NotNull
+	@Future
 	private Date end;
 
 	public long getId() {

@@ -1,6 +1,7 @@
 package com.prodyna.pac.conference.client.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,36 +12,48 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="talk")
+@Table(name = "talk")
 @NamedQueries({
-	@NamedQuery(name = "Talk.findTalkById", query = "SELECT t FROM Talk t WHERE t.id = :id"),
-	@NamedQuery(name = "Talk.findTalkByName", query = "SELECT t FROM Talk t WHERE t.name = :name"),
-	@NamedQuery(name = "Talk.findTalksByConferenceId", query = "SELECT t FROM Talk t WHERE t.conference.id = :id"),
-	@NamedQuery(name = "Talk.findTalksByRoomId", query = "SELECT t FROM Talk t WHERE t.room.id = :id"),
-	@NamedQuery(name = "Talk.findAll", query = "SELECT t FROM Talk t"),
-})
-public class Talk implements Serializable{
+		@NamedQuery(name = "Talk.findTalkById", query = "SELECT t FROM Talk t WHERE t.id = :id"),
+		@NamedQuery(name = "Talk.findTalkByName", query = "SELECT t FROM Talk t WHERE t.name = :name"),
+		@NamedQuery(name = "Talk.findTalksByConferenceId", query = "SELECT t FROM Talk t WHERE t.conference.id = :id"),
+		@NamedQuery(name = "Talk.findTalksByRoomId", query = "SELECT t FROM Talk t WHERE t.room.id = :id"),
+		@NamedQuery(name = "Talk.findAll", query = "SELECT t FROM Talk t"), })
+public class Talk implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	@NotNull
+	@Size(min = 1, max = 100)
 	private String name;
-	
+
+	@NotNull
+	@Size(min = 1, max = 500)
 	private String description;
-	
+
+	@Min(1)
 	private int duration;
-	
+
+	@NotNull
+	@Future
+	private Date start;
+
 	@ManyToOne
-	@JoinColumn(name="room_id")
+	@JoinColumn(name = "room_id")
 	private Room room;
-	
+
 	@ManyToOne
-	@JoinColumn(name="conference_id")
+	@JoinColumn(name = "conference_id")
 	private Conference conference;
 
 	public long getId() {
@@ -91,6 +104,14 @@ public class Talk implements Serializable{
 		this.conference = conference;
 	}
 
+	public Date getStart() {
+		return start;
+	}
+
+	public void setStart(Date start) {
+		this.start = start;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,6 +124,7 @@ public class Talk implements Serializable{
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + ((start == null) ? 0 : start.hashCode());
 		return result;
 	}
 
@@ -139,16 +161,21 @@ public class Talk implements Serializable{
 				return false;
 		} else if (!room.equals(other.room))
 			return false;
+		if (start == null) {
+			if (other.start != null)
+				return false;
+		} else if (!start.equals(other.start))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Talk [id=" + id + ", name=" + name + ", description="
-				+ description + ", duration=" + duration + ", room=" + room
-				+ ", conference=" + conference + "]";
+				+ description + ", duration=" + duration + ", start=" + start
+				+ ", room=" + room + ", conference=" + conference + "]";
 	}
-	
+
 	
 	
 }
