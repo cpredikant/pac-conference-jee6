@@ -113,7 +113,7 @@ public class ConferenceServiceTest {
 		Conference foundConference = conferenceService
 				.findConferenceById(conference.getId());
 
-		Assert.assertEquals(conference.getName(), foundConference.getName());
+		Assert.assertEquals(conference.getId(), foundConference.getId());
 
 	}
 

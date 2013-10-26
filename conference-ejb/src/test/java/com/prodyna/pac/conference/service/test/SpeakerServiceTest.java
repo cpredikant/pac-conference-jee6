@@ -99,12 +99,10 @@ public class SpeakerServiceTest {
 
 		Assert.assertTrue(speaker.getId() > 0);
 
-		speakerService.deleteSpeaker(speaker);
-
-		Speaker deletedSpeaker = speakerService
+		Speaker foundSpeaker = speakerService
 				.findSpeakerById(speaker.getId());
 
-		Assert.assertNull(deletedSpeaker);
+		Assert.assertEquals(speaker.getId(), foundSpeaker.getId());
 	}
 
 	@Test

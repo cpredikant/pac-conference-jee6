@@ -142,7 +142,7 @@ public class RoomServiceTest {
 
 		Room foundRoom = roomService.findRoomById(room.getId());
 
-		Assert.assertEquals(room.getName(), foundRoom.getName());
+		Assert.assertEquals(room.getId(), foundRoom.getId());
 
 	}
 
