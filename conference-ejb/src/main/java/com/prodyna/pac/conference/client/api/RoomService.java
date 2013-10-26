@@ -19,7 +19,7 @@ public interface RoomService {
 
 	Room findRoomById(long id);
 
-	List<Room> findRoomByName(String name);
+	List<Room> findRoomsByName(String name);
 	
 	List<Room> findAll();
 

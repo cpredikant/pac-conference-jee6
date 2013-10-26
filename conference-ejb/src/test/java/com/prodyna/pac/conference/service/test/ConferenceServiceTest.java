@@ -129,12 +129,12 @@ public class ConferenceServiceTest {
 
 		Assert.assertTrue(conference.getId() > 0);
 
-		List<Conference> foundConference = conferenceService
+		List<Conference> foundConferences = conferenceService
 				.findConferenceByName("findyByname");
 
-		Assert.assertTrue(foundConference.size() > 0);
+		Assert.assertTrue(foundConferences.size() > 0);
 
-		Assert.assertEquals("findyByname", foundConference.get(0).getName());
+		Assert.assertEquals("findyByname", foundConferences.get(0).getName());
 	}
 	
 	
@@ -159,9 +159,9 @@ public class ConferenceServiceTest {
 
 		Assert.assertTrue(conference.getId() > 0);
 
-		List<Conference> foundConference = conferenceService.findAll();
+		List<Conference> foundConferences = conferenceService.findAll();
 
-		Assert.assertTrue(foundConference.size() > 0);
+		Assert.assertTrue(foundConferences.size() > 0);
 
 	}
 

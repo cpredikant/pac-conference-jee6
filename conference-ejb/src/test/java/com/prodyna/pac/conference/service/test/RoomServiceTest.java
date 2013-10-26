@@ -29,7 +29,7 @@ public class RoomServiceTest {
 
 	@Inject
 	private RoomService roomService;
-	
+
 	@Inject
 	private ConferenceService conferenceService;
 
@@ -56,20 +56,144 @@ public class RoomServiceTest {
 		conferenceService.createConference(conference);
 
 		Assert.assertTrue(conference.getId() > 0);
-		
+
 		Room room = new Room();
 		room.setCapacity(1000);
 		room.setName("Audimax");
 		room.setConference(conference);
-		
+
 		roomService.createRoom(room);
-		
+
 		Assert.assertTrue(room.getId() > 0);
-		
+
 	}
-	
+
 	@Test
 	@InSequence(2)
+	public void updateRoomTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("A description");
+		conference.setName("A Name");
+		conference.setEnd(new Date());
+
+		conferenceService.createConference(conference);
+
+		Assert.assertTrue(conference.getId() > 0);
+
+		Room room = new Room();
+		room.setCapacity(1000);
+		room.setName("Audimax");
+		room.setConference(conference);
+
+		roomService.createRoom(room);
+
+		Assert.assertTrue(room.getId() > 0);
+
+		room.setName("OpelVector");
+
+		Room updatedRoom = roomService.updateRoom(room);
+
+		Assert.assertTrue(updatedRoom.getId() > 0);
+
+		Assert.assertEquals("OpelVector", updatedRoom.getName());
+
+	}
+
+	@Test
+	@InSequence(3)
+	public void deleteRoomTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("A description");
+		conference.setName("A Name");
+		conference.setEnd(new Date());
+
+		conferenceService.createConference(conference);
+
+		Assert.assertTrue(conference.getId() > 0);
+
+		Room room = new Room();
+		room.setCapacity(1000);
+		room.setName("Audimax");
+		room.setConference(conference);
+
+		roomService.createRoom(room);
+
+		Assert.assertTrue(room.getId() > 0);
+
+		roomService.deleteRoom(room);
+
+		Room deletedRoom = roomService.findRoomById(room.getId());
+
+		Assert.assertNull(deletedRoom);
+
+	}
+
+	@Test
+	@InSequence(4)
+	public void findRoomeByIdTest() throws Exception {
+		Room room = new Room();
+		room.setCapacity(1000);
+		room.setName("Audimax");
+		room.setConference(null);
+
+		roomService.createRoom(room);
+
+		Assert.assertTrue(room.getId() > 0);
+
+		Room foundRoom = roomService.findRoomById(room.getId());
+
+		Assert.assertEquals(room.getName(), foundRoom.getName());
+
+	}
+
+	@Test
+	@InSequence(5)
+	public void findRoomByNameTest() throws Exception {
+		Room room = new Room();
+		room.setCapacity(1000);
+		room.setName("Audimax");
+		room.setConference(null);
+
+		roomService.createRoom(room);
+
+		Assert.assertTrue(room.getId() > 0);
+
+		List<Room> foundRooms = roomService.findRoomsByName(room.getName());
+
+		Assert.assertTrue(foundRooms.size() > 0);
+
+		Assert.assertEquals("Audimax", foundRooms.get(0).getName());
+	}
+
+	@Test
+	@InSequence(6)
+	public void findAllTest() throws Exception {
+
+		Room r1 = new Room();
+		r1.setCapacity(1000);
+		r1.setName("Audimax2");
+		r1.setConference(null);
+
+		roomService.createRoom(r1);
+
+		Room r2 = new Room();
+		r2.setCapacity(1000);
+		r2.setName("Audimax2");
+		r2.setConference(null);
+
+		roomService.createRoom(r2);
+
+		Assert.assertTrue(r1.getId() > 0);
+		Assert.assertTrue(r2.getId() > 0);
+
+		List<Room> foundRooms = roomService.findAll();
+
+		Assert.assertTrue(foundRooms.size() > 0);
+
+	}
+
+	@Test
+	@InSequence(7)
 	public void findRoomsByConferenceIdTest() throws Exception {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
@@ -79,131 +203,20 @@ public class RoomServiceTest {
 		conferenceService.createConference(conference);
 
 		Assert.assertTrue(conference.getId() > 0);
-		
+
 		Room room = new Room();
 		room.setCapacity(1000);
 		room.setName("Audimax");
 		room.setConference(conference);
-		
+
 		roomService.createRoom(room);
-		
+
 		Assert.assertTrue(room.getId() > 0);
-		
-		List<Room> rooms = roomService.findRoomsByConferenceId(conference.getId());
-		
+
+		List<Room> rooms = roomService.findRoomsByConferenceId(conference
+				.getId());
+
 		Assert.assertTrue(rooms.size() > 0);
 		Assert.assertEquals(room.getName(), rooms.get(0).getName());
 	}
-
-//	@Test
-//	@InSequence(2)
-//	public void updateConferenceTest() throws Exception {
-//		Conference conference = new Conference();
-//		conference.setDescription("A description");
-//		conference.setName("A Name");
-//		conference.setEnd(new Date());
-//
-//		conferenceService.createConference(conference);
-//
-//		Assert.assertTrue(conference.getId() > 0);
-//
-//		conference.setName("Another name");
-//
-//		Conference updatedConference = conferenceService
-//				.updateConference(conference);
-//
-//		Assert.assertTrue(updatedConference.getId() > 0);
-//
-//		Assert.assertEquals("Another name", updatedConference.getName());
-//
-//	}
-//
-//	@Test
-//	@InSequence(3)
-//	public void deleteConferenceTest() throws Exception {
-//		Conference conference = new Conference();
-//		conference.setDescription("A description");
-//		conference.setName("A Name");
-//		conference.setEnd(new Date());
-//
-//		conferenceService.createConference(conference);
-//
-//		Assert.assertTrue(conference.getId() > 0);
-//
-//		conferenceService.deleteConference(conference);
-//
-//		Conference deletedConference = conferenceService
-//				.findConferenceById(conference.getId());
-//
-//		Assert.assertNull(deletedConference);
-//
-//	}
-//
-//	@Test
-//	@InSequence(4)
-//	public void findConferenceByIdTest() throws Exception {
-//		Conference conference = new Conference();
-//		conference.setDescription("A description");
-//		conference.setName("findyById");
-//		conference.setEnd(new Date());
-//
-//		conferenceService.createConference(conference);
-//
-//		Assert.assertTrue(conference.getId() > 0);
-//
-//		Conference foundConference = conferenceService
-//				.findConferenceById(conference.getId());
-//
-//		Assert.assertEquals(conference.getName(), foundConference.getName());
-//
-//	}
-//
-//	@Test
-//	@InSequence(5)
-//	public void findConferenceByNameTest() throws Exception {
-//		Conference conference = new Conference();
-//		conference.setDescription("A description");
-//		conference.setName("findyByname");
-//		conference.setEnd(new Date());
-//
-//		conferenceService.createConference(conference);
-//
-//		Assert.assertTrue(conference.getId() > 0);
-//
-//		List<Conference> foundConference = conferenceService
-//				.findConferenceByName("findyByname");
-//
-//		Assert.assertTrue(foundConference.size() > 0);
-//
-//		Assert.assertEquals("findyByname", foundConference.get(0).getName());
-//	}
-//	
-//	
-//	@Test
-//	@InSequence(6)
-//	public void findAllTest() throws Exception {
-//		
-//		Conference conference = new Conference();
-//		conference.setDescription("A description");
-//		conference.setName("findAll1");
-//		conference.setEnd(new Date());
-//
-//		conferenceService.createConference(conference);
-//		
-//		
-//		Conference conference1 = new Conference();
-//		conference1.setDescription("A description");
-//		conference1.setName("findAll2");
-//		conference1.setEnd(new Date());
-//
-//		conferenceService.createConference(conference1);
-//
-//		Assert.assertTrue(conference.getId() > 0);
-//
-//		List<Conference> foundConference = conferenceService.findAll();
-//
-//		Assert.assertTrue(foundConference.size() > 0);
-//
-//	}
-
 }

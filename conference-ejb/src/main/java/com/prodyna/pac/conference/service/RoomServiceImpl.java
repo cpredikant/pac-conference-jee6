@@ -72,7 +72,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
-	public List<Room> findRoomByName(String name) {
+	public List<Room> findRoomsByName(String name) {
 		TypedQuery<Room> query = em.createNamedQuery("Room.findRoomByName",
 				Room.class);
 		query.setParameter("name", name);
