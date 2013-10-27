@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.client.api.SpeakerHasTalkService;
-import com.prodyna.pac.conference.client.api.exception.SpeakerNotAvailableServiceException;
+import com.prodyna.pac.conference.client.api.exception.SpeakerNotAvailableException;
 import com.prodyna.pac.conference.client.model.Speaker;
 import com.prodyna.pac.conference.client.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.client.model.Talk;
@@ -33,7 +33,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	@Override
 	public void assign(Speaker speaker, Talk talk)
-			throws SpeakerNotAvailableServiceException {
+			throws SpeakerNotAvailableException {
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
 		if (sht != null) {
@@ -62,7 +62,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
 					t.getDuration()))
 					&& end.before(t.getStart())) {
-				throw new SpeakerNotAvailableServiceException("Speaker "
+				throw new SpeakerNotAvailableException("Speaker "
 						+ speaker.getName() + " is not available for talk "
 						+ talk.getName());
 			}
