@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.prodyna.pac.conference.common.util.DateUtil;
 
 @Entity
 @Table(name = "conference")
@@ -21,6 +24,7 @@ import javax.validation.constraints.Size;
 		@NamedQuery(name = "Conference.findConferenceByName", query = "SELECT c FROM Conference c WHERE c.name = :name"),
 		@NamedQuery(name = "Conference.findAll", query = "SELECT c FROM Conference c"),
 })
+@XmlRootElement(name = "conference")
 public class Conference implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -44,6 +48,7 @@ public class Conference implements Serializable {
 	@NotNull
 	@Future
 	private Date end;
+	
 
 	public long getId() {
 		return id;
@@ -74,7 +79,7 @@ public class Conference implements Serializable {
 	}
 
 	public void setStart(Date start) {
-		this.start = start;
+		this.start = DateUtil.normalizeDateToStartOfDay(start);
 	}
 
 	public Date getEnd() {
@@ -82,7 +87,7 @@ public class Conference implements Serializable {
 	}
 
 	public void setEnd(Date end) {
-		this.end = end;
+		this.end = DateUtil.normalizeDateToEndOfDay(end);
 	}
 
 	@Override

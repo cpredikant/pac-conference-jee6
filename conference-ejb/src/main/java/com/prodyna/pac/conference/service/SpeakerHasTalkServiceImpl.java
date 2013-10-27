@@ -1,6 +1,7 @@
 package com.prodyna.pac.conference.service;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,9 +13,11 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.client.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.client.api.exception.SpeakerNotAvailableServiceException;
 import com.prodyna.pac.conference.client.model.Speaker;
 import com.prodyna.pac.conference.client.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.client.model.Talk;
+import com.prodyna.pac.conference.common.util.DateUtil;
 
 @Stateless
 public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
@@ -29,21 +32,44 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	private EntityManager em;
 
 	@Override
-	public void assign(Speaker speaker, Talk talk) {
+	public void assign(Speaker speaker, Talk talk)
+			throws SpeakerNotAvailableServiceException {
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
 		if (sht != null) {
 			log.info("SpeakerHasTalk already exists");
 		} else {
+
+			speakerIsAvailable(speaker, talk);
+
 			sht = new SpeakerHasTalk();
 			sht.setSpeaker(speaker);
 			sht.setTalk(talk);
 			em.persist(sht);
 		}
-		
+
 	}
-	
-	
+
+	private void speakerIsAvailable(Speaker speaker, Talk talk) {
+		List<Talk> talks = findTalksBySpeaker(speaker);
+
+		Date start = talk.getStart();
+
+		Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
+
+		for (Talk t : talks) {
+
+			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
+					t.getDuration()))
+					&& end.before(t.getStart())) {
+				throw new SpeakerNotAvailableServiceException("Speaker "
+						+ speaker.getName() + " is not available for talk "
+						+ talk.getName());
+			}
+		}
+
+	}
+
 	@Override
 	public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker,
 			Talk talk) {
@@ -70,7 +96,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	@Override
 	public void unassign(Speaker speaker, Talk talk) {
-		
+
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
 		if (sht == null) {
@@ -101,8 +127,12 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	@Override
 	public List<Talk> findTalksBySpeaker(Speaker speaker) {
-		// TODO Auto-generated method stub
-		return null;
+
+		TypedQuery<Talk> query = em.createNamedQuery(
+				"SpeakerHasTalk.findTalksBySpeaker", Talk.class);
+		query.setParameter("speaker", speaker);
+
+		return query.getResultList();
 	}
 
 }

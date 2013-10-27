@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import com.prodyna.pac.conference.client.api.exception.SpeakerNotAvailableServiceException;
 import com.prodyna.pac.conference.client.model.Speaker;
 import com.prodyna.pac.conference.client.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.client.model.Talk;
@@ -11,7 +12,7 @@ import com.prodyna.pac.conference.client.model.Talk;
 @Local
 public interface SpeakerHasTalkService {
 
-	void assign(Speaker speaker, Talk talk);
+	void assign(Speaker speaker, Talk talk) throws SpeakerNotAvailableServiceException;
 	
 	void unassign(Speaker speaker, Talk talk);
 	

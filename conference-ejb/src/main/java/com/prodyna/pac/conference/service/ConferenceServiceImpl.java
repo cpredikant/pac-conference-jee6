@@ -27,63 +27,66 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
 	@Override
 	public void createConference(Conference conference) {
-		
+
 		em.persist(conference);
-		
+
 	}
 
 	@Override
 	public Conference updateConference(Conference conference) {
-		
+
 		Conference updatedConference = conference;
 
 		if (!em.contains(conference)) {
 			updatedConference = em.merge(conference);
 		}
-		
+
 		return updatedConference;
 	}
 
 	@Override
 	public void deleteConference(Conference conference) {
-		
+
 		Conference conferenceToDelete = findConferenceById(conference.getId());
-		
+
 		if (conferenceToDelete != null) {
 			em.remove(conferenceToDelete);
-		} 
+		}
 	}
 
 	@Override
 	public Conference findConferenceById(long id) {
-		
-		TypedQuery<Conference> query = em.createNamedQuery("Conference.findConferenceById", Conference.class);
+
+		TypedQuery<Conference> query = em.createNamedQuery(
+				"Conference.findConferenceById", Conference.class);
 		query.setParameter("id", id);
-		
+
 		Conference conference = null;
-		
-		try{
+
+		try {
 			conference = query.getSingleResult();
-		}catch (NoResultException exception){
-			log.info("No result for Entity {} with id {}", Conference.class.getName(), id);
+		} catch (NoResultException exception) {
+			log.info("No result for Entity {} with id {}",
+					Conference.class.getName(), id);
 		}
-		
+
 		return conference;
 	}
 
-	
 	@Override
 	public List<Conference> findConferenceByName(String name) {
-		
-		TypedQuery<Conference> query = em.createNamedQuery("Conference.findConferenceByName", Conference.class);
+
+		TypedQuery<Conference> query = em.createNamedQuery(
+				"Conference.findConferenceByName", Conference.class);
 		query.setParameter("name", name);
-		
+
 		return query.getResultList();
 	}
-	
+
 	@Override
-	public List<Conference> findAll(){
-		TypedQuery<Conference> query = em.createNamedQuery("Conference.findAll", Conference.class);
+	public List<Conference> findAll() {
+		TypedQuery<Conference> query = em.createNamedQuery(
+				"Conference.findAll", Conference.class);
 		return query.getResultList();
 	}
 

@@ -96,5 +96,6 @@ public class RoomServiceImpl implements RoomService, Serializable {
 				.createNamedQuery("Room.findAll", Room.class);
 		return query.getResultList();
 	}
+	
 
 }

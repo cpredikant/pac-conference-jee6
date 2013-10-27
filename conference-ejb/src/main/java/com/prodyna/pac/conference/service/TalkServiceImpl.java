@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.client.api.TalkService;
+import com.prodyna.pac.conference.client.model.Room;
 import com.prodyna.pac.conference.client.model.Talk;
 
 @Stateless
@@ -27,12 +28,17 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 	@Override
 	public void createTalk(Talk talk) {
+		
+		roomIsAvailable(talk.getRoom());
+		
 		em.persist(talk);
 	}
 
 	@Override
 	public Talk updateTalk(Talk talk) {
 		Talk updatedTalk = talk;
+		
+		roomIsAvailable(updatedTalk.getRoom());
 
 		if (!em.contains(talk)) {
 			updatedTalk = em.merge(talk);
@@ -95,6 +101,10 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	public List<Talk> findAll() {
 		TypedQuery<Talk> query = em.createNamedQuery("Talk.findAll", Talk.class);
 		return query.getResultList();
+	}
+	
+	private void roomIsAvailable(Room room){
+		//TODO: Implement me with Exception
 	}
 
 }

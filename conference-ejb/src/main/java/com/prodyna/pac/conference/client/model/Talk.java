@@ -12,10 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.prodyna.pac.conference.common.util.DateUtil;
 
 @Entity
 @Table(name = "talk")
@@ -50,11 +53,23 @@ public class Talk implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
+	@NotNull
 	private Room room;
 
 	@ManyToOne
 	@JoinColumn(name = "conference_id")
+	@NotNull
 	private Conference conference;
+	
+	@AssertTrue(message="Talk is not in daterange of the Conference")
+	private boolean isInConferenceDateRange() {
+		
+		Date conferenceStart = conference.getStart();
+		Date conferenceEnd = conference.getEnd();
+		Date end = DateUtil.addMinutesToDate(start, duration);
+				
+		return conferenceStart.before(start) && conferenceEnd.after(end);
+	}
 
 	public long getId() {
 		return id;
@@ -109,7 +124,7 @@ public class Talk implements Serializable {
 	}
 
 	public void setStart(Date start) {
-		this.start = start;
+		this.start = DateUtil.normalizeDate(start);
 	}
 
 	@Override
