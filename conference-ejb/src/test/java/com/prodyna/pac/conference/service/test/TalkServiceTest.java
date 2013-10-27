@@ -56,11 +56,29 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(1)
 	public void createTalkTest() throws Exception {
+		
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
 		Talk talk = new Talk();
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setStart(dateInFuture);
+		talk.setConference(c);
+		talk.setRoom(r);
 
 		talkService.createTalk(talk);
 

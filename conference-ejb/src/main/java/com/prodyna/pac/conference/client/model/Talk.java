@@ -53,11 +53,11 @@ public class Talk implements Serializable {
 	private Date start;
 
 	@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	@JoinColumn(name = "room_id")
+	@JoinColumn(name = "room_id",nullable=false)
 	private Room room;
 
 	@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	@JoinColumn(name = "conference_id")
+	@JoinColumn(name = "conference_id",nullable=false)
 	private Conference conference;
 
 	@AssertTrue(message = "Talk is not in daterange of the Conference")
