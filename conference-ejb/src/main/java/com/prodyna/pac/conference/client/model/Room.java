@@ -3,6 +3,7 @@ package com.prodyna.pac.conference.client.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class Room implements Serializable {
 	@Min(1)
 	private int capacity;
 	
-	@ManyToOne
+	@ManyToOne(optional=false,fetch=FetchType.EAGER)
 	@JoinColumn(name="conference_id")
 	private Conference conference;
 

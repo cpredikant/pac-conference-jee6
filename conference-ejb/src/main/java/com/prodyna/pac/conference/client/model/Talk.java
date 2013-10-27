@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,23 +52,21 @@ public class Talk implements Serializable {
 	@Future
 	private Date start;
 
-	@ManyToOne
+	@ManyToOne(optional = false,fetch=FetchType.EAGER)
 	@JoinColumn(name = "room_id")
-	@NotNull
 	private Room room;
 
-	@ManyToOne
+	@ManyToOne(optional = false,fetch=FetchType.EAGER)
 	@JoinColumn(name = "conference_id")
-	@NotNull
 	private Conference conference;
-	
-	@AssertTrue(message="Talk is not in daterange of the Conference")
+
+	@AssertTrue(message = "Talk is not in daterange of the Conference")
 	private boolean isInConferenceDateRange() {
-		
+
 		Date conferenceStart = conference.getStart();
 		Date conferenceEnd = conference.getEnd();
 		Date end = DateUtil.addMinutesToDate(start, duration);
-				
+
 		return conferenceStart.before(start) && conferenceEnd.after(end);
 	}
 
@@ -191,6 +190,4 @@ public class Talk implements Serializable {
 				+ ", room=" + room + ", conference=" + conference + "]";
 	}
 
-	
-	
 }
