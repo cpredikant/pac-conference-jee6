@@ -5,20 +5,23 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.prodyna.pac.conference.client.model.Speaker;
+import com.prodyna.pac.conference.client.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.client.model.Talk;
 
 @Local
 public interface SpeakerHasTalkService {
 
-	void assign(long speakerId, long talkId);
+	void assign(Speaker speaker, Talk talk);
 	
-	void unassign(long speakerId, long talkId);
+	void unassign(Speaker speaker, Talk talk);
 	
-	void unassignTalksBySpeakerId(long speakerId);
+	SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker, Talk talk);
 	
-	void unassignSpeakersByTalkId(long talkId);
+	void unassignTalksBySpeaker(Speaker speaker);
 	
-	List<Speaker> findSpeakersByTalkId(long talkId);
+	void unassignSpeakersByTalk(Talk talk);
 	
-	List<Talk> findTalksBySpeakerId(long speakerId);
+	List<Speaker> findSpeakersByTalk(Talk talk);
+	
+	List<Talk> findTalksBySpeaker(Speaker speaker);
 }

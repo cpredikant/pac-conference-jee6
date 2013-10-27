@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -13,8 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="speaker_has_talk")
 @NamedQueries({
-	@NamedQuery(name = "findSpeakerByTakId", query = "SELECT s FROM Speaker s, SpeakerHasTalk sht WHERE s.id = sht.speakerId AND sht.talkId = :id"),
-	@NamedQuery(name = "findTalksBySpeakerId", query = "SELECT t FROM Talk t, SpeakerHasTalk sht WHERE t.id = sht.talkId AND sht.speakerId = :id" ),
+	@NamedQuery(name = "SpeakerHasTalk.findSpeakerByTalk", query = "SELECT s FROM Speaker s, SpeakerHasTalk sht WHERE s = sht.speaker AND sht.talk = :talk"),
+	@NamedQuery(name = "SpeakerHasTalk.findTalksBySpeakerId", query = "SELECT t FROM Talk t, SpeakerHasTalk sht WHERE t = sht.talk AND sht.speaker = :speaker" ),
+	@NamedQuery(name = "SpeakerHasTalk.findSpeakerHasTalkBySpeakerAndTalk", query = "SELECT sht FROM SpeakerHasTalk sht WHERE sht.speaker = :speaker AND sht.talk = :talk" ),
 })
 public class SpeakerHasTalk implements Serializable {
 
@@ -24,9 +27,13 @@ public class SpeakerHasTalk implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private long speakerId;
+	@ManyToOne
+	@JoinColumn(name = "speaker_id")
+	private Speaker speaker;
 	
-	private long talkId;
+	@ManyToOne
+	@JoinColumn(name = "talk_id")
+	private Talk talk;
 
 	public long getId() {
 		return id;
@@ -36,20 +43,20 @@ public class SpeakerHasTalk implements Serializable {
 		this.id = id;
 	}
 
-	public long getSpeakerId() {
-		return speakerId;
+	public Speaker getSpeaker() {
+		return speaker;
 	}
 
-	public void setSpeakerId(long speakerId) {
-		this.speakerId = speakerId;
+	public void setSpeaker(Speaker speaker) {
+		this.speaker = speaker;
 	}
 
-	public long getTalkId() {
-		return talkId;
+	public Talk getTalk() {
+		return talk;
 	}
 
-	public void setTalkId(long talkId) {
-		this.talkId = talkId;
+	public void setTalk(Talk talk) {
+		this.talk = talk;
 	}
 
 	@Override
@@ -57,8 +64,8 @@ public class SpeakerHasTalk implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + (int) (speakerId ^ (speakerId >>> 32));
-		result = prime * result + (int) (talkId ^ (talkId >>> 32));
+		result = prime * result + ((speaker == null) ? 0 : speaker.hashCode());
+		result = prime * result + ((talk == null) ? 0 : talk.hashCode());
 		return result;
 	}
 
@@ -73,17 +80,24 @@ public class SpeakerHasTalk implements Serializable {
 		SpeakerHasTalk other = (SpeakerHasTalk) obj;
 		if (id != other.id)
 			return false;
-		if (speakerId != other.speakerId)
+		if (speaker == null) {
+			if (other.speaker != null)
+				return false;
+		} else if (!speaker.equals(other.speaker))
 			return false;
-		if (talkId != other.talkId)
+		if (talk == null) {
+			if (other.talk != null)
+				return false;
+		} else if (!talk.equals(other.talk))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "SpeakerHasTalk [id=" + id + ", speakerId=" + speakerId
-				+ ", talkId=" + talkId + "]";
+		return "SpeakerHasTalk [id=" + id + ", speaker=" + speaker + ", talk="
+				+ talk + "]";
 	}
 	
+
 }
