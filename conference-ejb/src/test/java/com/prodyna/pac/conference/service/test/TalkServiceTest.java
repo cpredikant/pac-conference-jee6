@@ -88,11 +88,28 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(2)
 	public void updateTalkTest() throws Exception {
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
 		Talk talk = new Talk();
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setStart(dateInFuture);
+		talk.setConference(c);
+		talk.setRoom(r);
 
 		talkService.createTalk(talk);
 
@@ -108,11 +125,28 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(3)
 	public void deleteTalkTest() throws Exception {
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
 		Talk talk = new Talk();
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setStart(dateInFuture);
+		talk.setConference(c);
+		talk.setRoom(r);
 
 		talkService.createTalk(talk);
 
@@ -129,11 +163,28 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(4)
 	public void findTalkByIdTest() throws Exception {
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
 		Talk talk = new Talk();
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setStart(dateInFuture);
+		talk.setConference(c);
+		talk.setRoom(r);
 
 		talkService.createTalk(talk);
 
@@ -147,11 +198,30 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(5)
 	public void findTalksByNameTest() throws Exception {
+		
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
+		
 		Talk t1 = new Talk();
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
 		t1.setStart(dateInFuture);
+		t1.setConference(c);
+		t1.setRoom(r);
 
 		talkService.createTalk(t1);
 
@@ -160,6 +230,8 @@ public class TalkServiceTest {
 		t2.setDuration(60);
 		t2.setName("Talk");
 		t2.setStart(dateInFuture);
+		t2.setConference(c);
+		t2.setRoom(r);
 
 		talkService.createTalk(t2);
 
@@ -181,11 +253,19 @@ public class TalkServiceTest {
 		
 		conferenceService.createConference(conference);
 		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(conference);
+		
+		roomService.createRoom(r);
+		
 		Talk talk = new Talk();
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setConference(conference);
+		talk.setRoom(r);
 		talk.setStart(dateInFuture);
 		
 		talkService.createTalk(talk);
@@ -200,9 +280,19 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(7)
 	public void findTalksByRoomIdTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("Desription");
+		conference.setName("Conference");
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
+		
+		conferenceService.createConference(conference);
+		
+		
 		Room room = new Room();
 		room.setCapacity(10);
 		room.setName("Room");
+		room.setConference(conference);
 
 		
 		roomService.createRoom(room);
@@ -213,6 +303,7 @@ public class TalkServiceTest {
 		talk.setDuration(60);
 		talk.setName("Talk");
 		talk.setRoom(room);
+		talk.setConference(conference);
 		talk.setStart(dateInFuture);
 		
 		talkService.createTalk(talk);
@@ -227,17 +318,37 @@ public class TalkServiceTest {
 	@Test
 	@InSequence(8)
 	public void findAllTest() throws Exception {
+		Conference c = new Conference();
+		c.setName("Conference");
+		c.setDescription("Super Conference");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+		
+		conferenceService.createConference(c);
+		
+		Room r = new Room();
+		r.setName("Room");
+		r.setCapacity(10);
+		r.setConference(c);
+		
+		roomService.createRoom(r);
+		
+		
 		Talk t1 = new Talk();
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
 		t1.setStart(dateInFuture);
+		t1.setConference(c);
+		t1.setRoom(r);
 		talkService.createTalk(t1);
 
 		Talk t2 = new Talk();
 		t2.setDescription("Description");
 		t2.setDuration(60);
 		t2.setName("Talk");
+		t2.setConference(c);
+		t2.setRoom(r);
 		t2.setStart(dateInFuture);
 
 		talkService.createTalk(t2);

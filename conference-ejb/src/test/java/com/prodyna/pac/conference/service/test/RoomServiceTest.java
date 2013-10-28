@@ -137,10 +137,19 @@ public class RoomServiceTest {
 	@Test
 	@InSequence(4)
 	public void findRoomeByIdTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("A description");
+		conference.setName("A Name");
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
+
+		conferenceService.createConference(conference);
+		
+		
 		Room room = new Room();
 		room.setCapacity(1000);
 		room.setName("Audimax");
-		room.setConference(null);
+		room.setConference(conference);
 
 		roomService.createRoom(room);
 
@@ -155,10 +164,18 @@ public class RoomServiceTest {
 	@Test
 	@InSequence(5)
 	public void findRoomByNameTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("A description");
+		conference.setName("A Name");
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
+
+		conferenceService.createConference(conference);
+		
 		Room room = new Room();
 		room.setCapacity(1000);
 		room.setName("Audimax");
-		room.setConference(null);
+		room.setConference(conference);
 
 		roomService.createRoom(room);
 
@@ -174,18 +191,26 @@ public class RoomServiceTest {
 	@Test
 	@InSequence(6)
 	public void findAllTest() throws Exception {
+		Conference conference = new Conference();
+		conference.setDescription("A description");
+		conference.setName("A Name");
+		conference.setStart(dateInFuture);
+		conference.setEnd(dateInFuture);
+
+		conferenceService.createConference(conference);
+		
 
 		Room r1 = new Room();
 		r1.setCapacity(1000);
 		r1.setName("Audimax2");
-		r1.setConference(null);
+		r1.setConference(conference);
 
 		roomService.createRoom(r1);
 
 		Room r2 = new Room();
 		r2.setCapacity(1000);
 		r2.setName("Audimax2");
-		r2.setConference(null);
+		r2.setConference(conference);
 
 		roomService.createRoom(r2);
 

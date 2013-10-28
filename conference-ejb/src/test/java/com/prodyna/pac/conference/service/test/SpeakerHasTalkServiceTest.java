@@ -1,7 +1,6 @@
 package com.prodyna.pac.conference.service.test;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -40,6 +39,12 @@ public class SpeakerHasTalkServiceTest {
 	private TalkService talkService;
 	
 	@Inject
+	private ConferenceService conferenceService;
+	
+	@Inject
+	private RoomService roomService;
+	
+	@Inject
 	private SpeakerHasTalkService speakerHasTalkService; 
 	
 	@Inject
@@ -60,17 +65,35 @@ public class SpeakerHasTalkServiceTest {
 	@Test
 	@InSequence(1)
 	public void assingTest() throws Exception {
+		Conference c = new Conference();
+		c.setDescription("A description");
+		c.setName("findyByname");
+		c.setStart(dateInFuture);
+		c.setEnd(dateInFuture);
+
+		conferenceService.createConference(c);
+		
+		
 		Speaker s = new Speaker();
 		s.setName("Speaker");
 		s.setDescription("Speaker Description");
 		
 		speakerService.createSpeaker(s);
 		
+		Room r = new Room();
+		r.setCapacity(1000);
+		r.setName("Audimax2");
+		r.setConference(c);
+
+		roomService.createRoom(r);
+		
 		Talk t = new Talk();
 		t.setName("Talk");
 		t.setDescription("Talk Description");
 		t.setDuration(10);
 		t.setStart(dateInFuture);
+		t.setConference(c);
+		t.setRoom(r);
 		
 		talkService.createTalk(t);
 		

@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="speaker_has_talk")
 @NamedQueries({
-	@NamedQuery(name = "SpeakerHasTalk.findSpeakerByTalk", query = "SELECT sht.speaker FROM  SpeakerHasTalk sht WHERE sht.speaker = :speaker"),
-	@NamedQuery(name = "SpeakerHasTalk.findTalksBySpeaker", query = "SELECT sht.talk FROM SpeakerHasTalk sht WHERE sht.talk = :talk"),
+	@NamedQuery(name = "SpeakerHasTalk.findSpeakerByTalk", query = "SELECT sht.speaker FROM  SpeakerHasTalk sht WHERE sht.talk = :talk"),
+	@NamedQuery(name = "SpeakerHasTalk.findTalksBySpeaker", query = "SELECT sht.talk FROM SpeakerHasTalk sht WHERE sht.speaker = :speaker"),
 	@NamedQuery(name = "SpeakerHasTalk.findSpeakerHasTalkBySpeakerAndTalk", query = "SELECT sht FROM SpeakerHasTalk sht WHERE sht.speaker = :speaker AND sht.talk = :talk" ),
 })
 public class SpeakerHasTalk implements Serializable {

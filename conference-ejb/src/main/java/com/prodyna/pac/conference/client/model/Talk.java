@@ -52,16 +52,21 @@ public class Talk implements Serializable {
 	@Future
 	private Date start;
 
-	@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	@JoinColumn(name = "room_id",nullable=false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "room_id", nullable = false)
 	private Room room;
 
-	@ManyToOne(optional = false,fetch=FetchType.EAGER)
-	@JoinColumn(name = "conference_id",nullable=false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "conference_id", nullable = false)
 	private Conference conference;
 
 	@AssertTrue(message = "Talk is not in daterange of the Conference")
 	private boolean isInConferenceDateRange() {
+
+		if (conference == null || conference.getStart() == null
+				|| conference.getEnd() == null) {
+			return false;
+		}
 
 		Date conferenceStart = conference.getStart();
 		Date conferenceEnd = conference.getEnd();
