@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.service.interceptor.Logging;
 
 @Stateless
 public class RoomServiceImpl implements RoomService, Serializable {
@@ -32,6 +33,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Room updateRoom(Room room) throws RoomNotFoundException {
 		Room updatedRoom = findRoomById(room.getId());
 
@@ -43,6 +45,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public void deleteRoom(Room room) throws RoomNotFoundException {
 		Room roomToDelete = findRoomById(room.getId());
 
@@ -53,6 +56,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Room findRoomById(long id) throws RoomNotFoundException {
 
 		TypedQuery<Room> query = em.createNamedQuery("Room.findRoomById",
@@ -74,6 +78,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Room> findRoomsByName(String name) {
 		TypedQuery<Room> query = em.createNamedQuery("Room.findRoomByName",
 				Room.class);
@@ -83,6 +88,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Room> findRoomsByConferenceId(long conferenceId) {
 		TypedQuery<Room> query = em.createNamedQuery(
 				"Room.findRoomsByConferenceId", Room.class);
@@ -93,6 +99,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Room> findAll() {
 		TypedQuery<Room> query = em
 				.createNamedQuery("Room.findAll", Room.class);

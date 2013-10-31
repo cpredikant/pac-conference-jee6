@@ -18,6 +18,7 @@ import com.prodyna.pac.conference.exception.SpeakerNotAvailableException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.interceptor.Logging;
 
 @Stateless
 public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
@@ -32,6 +33,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	private EntityManager em;
 
 	@Override
+	@Logging
 	public void assign(Speaker speaker, Talk talk)
 			throws SpeakerNotAvailableException {
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
@@ -72,6 +74,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	
 
 	@Override
+	@Logging
 	public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker,
 			Talk talk) {
 
@@ -96,6 +99,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	}
 
 	@Override
+	@Logging
 	public void unassign(Speaker speaker, Talk talk) {
 
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
@@ -109,12 +113,14 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	}
 
 	@Override
+	@Logging
 	public void unassignTalksBySpeaker(Speaker speaker) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Logging
 	public void unassignSpeakersByTalk(Talk talk) {
 		// TODO Auto-generated method stub
 
@@ -127,6 +133,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	}
 
 	@Override
+	@Logging
 	public List<Talk> findTalksBySpeaker(Speaker speaker) {
 
 		TypedQuery<Talk> query = em.createNamedQuery(

@@ -1,4 +1,4 @@
-package com.prodyna.pac.conference.util;
+package com.prodyna.pac.conference.service.util;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;

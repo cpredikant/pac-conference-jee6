@@ -17,6 +17,7 @@ import com.prodyna.pac.conference.common.util.DateUtil;
 import com.prodyna.pac.conference.exception.RoomNotAvailableException;
 import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.interceptor.Logging;
 
 @Stateless
 public class TalkServiceImpl implements TalkService, Serializable {
@@ -30,6 +31,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	private EntityManager em;
 
 	@Override
+	@Logging
 	public void createTalk(Talk talk) throws RoomNotAvailableException {
 
 		roomIsAvailable(talk);
@@ -38,6 +40,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Talk updateTalk(Talk talk) throws RoomNotAvailableException, TalkNotFoundException {
 		Talk updatedTalk = findTalkById(talk.getId());
 		
@@ -52,6 +55,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public void deleteTalk(Talk talk) throws TalkNotFoundException {
 		Talk talkToDelete = findTalkById(talk.getId());
 
@@ -61,6 +65,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Talk findTalkById(long id) throws TalkNotFoundException {
 		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkById",
 				Talk.class);
@@ -79,6 +84,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Talk> findTalksByName(String name) {
 		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkByName",
 				Talk.class);
@@ -88,6 +94,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Talk> findTalksByConferenceId(long conferenceId) {
 		TypedQuery<Talk> query = em.createNamedQuery(
 				"Talk.findTalksByConferenceId", Talk.class);
@@ -97,6 +104,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Talk> findTalksByRoomId(long roomId) {
 		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByRoomId",
 				Talk.class);
@@ -106,6 +114,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Talk> findAll() {
 		TypedQuery<Talk> query = em
 				.createNamedQuery("Talk.findAll", Talk.class);

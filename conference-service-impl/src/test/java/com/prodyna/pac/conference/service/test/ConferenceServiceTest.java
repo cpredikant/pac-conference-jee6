@@ -3,7 +3,6 @@ package com.prodyna.pac.conference.service.test;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.ejb.EJBException;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;

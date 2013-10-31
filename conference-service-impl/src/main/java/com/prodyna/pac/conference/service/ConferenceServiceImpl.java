@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.interceptor.Logging;
 
 @Stateless
 public class ConferenceServiceImpl implements ConferenceService, Serializable {
@@ -34,6 +35,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Conference updateConference(Conference conference)
 			throws ConferenceNotFoundException {
 
@@ -47,6 +49,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public void deleteConference(Conference conference)
 			throws ConferenceNotFoundException {
 
@@ -58,6 +61,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Conference findConferenceById(long id)
 			throws ConferenceNotFoundException {
 
@@ -80,6 +84,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Conference> findConferenceByName(String name) {
 
 		TypedQuery<Conference> query = em.createNamedQuery(
@@ -90,6 +95,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Conference> findAll() {
 		TypedQuery<Conference> query = em.createNamedQuery(
 				"Conference.findAll", Conference.class);

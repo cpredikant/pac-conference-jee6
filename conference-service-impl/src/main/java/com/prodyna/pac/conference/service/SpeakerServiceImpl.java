@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import com.prodyna.pac.conference.api.SpeakerService;
 import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
+import com.prodyna.pac.conference.service.interceptor.Logging;
 
 @Stateless
 public class SpeakerServiceImpl implements SpeakerService, Serializable {
@@ -27,12 +28,14 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	private EntityManager em;
 
 	@Override
+	@Logging
 	public void createSpeaker(Speaker speaker) {
 		em.persist(speaker);
 
 	}
 
 	@Override
+	@Logging
 	public Speaker updateSpeaker(Speaker speaker) throws SpeakerNotFoundException {
 		Speaker updatedSpeaker = findSpeakerById(speaker.getId());
 
@@ -44,6 +47,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public void deleteSpeaker(Speaker speaker) throws SpeakerNotFoundException {
 		Speaker speakerToDelete = findSpeakerById(speaker.getId());
 
@@ -53,6 +57,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public Speaker findSpeakerById(long id) throws SpeakerNotFoundException {
 		TypedQuery<Speaker> query = em.createNamedQuery(
 				"Speaker.findSpeakerById", Speaker.class);
@@ -74,6 +79,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Speaker> findSpeakersByName(String name) {
 		TypedQuery<Speaker> query = em.createNamedQuery(
 				"Speaker.findSpeakersByName", Speaker.class);
@@ -83,6 +89,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
+	@Logging
 	public List<Speaker> findAll() {
 		TypedQuery<Speaker> query = em.createNamedQuery("Speaker.findAll",
 				Speaker.class);
