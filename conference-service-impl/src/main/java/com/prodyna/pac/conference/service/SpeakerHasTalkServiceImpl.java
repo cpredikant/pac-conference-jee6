@@ -1,7 +1,6 @@
 package com.prodyna.pac.conference.service;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	}
 
-	private void speakerIsAvailable(Speaker speaker, Talk talk) {
+	private void speakerIsAvailable(Speaker speaker, Talk talk) throws SpeakerNotAvailableException {
 		List<Talk> talks = findTalksBySpeaker(speaker);
 
 		Date start = talk.getStart();

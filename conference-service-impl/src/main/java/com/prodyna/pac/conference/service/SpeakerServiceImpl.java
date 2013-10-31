@@ -33,8 +33,8 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
-	public Speaker updateSpeaker(Speaker speaker) {
-		Speaker updatedSpeaker = speaker;
+	public Speaker updateSpeaker(Speaker speaker) throws SpeakerNotFoundException {
+		Speaker updatedSpeaker = findSpeakerById(speaker.getId());
 
 		if (!em.contains(speaker)) {
 			updatedSpeaker = em.merge(speaker);
@@ -44,7 +44,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
-	public void deleteSpeaker(Speaker speaker) {
+	public void deleteSpeaker(Speaker speaker) throws SpeakerNotFoundException {
 		Speaker speakerToDelete = findSpeakerById(speaker.getId());
 
 		if (speakerToDelete != null) {
@@ -53,7 +53,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	}
 
 	@Override
-	public Speaker findSpeakerById(long id) {
+	public Speaker findSpeakerById(long id) throws SpeakerNotFoundException {
 		TypedQuery<Speaker> query = em.createNamedQuery(
 				"Speaker.findSpeakerById", Speaker.class);
 		query.setParameter("id", id);

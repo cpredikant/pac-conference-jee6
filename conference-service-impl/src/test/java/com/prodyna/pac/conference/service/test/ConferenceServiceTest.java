@@ -1,8 +1,9 @@
 package com.prodyna.pac.conference.service.test;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.ConferenceService;
+import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 
 @RunWith(Arquillian.class)
@@ -27,9 +29,9 @@ public class ConferenceServiceTest {
 
 	@Inject
 	private ConferenceService conferenceService;
-	
+
 	@Inject
-	private Date dateInFuture;
+	private SimpleDateFormat sdf;
 
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -49,8 +51,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -64,8 +66,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -82,14 +84,14 @@ public class ConferenceServiceTest {
 
 	}
 
-	@Test
+	@Test(expected = ConferenceNotFoundException.class)
 	@InSequence(3)
 	public void deleteConferenceTest() throws Exception {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -97,10 +99,7 @@ public class ConferenceServiceTest {
 
 		conferenceService.deleteConference(conference);
 
-		Conference deletedConference = conferenceService
-				.findConferenceById(conference.getId());
-
-		Assert.assertNull(deletedConference);
+		conferenceService.findConferenceById(conference.getId());
 
 	}
 
@@ -110,8 +109,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("findyById");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -130,8 +129,8 @@ public class ConferenceServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("findyByname");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -144,26 +143,24 @@ public class ConferenceServiceTest {
 
 		Assert.assertEquals("findyByname", foundConferences.get(0).getName());
 	}
-	
-	
+
 	@Test
 	@InSequence(6)
 	public void findAllTest() throws Exception {
-		
+
 		Conference c1 = new Conference();
 		c1.setDescription("A description");
 		c1.setName("findAll1");
-		c1.setStart(dateInFuture);
-		c1.setEnd(dateInFuture);
+		c1.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c1.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(c1);
-		
-		
+
 		Conference c2 = new Conference();
 		c2.setDescription("A description");
 		c2.setName("findAll2");
-		c2.setStart(dateInFuture);
-		c2.setEnd(dateInFuture);
+		c2.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c2.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(c2);
 

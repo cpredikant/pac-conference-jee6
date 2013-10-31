@@ -1,6 +1,6 @@
 package com.prodyna.pac.conference.exception;
 
-public class RoomNotFoundException extends ConferenceServiceException {
+public class RoomNotFoundException extends ServiceException {
 
 	private static final long serialVersionUID = 1L;
 	

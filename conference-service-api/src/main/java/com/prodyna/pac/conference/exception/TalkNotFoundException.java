@@ -1,6 +1,6 @@
 package com.prodyna.pac.conference.exception;
 
-public class TalkNotFoundException extends ConferenceServiceException {
+public class TalkNotFoundException extends ServiceException {
 
 	private static final long serialVersionUID = 1L;
 	

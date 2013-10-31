@@ -30,7 +30,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	private EntityManager em;
 
 	@Override
-	public void createTalk(Talk talk) {
+	public void createTalk(Talk talk) throws RoomNotAvailableException {
 
 		roomIsAvailable(talk);
 
@@ -38,8 +38,9 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
-	public Talk updateTalk(Talk talk) {
-		Talk updatedTalk = talk;
+	public Talk updateTalk(Talk talk) throws RoomNotAvailableException, TalkNotFoundException {
+		Talk updatedTalk = findTalkById(talk.getId());
+		
 
 		roomIsAvailable(talk);
 
@@ -51,7 +52,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
-	public void deleteTalk(Talk talk) {
+	public void deleteTalk(Talk talk) throws TalkNotFoundException {
 		Talk talkToDelete = findTalkById(talk.getId());
 
 		if (talkToDelete != null) {
@@ -60,7 +61,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	@Override
-	public Talk findTalkById(long id) {
+	public Talk findTalkById(long id) throws TalkNotFoundException {
 		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkById",
 				Talk.class);
 		query.setParameter("id", id);
@@ -111,7 +112,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 		return query.getResultList();
 	}
 
-	private void roomIsAvailable(Talk talk) {
+	private void roomIsAvailable(Talk talk) throws RoomNotAvailableException {
 		
 		if (null == talk.getRoom()){
 			return;

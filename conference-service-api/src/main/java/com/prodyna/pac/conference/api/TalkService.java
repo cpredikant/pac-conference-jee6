@@ -4,18 +4,20 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import com.prodyna.pac.conference.exception.RoomNotAvailableException;
+import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Talk;
 
 @Local
 public interface TalkService {
 
-	void createTalk(Talk talk);
+	void createTalk(Talk talk) throws RoomNotAvailableException;
 	
-	Talk updateTalk(Talk talk);
+	Talk updateTalk(Talk talk) throws RoomNotAvailableException, TalkNotFoundException;
 
-	void deleteTalk(Talk talk);
+	void deleteTalk(Talk talk) throws TalkNotFoundException;
 
-	Talk findTalkById(long id);
+	Talk findTalkById(long id) throws TalkNotFoundException;
 
 	List<Talk> findTalksByName(String name);
 	

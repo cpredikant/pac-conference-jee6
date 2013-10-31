@@ -1,6 +1,6 @@
 package com.prodyna.pac.conference.service.test;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
@@ -48,7 +48,7 @@ public class SpeakerHasTalkServiceTest {
 	private SpeakerHasTalkService speakerHasTalkService; 
 	
 	@Inject
-	private Date dateInFuture;
+	private SimpleDateFormat sdf;
 
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -68,8 +68,8 @@ public class SpeakerHasTalkServiceTest {
 		Conference c = new Conference();
 		c.setDescription("A description");
 		c.setName("findyByname");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(c);
 		
@@ -91,7 +91,7 @@ public class SpeakerHasTalkServiceTest {
 		t.setName("Talk");
 		t.setDescription("Talk Description");
 		t.setDuration(10);
-		t.setStart(dateInFuture);
+		t.setStart(sdf.parse("01.01.2015 12:00:00"));
 		t.setConference(c);
 		t.setRoom(r);
 		

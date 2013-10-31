@@ -1,6 +1,6 @@
 package com.prodyna.pac.conference.service.test;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,7 +39,7 @@ public class TalkServiceTest {
 	private TalkService talkService;
 	
 	@Inject
-	private Date dateInFuture;
+	private SimpleDateFormat sdf;
 	
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -60,8 +60,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -76,7 +76,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -91,8 +91,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -107,7 +107,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -128,8 +128,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -144,7 +144,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -166,8 +166,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -182,7 +182,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("10.01.2015 12:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -202,8 +202,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -219,7 +219,7 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
-		t1.setStart(dateInFuture);
+		t1.setStart(sdf.parse("01.01.2015 12:00:00"));
 		t1.setConference(c);
 		t1.setRoom(r);
 
@@ -229,7 +229,7 @@ public class TalkServiceTest {
 		t2.setDescription("Description");
 		t2.setDuration(60);
 		t2.setName("Talk");
-		t2.setStart(dateInFuture);
+		t2.setStart(sdf.parse("01.01.2015 12:00:00"));
 		t2.setConference(c);
 		t2.setRoom(r);
 
@@ -248,8 +248,8 @@ public class TalkServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("Desription");
 		conference.setName("Conference");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(conference);
 		
@@ -266,7 +266,7 @@ public class TalkServiceTest {
 		talk.setName("Talk");
 		talk.setConference(conference);
 		talk.setRoom(r);
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
 		
 		talkService.createTalk(talk);
 		
@@ -283,8 +283,8 @@ public class TalkServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("Desription");
 		conference.setName("Conference");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(conference);
 		
@@ -304,7 +304,7 @@ public class TalkServiceTest {
 		talk.setName("Talk");
 		talk.setRoom(room);
 		talk.setConference(conference);
-		talk.setStart(dateInFuture);
+		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
 		
 		talkService.createTalk(talk);
 		
@@ -321,8 +321,8 @@ public class TalkServiceTest {
 		Conference c = new Conference();
 		c.setName("Conference");
 		c.setDescription("Super Conference");
-		c.setStart(dateInFuture);
-		c.setEnd(dateInFuture);
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 		
 		conferenceService.createConference(c);
 		
@@ -338,7 +338,7 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
-		t1.setStart(dateInFuture);
+		t1.setStart(sdf.parse("01.01.2015 12:00:00"));
 		t1.setConference(c);
 		t1.setRoom(r);
 		talkService.createTalk(t1);
@@ -349,7 +349,7 @@ public class TalkServiceTest {
 		t2.setName("Talk");
 		t2.setConference(c);
 		t2.setRoom(r);
-		t2.setStart(dateInFuture);
+		t2.setStart(sdf.parse("01.01.2015 12:00:00"));
 
 		talkService.createTalk(t2);
 

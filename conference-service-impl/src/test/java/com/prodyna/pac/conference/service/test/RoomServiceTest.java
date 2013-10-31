@@ -1,6 +1,6 @@
 package com.prodyna.pac.conference.service.test;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,7 +34,7 @@ public class RoomServiceTest {
 	private ConferenceService conferenceService;
 	
 	@Inject
-	private Date dateInFuture;
+	private SimpleDateFormat sdf;
 
 	@Deployment
 	public static Archive<?> createTestArchive() {
@@ -54,8 +54,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -78,8 +78,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -110,8 +110,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 
@@ -140,8 +140,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 		
@@ -167,8 +167,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 		
@@ -194,8 +194,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
 		conferenceService.createConference(conference);
 		
@@ -229,8 +229,8 @@ public class RoomServiceTest {
 		Conference conference = new Conference();
 		conference.setDescription("A description");
 		conference.setName("A Name");
-		conference.setStart(dateInFuture);
-		conference.setEnd(dateInFuture);;
+		conference.setStart(sdf.parse("01.01.2015 12:00:00"));
+		conference.setEnd(sdf.parse("10.01.2015 12:00:00"));;
 
 		conferenceService.createConference(conference);
 
