@@ -128,7 +128,7 @@ public class Talk implements Serializable {
 	}
 
 	public void setStart(Date start) {
-		this.start = DateUtil.normalizeDate(start);
+		this.start = start;
 	}
 
 	@Override

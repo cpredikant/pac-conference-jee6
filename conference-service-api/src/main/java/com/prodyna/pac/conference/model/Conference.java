@@ -24,7 +24,6 @@ import com.prodyna.pac.conference.common.util.DateUtil;
 		@NamedQuery(name = "Conference.findConferenceByName", query = "SELECT c FROM Conference c WHERE c.name = :name"),
 		@NamedQuery(name = "Conference.findAll", query = "SELECT c FROM Conference c"),
 })
-@XmlRootElement(name = "conference")
 public class Conference implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -79,7 +78,7 @@ public class Conference implements Serializable {
 	}
 
 	public void setStart(Date start) {
-		this.start = DateUtil.normalizeDateToStartOfDay(start);
+		this.start = start;
 	}
 
 	public Date getEnd() {
@@ -87,7 +86,7 @@ public class Conference implements Serializable {
 	}
 
 	public void setEnd(Date end) {
-		this.end = DateUtil.normalizeDateToEndOfDay(end);
+		this.end = end;
 	}
 
 	@Override

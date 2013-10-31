@@ -22,6 +22,11 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
    <persistence-unit name="conference">
       <jta-data-source>java:jboss/datasources/conferenceDS</jta-data-source>
+      <class>com.prodyna.pac.conference.model.Conference</class>
+      <class>com.prodyna.pac.conference.model.Room</class>
+      <class>com.prodyna.pac.conference.model.Talk</class>
+      <class>com.prodyna.pac.conference.model.Speaker</class>
+      <class>com.prodyna.pac.conference.model.SpeakerHasTalk</class>
       <properties>
          <!-- Properties for Hibernate -->
          <property name="hibernate.hbm2ddl.auto" value="update" />
