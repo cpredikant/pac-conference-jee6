@@ -5,6 +5,8 @@
     <artifactId>conference</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>conference-common</artifactId>
   <name>conference-common</name>
+  
 </project>
