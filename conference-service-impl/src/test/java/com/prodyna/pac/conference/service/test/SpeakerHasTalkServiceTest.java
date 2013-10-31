@@ -91,7 +91,7 @@ public class SpeakerHasTalkServiceTest {
 		t.setName("Talk");
 		t.setDescription("Talk Description");
 		t.setDuration(10);
-		t.setStart(sdf.parse("01.01.2015 12:00:00"));
+		t.setStart(sdf.parse("01.01.2015 13:00:00"));
 		t.setConference(c);
 		t.setRoom(r);
 		

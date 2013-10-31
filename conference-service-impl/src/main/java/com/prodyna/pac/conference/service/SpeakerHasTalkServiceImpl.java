@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.common.util.DateUtil;
+import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
 import com.prodyna.pac.conference.exception.SpeakerNotAvailableException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.SpeakerHasTalk;
@@ -35,7 +36,8 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	@Override
 	@Logging
 	public void assign(Speaker speaker, Talk talk)
-			throws SpeakerNotAvailableException {
+			throws SpeakerNotAvailableException,
+			SpeakerHasTalkNotFoundException {
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
 		if (sht != null) {
@@ -52,7 +54,8 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	}
 
-	private void speakerIsAvailable(Speaker speaker, Talk talk) throws SpeakerNotAvailableException {
+	private void speakerIsAvailable(Speaker speaker, Talk talk)
+			throws SpeakerNotAvailableException {
 		List<Talk> talks = findTalksBySpeaker(speaker);
 
 		Date start = talk.getStart();
@@ -71,16 +74,16 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 		}
 
 	}
-	
 
 	@Override
 	@Logging
 	public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker,
-			Talk talk) {
+			Talk talk) throws SpeakerHasTalkNotFoundException {
 
 		TypedQuery<SpeakerHasTalk> query = em.createNamedQuery(
 				"SpeakerHasTalk.findSpeakerHasTalkBySpeakerAndTalk",
 				SpeakerHasTalk.class);
+		
 		query.setParameter("speaker", speaker);
 		query.setParameter("talk", talk);
 
@@ -92,6 +95,9 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 			log.info("No result for Entity {} for Speaker {} and Talk {}",
 					new Object[] { SpeakerHasTalk.class.getName(), speaker,
 							talk });
+			throw new SpeakerHasTalkNotFoundException(
+					"SpeakerHasTalk not found for Speaker " + speaker
+							+ " and Talk " + talk);
 		}
 
 		return speakerHasTalk;
@@ -100,15 +106,12 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	@Override
 	@Logging
-	public void unassign(Speaker speaker, Talk talk) {
+	public void unassign(Speaker speaker, Talk talk)
+			throws SpeakerHasTalkNotFoundException {
 
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
-		if (sht == null) {
-			log.info("SpeakerHasTalk does not exist");
-		} else {
-			em.remove(sht);
-		}
+		em.remove(sht);
 
 	}
 
@@ -142,6 +145,5 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 		return query.getResultList();
 	}
-	
 
 }
