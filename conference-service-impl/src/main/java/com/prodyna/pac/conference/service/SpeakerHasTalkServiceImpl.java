@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.common.util.DateUtil;
 import com.prodyna.pac.conference.exception.SpeakerNotAvailableException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.SpeakerHasTalk;
@@ -55,13 +56,13 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 		Date start = talk.getStart();
 
-		Date end = addMinutesToDate(start, talk.getDuration());
+		Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
 
 		for (Talk t : talks) {
 
-			if (start.after(addMinutesToDate(t.getStart(),
+			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
 					t.getDuration()))
-					&& end.before(t.getStart())) {
+					|| end.before(t.getStart())) {
 				throw new SpeakerNotAvailableException("Speaker "
 						+ speaker.getName() + " is not available for talk "
 						+ talk.getName());
@@ -70,14 +71,6 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	}
 	
-	private Date addMinutesToDate(Date date, int minutes) {
-
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		c.add(Calendar.MINUTE, minutes);
-
-		return c.getTime();
-	}
 
 	@Override
 	public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker,
@@ -143,5 +136,6 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 		return query.getResultList();
 	}
+	
 
 }

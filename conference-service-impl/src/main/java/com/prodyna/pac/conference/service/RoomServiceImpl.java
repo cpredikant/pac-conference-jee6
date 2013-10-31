@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.RoomService;
+import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Room;
 
 @Stateless
@@ -66,6 +67,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 		} catch (NoResultException exception) {
 			log.info("No result for Entity {} with id {}",
 					Room.class.getName(), id);
+			throw new RoomNotFoundException("Room with id " + id + " not found.");
 		}
 
 		return room;

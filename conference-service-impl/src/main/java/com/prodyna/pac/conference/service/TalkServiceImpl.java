@@ -1,6 +1,7 @@
 package com.prodyna.pac.conference.service;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,7 +13,9 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.common.util.DateUtil;
+import com.prodyna.pac.conference.exception.RoomNotAvailableException;
+import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Talk;
 
 @Stateless
@@ -28,17 +31,17 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 	@Override
 	public void createTalk(Talk talk) {
-		
-		roomIsAvailable(talk.getRoom());
-		
+
+		roomIsAvailable(talk);
+
 		em.persist(talk);
 	}
 
 	@Override
 	public Talk updateTalk(Talk talk) {
 		Talk updatedTalk = talk;
-		
-		roomIsAvailable(updatedTalk.getRoom());
+
+		roomIsAvailable(talk);
 
 		if (!em.contains(talk)) {
 			updatedTalk = em.merge(talk);
@@ -69,42 +72,66 @@ public class TalkServiceImpl implements TalkService, Serializable {
 		} catch (NoResultException exception) {
 			log.info("No result for Entity {} with id {}",
 					Talk.class.getName(), id);
+			throw new TalkNotFoundException("Talk with id " + id + " not found");
 		}
 		return talk;
 	}
 
 	@Override
 	public List<Talk> findTalksByName(String name) {
-		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkByName", Talk.class);
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalkByName",
+				Talk.class);
 		query.setParameter("name", name);
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Talk> findTalksByConferenceId(long conferenceId) {
-		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByConferenceId", Talk.class);
+		TypedQuery<Talk> query = em.createNamedQuery(
+				"Talk.findTalksByConferenceId", Talk.class);
 		query.setParameter("id", conferenceId);
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Talk> findTalksByRoomId(long roomId) {
-		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByRoomId", Talk.class);
+		TypedQuery<Talk> query = em.createNamedQuery("Talk.findTalksByRoomId",
+				Talk.class);
 		query.setParameter("id", roomId);
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Talk> findAll() {
-		TypedQuery<Talk> query = em.createNamedQuery("Talk.findAll", Talk.class);
+		TypedQuery<Talk> query = em
+				.createNamedQuery("Talk.findAll", Talk.class);
 		return query.getResultList();
 	}
-	
-	private void roomIsAvailable(Room room){
-		//TODO: Implement me with Exception
+
+	private void roomIsAvailable(Talk talk) {
+		
+		if (null == talk.getRoom()){
+			return;
+		}
+		
+		List<Talk> talks = findTalksByRoomId(talk.getRoom().getId());
+		
+		for (Talk t: talks){
+			Date start = talk.getStart();
+
+			Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
+			
+			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
+					t.getDuration()))
+					|| end.before(t.getStart())) {
+				throw new RoomNotAvailableException("Room "
+						+ talk.getRoom().getName() + " is not available for talk "
+						+ talk.getName());
+			}
+		}
 	}
 
 }

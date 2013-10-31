@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.SpeakerService;
+import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 
 @Stateless
@@ -64,6 +65,9 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 		} catch (NoResultException exception) {
 			log.info("No result for Entity {} with id {}",
 					Speaker.class.getName(), id);
+			throw new SpeakerNotFoundException("Speaker with id " + id
+					+ " not found");
+
 		}
 
 		return speaker;

@@ -65,7 +65,7 @@ public class Talk implements Serializable {
 
 		if (conference == null || conference.getStart() == null
 				|| conference.getEnd() == null) {
-			return false;
+			return true;
 		}
 
 		Date conferenceStart = conference.getStart();
