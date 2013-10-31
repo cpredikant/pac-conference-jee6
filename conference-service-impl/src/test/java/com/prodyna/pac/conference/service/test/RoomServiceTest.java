@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.api.RoomService;
+import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.model.Room;
 
@@ -104,7 +105,7 @@ public class RoomServiceTest {
 
 	}
 
-	@Test
+	@Test(expected=RoomNotFoundException.class)
 	@InSequence(3)
 	public void deleteRoomTest() throws Exception {
 		Conference conference = new Conference();
@@ -128,9 +129,7 @@ public class RoomServiceTest {
 
 		roomService.deleteRoom(room);
 
-		Room deletedRoom = roomService.findRoomById(room.getId());
-
-		Assert.assertNull(deletedRoom);
+		roomService.findRoomById(room.getId());
 
 	}
 

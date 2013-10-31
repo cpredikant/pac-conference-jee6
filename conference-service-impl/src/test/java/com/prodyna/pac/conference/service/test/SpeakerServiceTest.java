@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.SpeakerService;
+import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 
 @RunWith(Arquillian.class)
@@ -23,7 +24,7 @@ public class SpeakerServiceTest {
 
 	@Inject
 	Logger logger;
-	
+
 	@Inject
 	private SpeakerService speakerService;
 
@@ -68,7 +69,7 @@ public class SpeakerServiceTest {
 				updatedSpeaker.getDescription());
 	}
 
-	@Test
+	@Test(expected = SpeakerNotFoundException.class)
 	@InSequence(3)
 	public void deleteSpeakerTest() throws Exception {
 		Speaker speaker = new Speaker();
@@ -80,11 +81,8 @@ public class SpeakerServiceTest {
 		Assert.assertTrue(speaker.getId() > 0);
 
 		speakerService.deleteSpeaker(speaker);
-
-		Speaker deletedSpeaker = speakerService
-				.findSpeakerById(speaker.getId());
-
-		Assert.assertNull(deletedSpeaker);
+		
+		speakerService.findSpeakerById(speaker.getId());
 
 	}
 

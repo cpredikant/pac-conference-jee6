@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.api.TalkService;
+import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.model.Talk;
@@ -76,7 +77,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -107,7 +108,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -122,7 +123,7 @@ public class TalkServiceTest {
 		Assert.assertEquals("Updated Talk", updatedTalk.getName());
 	}
 
-	@Test
+	@Test(expected=TalkNotFoundException.class)
 	@InSequence(3)
 	public void deleteTalkTest() throws Exception {
 		Conference c = new Conference();
@@ -144,7 +145,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -182,7 +183,7 @@ public class TalkServiceTest {
 		talk.setDescription("Description");
 		talk.setDuration(60);
 		talk.setName("Talk");
-		talk.setStart(sdf.parse("10.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		talk.setConference(c);
 		talk.setRoom(r);
 
@@ -219,7 +220,7 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
-		t1.setStart(sdf.parse("01.01.2015 12:00:00"));
+		t1.setStart(sdf.parse("01.01.2015 13:00:00"));
 		t1.setConference(c);
 		t1.setRoom(r);
 
@@ -229,7 +230,7 @@ public class TalkServiceTest {
 		t2.setDescription("Description");
 		t2.setDuration(60);
 		t2.setName("Talk");
-		t2.setStart(sdf.parse("01.01.2015 12:00:00"));
+		t2.setStart(sdf.parse("01.01.2015 14:00:00"));
 		t2.setConference(c);
 		t2.setRoom(r);
 
@@ -266,7 +267,7 @@ public class TalkServiceTest {
 		talk.setName("Talk");
 		talk.setConference(conference);
 		talk.setRoom(r);
-		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		
 		talkService.createTalk(talk);
 		
@@ -304,7 +305,7 @@ public class TalkServiceTest {
 		talk.setName("Talk");
 		talk.setRoom(room);
 		talk.setConference(conference);
-		talk.setStart(sdf.parse("01.01.2015 12:00:00"));
+		talk.setStart(sdf.parse("01.01.2015 13:00:00"));
 		
 		talkService.createTalk(talk);
 		
@@ -338,7 +339,7 @@ public class TalkServiceTest {
 		t1.setDescription("Description");
 		t1.setDuration(60);
 		t1.setName("Talk");
-		t1.setStart(sdf.parse("01.01.2015 12:00:00"));
+		t1.setStart(sdf.parse("01.01.2015 13:00:00"));
 		t1.setConference(c);
 		t1.setRoom(r);
 		talkService.createTalk(t1);
@@ -349,7 +350,7 @@ public class TalkServiceTest {
 		t2.setName("Talk");
 		t2.setConference(c);
 		t2.setRoom(r);
-		t2.setStart(sdf.parse("01.01.2015 12:00:00"));
+		t2.setStart(sdf.parse("01.01.2015 14:00:00"));
 
 		talkService.createTalk(t2);
 
