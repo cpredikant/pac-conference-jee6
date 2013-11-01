@@ -20,6 +20,7 @@ import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.api.SpeakerService;
 import com.prodyna.pac.conference.api.TalkService;
+import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.model.Speaker;
@@ -106,11 +107,52 @@ public class SpeakerHasTalkServiceTest {
 
 	}
 
-	@Test
+	@Test(expected=SpeakerHasTalkNotFoundException.class)
 	@InSequence(2)
 	public void unassignTest() throws Exception {
 		
+		Conference c = new Conference();
+		c.setDescription("A description");
+		c.setName("findyByname");
+		c.setStart(sdf.parse("01.01.2015 12:00:00"));
+		c.setEnd(sdf.parse("10.01.2015 12:00:00"));
 
+		conferenceService.createConference(c);
+		
+		
+		Speaker s = new Speaker();
+		s.setName("Speaker");
+		s.setDescription("Speaker Description");
+		
+		speakerService.createSpeaker(s);
+		
+		Room r = new Room();
+		r.setCapacity(1000);
+		r.setName("Audimax2");
+		r.setConference(c);
+
+		roomService.createRoom(r);
+		
+		Talk t = new Talk();
+		t.setName("Talk");
+		t.setDescription("Talk Description");
+		t.setDuration(10);
+		t.setStart(sdf.parse("01.01.2015 13:00:00"));
+		t.setConference(c);
+		t.setRoom(r);
+		
+		talkService.createTalk(t);
+		
+		speakerHasTalkService.assign(s, t);
+		
+		SpeakerHasTalk hasTalk = speakerHasTalkService.findSpeakerHasTalkBySpeakerAndTalk(s, t);
+		
+		Assert.assertNotNull(hasTalk);
+		
+		speakerHasTalkService.unassign(s, t);
+		
+		speakerHasTalkService.findSpeakerHasTalkBySpeakerAndTalk(s, t);
+			
 	}
 
 	

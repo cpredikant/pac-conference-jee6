@@ -36,26 +36,20 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	@Override
 	@Logging
 	public void assign(Speaker speaker, Talk talk)
-			throws SpeakerNotAvailableException,
-			SpeakerHasTalkNotFoundException {
-		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
+			throws SpeakerNotAvailableException {
 
-		if (sht != null) {
-			log.info("SpeakerHasTalk already exists");
-		} else {
+		speakerIsAvailable(speaker, talk);
 
-			speakerIsAvailable(speaker, talk);
-
-			sht = new SpeakerHasTalk();
-			sht.setSpeaker(speaker);
-			sht.setTalk(talk);
-			em.persist(sht);
-		}
+		SpeakerHasTalk sht = new SpeakerHasTalk();
+		sht.setSpeaker(speaker);
+		sht.setTalk(talk);
+		em.persist(sht);
 
 	}
 
 	private void speakerIsAvailable(Speaker speaker, Talk talk)
 			throws SpeakerNotAvailableException {
+
 		List<Talk> talks = findTalksBySpeaker(speaker);
 
 		Date start = talk.getStart();
@@ -72,7 +66,6 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 						+ talk.getName());
 			}
 		}
-
 	}
 
 	@Override
@@ -83,9 +76,9 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 		TypedQuery<SpeakerHasTalk> query = em.createNamedQuery(
 				"SpeakerHasTalk.findSpeakerHasTalkBySpeakerAndTalk",
 				SpeakerHasTalk.class);
-		
-		query.setParameter("speaker", speaker);
-		query.setParameter("talk", talk);
+
+		query.setParameter("speakerId", speaker.getId());
+		query.setParameter("talkId", talk.getId());
 
 		SpeakerHasTalk speakerHasTalk = null;
 
@@ -115,29 +108,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	}
 
-	@Override
-	@Logging
-	public void unassignTalksBySpeaker(Speaker speaker) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	@Logging
-	public void unassignSpeakersByTalk(Talk talk) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Speaker> findSpeakersByTalk(Talk talk) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@Logging
-	public List<Talk> findTalksBySpeaker(Speaker speaker) {
+	private List<Talk> findTalksBySpeaker(Speaker speaker) {
 
 		TypedQuery<Talk> query = em.createNamedQuery(
 				"SpeakerHasTalk.findTalksBySpeaker", Talk.class);
