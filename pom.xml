@@ -22,8 +22,10 @@
 		<module>conference-service-api</module>
 		<module>conference-service-impl</module>
 		<module>conference-jsf-web</module>
+		<module>conference-rest-api</module>
 		<module>conference-rest-web</module>
 		<module>conference-common</module>
+		
 	</modules>
 
 	<properties>
@@ -78,6 +80,14 @@
 				<artifactId>conference-jsf-web</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.prodyna.pac</groupId>
+				<artifactId>conference-rest-api</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
 			

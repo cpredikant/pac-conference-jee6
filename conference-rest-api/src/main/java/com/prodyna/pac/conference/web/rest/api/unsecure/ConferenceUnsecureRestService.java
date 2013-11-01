@@ -1,4 +1,4 @@
-package com.prodyna.pac.conference.web.rest.api;
+package com.prodyna.pac.conference.web.rest.api.unsecure;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -9,8 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/public")
-public interface PublicRestService {
-
+public interface ConferenceUnsecureRestService {
 
 	@GET
 	@Path("/conference")
@@ -29,25 +28,5 @@ public interface PublicRestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
     public Response listConferencesByName(@PathParam("name") String id);
-	
-	@GET
-	@Path("/talk")
-	@Produces(MediaType.APPLICATION_JSON)
-    public Response listAllTalks();
-	
-	
-	@GET
-	@Path("/talk/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-    public Response listTalkById(@PathParam("id") String id);
-	
-	@GET
-	@Path("/talk/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-    public Response listTalkByName(@PathParam("name") String id);
-
-	
 
 }
