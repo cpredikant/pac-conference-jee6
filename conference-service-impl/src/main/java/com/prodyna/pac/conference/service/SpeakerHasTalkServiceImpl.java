@@ -20,8 +20,10 @@ import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.model.Talk;
 import com.prodyna.pac.conference.service.interceptor.Logging;
+import com.prodyna.pac.conference.service.interceptor.Performance;
 
 @Stateless
+@Performance
 public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 		Serializable {
 

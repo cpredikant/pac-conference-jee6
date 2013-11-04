@@ -15,8 +15,10 @@ import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.service.interceptor.Logging;
+import com.prodyna.pac.conference.service.interceptor.Performance;
 
 @Stateless
+@Performance
 public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
 	private static final long serialVersionUID = 1L;

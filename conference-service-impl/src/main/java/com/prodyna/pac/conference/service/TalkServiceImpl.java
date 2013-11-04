@@ -18,8 +18,10 @@ import com.prodyna.pac.conference.exception.RoomNotAvailableException;
 import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Talk;
 import com.prodyna.pac.conference.service.interceptor.Logging;
+import com.prodyna.pac.conference.service.interceptor.Performance;
 
 @Stateless
+@Performance
 public class TalkServiceImpl implements TalkService, Serializable {
 
 	private static final long serialVersionUID = 1L;

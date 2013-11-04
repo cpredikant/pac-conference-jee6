@@ -13,21 +13,23 @@ public class LoggingInterceptor {
 
 	@Inject
 	Logger logger;
-
+	
+	
 
 	@AroundInvoke
 	public Object aroundInvoke(InvocationContext ic) throws Exception {
 
 		long start = System.currentTimeMillis();
-		
+
 		Object proceed = ic.proceed();
-		
+
 		long end = System.currentTimeMillis();
-		
+
+		long duration = end - start;
+
 		logger.info("SERVICE CALL on CLASS: "
 				+ ic.getTarget().getClass().getSimpleName() + " METHOD: "
-				+ ic.getMethod().getName() + " DURATION: " + (end - start)
-				+ "ms");
+				+ ic.getMethod().getName() + " DURATION: " + duration + "ms");
 
 		return proceed;
 	}

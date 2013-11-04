@@ -15,8 +15,10 @@ import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.service.interceptor.Logging;
+import com.prodyna.pac.conference.service.interceptor.Performance;
 
 @Stateless
+@Performance
 public class RoomServiceImpl implements RoomService, Serializable {
 
 	private static final long serialVersionUID = 1L;

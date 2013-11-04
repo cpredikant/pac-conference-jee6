@@ -15,8 +15,10 @@ import com.prodyna.pac.conference.api.SpeakerService;
 import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.service.interceptor.Logging;
+import com.prodyna.pac.conference.service.interceptor.Performance;
 
 @Stateless
+@Performance
 public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
 	private static final long serialVersionUID = 1L;
