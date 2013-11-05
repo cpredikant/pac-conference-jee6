@@ -22,8 +22,7 @@ public class PerformanceInterceptor implements Serializable{
 	@Inject
     private MBeanServer ms;
 
-
-
+	
 	@AroundInvoke
 	public Object aroundInvoke(InvocationContext ic) throws Exception {
 		
