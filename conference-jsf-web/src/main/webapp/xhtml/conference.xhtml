@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+
+		<prime:breadCrumb>
+			<prime:menuitem value="Conferences" url="conferences.jsf" />
+		</prime:breadCrumb>
+		
+		<prime:spacer height="10"/>
+		
+		<prime:outputPanel>
+			<h1>Select a Conference</h1>
+		</prime:outputPanel>
+		
+		<prime:spacer height="10"/>
+		
+		<prime:dataTable value="#{conferencesController.conferences}"
+			var="conferenceItem">
+
+			<prime:column headerText="Name">
+				<h:outputText value="#{conferenceItem.name}" />
+			</prime:column>
+
+			<prime:column headerText="Description">
+				<h:outputText value="#{conferenceItem.description}" />
+			</prime:column>
+
+			<prime:column headerText="Start Date">
+				<h:outputText value="#{conferenceItem.start}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				</h:outputText>
+			</prime:column>
+
+			<prime:column headerText="End Date">
+				<h:outputText value="#{conferenceItem.end}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				</h:outputText>
+			</prime:column>
+
+		</prime:dataTable>
+
+
+	</ui:define>
+</ui:composition>
