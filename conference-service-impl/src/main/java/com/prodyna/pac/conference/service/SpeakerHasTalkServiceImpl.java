@@ -110,7 +110,9 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 	}
 
-	private List<Talk> findTalksBySpeaker(Speaker speaker) {
+	@Override
+	@Logging
+	public List<Talk> findTalksBySpeaker(Speaker speaker) {
 
 		TypedQuery<Talk> query = em.createNamedQuery(
 				"SpeakerHasTalk.findTalksBySpeaker", Talk.class);
@@ -118,5 +120,17 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 		return query.getResultList();
 	}
+
+	@Override
+	@Logging
+	public List<Speaker> findSpeakersByTalk(Talk talk) {
+		TypedQuery<Speaker> query = em.createNamedQuery(
+				"SpeakerHasTalk.findSpeakersByTalk", Speaker.class);
+		query.setParameter("talk", talk);
+
+		return query.getResultList();
+	}
+
+	
 
 }

@@ -6,41 +6,85 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:prime="http://primefaces.org/ui"
 	template="/WEB-INF/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="conferenceId"
+			value="#{conferenceController.conferenceId}" />
+		<f:event listener="#{conferenceController.initViewParams()}"
+			type="preRenderView" />
+	</f:metadata>
+
+
 	<ui:define name="content">
 
-		<prime:breadCrumb>
-			<prime:menuitem value="Conferences" url="conferences.jsf" />
-		</prime:breadCrumb>
-		
-		<prime:spacer height="10"/>
-		
+		<prime:messages globalOnly="true" showDetail="true" showSummary="true" />
+
 		<prime:outputPanel>
-			<h1>Select a Conference</h1>
+			<h1>Conference - #{conferenceController.conference.name}</h1>
 		</prime:outputPanel>
-		
-		<prime:spacer height="10"/>
-		
-		<prime:dataTable value="#{conferencesController.conferences}"
-			var="conferenceItem">
+
+		<prime:spacer height="5" />
+
+
+		<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+
+			<prime:outputLabel value="Name:" />
+			<h:outputText value="#{conferenceController.conference.name}" />
+
+			<prime:outputLabel value="Start Date:" />
+			<h:outputText value="#{conferenceController.conference.start}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+			</h:outputText>
+
+			<prime:outputLabel value="End Date:" />
+			<h:outputText value="#{conferenceController.conference.end}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+			</h:outputText>
+
+			<prime:outputLabel value="Description:" />
+			<h:outputText value="#{conferenceController.conference.description}" />
+
+		</h:panelGrid>
+
+
+		<prime:spacer height="10" />
+
+		<prime:outputPanel>
+			<h1>Talks</h1>
+		</prime:outputPanel>
+
+		<prime:spacer height="5" />
+
+		<prime:dataTable value="#{conferenceController.talks}" var="talkItem">
 
 			<prime:column headerText="Name">
-				<h:outputText value="#{conferenceItem.name}" />
+				<h:outputText value="#{talkItem.name}" />
 			</prime:column>
 
 			<prime:column headerText="Description">
-				<h:outputText value="#{conferenceItem.description}" />
+				<h:outputText value="#{talkItem.description}" />
 			</prime:column>
 
-			<prime:column headerText="Start Date">
-				<h:outputText value="#{conferenceItem.start}">
-					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+			<prime:column headerText="Day">
+				<h:outputText value="#{talkItem.start}">
+					<f:convertDateTime pattern="dd.MM.yyyy" />
 				</h:outputText>
 			</prime:column>
 
-			<prime:column headerText="End Date">
-				<h:outputText value="#{conferenceItem.end}">
-					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+			<prime:column headerText="Start Time">
+				<h:outputText value="#{talkItem.start}">
+					<f:convertDateTime pattern="HH:mm" />
 				</h:outputText>
+			</prime:column>
+
+			<prime:column headerText="Duration (Min)">
+				<h:outputText value="#{talkItem.duration}" />
+			</prime:column>
+			
+			<prime:column headerText="Details">
+				<h:link value="Show Details" outcome="talk">
+					<f:param name="talkId" value="#{talkItem.id}" />
+				</h:link>
 			</prime:column>
 
 		</prime:dataTable>

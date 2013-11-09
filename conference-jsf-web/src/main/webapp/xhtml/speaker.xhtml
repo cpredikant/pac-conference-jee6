@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="speakerId" value="#{speakerController.speakerId}" />
+		<f:event listener="#{speakerController.initViewParams()}"
+			type="preRenderView" />
+	</f:metadata>
+	
+	<ui:define name="content">
+
+		
+		
+		<prime:outputPanel>
+			<h1>Speaker - #{speakerController.speaker.name}</h1>
+		</prime:outputPanel>
+
+		<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+
+			<prime:outputLabel value="Name:" />
+			<h:outputText value="#{speakerController.speaker.name}" />
+
+			<prime:outputLabel value="Description:" />
+			<h:outputText value="#{speakerController.speaker.description}" />
+
+		</h:panelGrid>
+
+		<prime:spacer height="10" />
+
+		<prime:outputPanel>
+			<h1>Talks</h1>
+		</prime:outputPanel>
+
+		<prime:dataTable value="#{speakerController.talks}" var="talkItem">
+
+			<prime:column headerText="Name">
+				<h:outputText value="#{talkItem.name}" />
+			</prime:column>
+
+			<prime:column headerText="Description">
+				<h:outputText value="#{talk.description}" />
+			</prime:column>
+			
+			
+			<prime:column headerText="Conference Details">
+				<h:link value="Show Conference (#{talkItem.conference.name}) Details" outcome="conference">
+					<f:param name="conferenceId" value="#{talkItem.conference.id}" />
+				</h:link>
+			</prime:column>
+			
+			<prime:column headerText="Talk Details">
+				<h:link value="Show Talk Details" outcome="talk">
+					<f:param name="talkId" value="#{talkItem.id}" />
+				</h:link>
+			</prime:column>
+
+		</prime:dataTable>
+
+	</ui:define>
+</ui:composition>

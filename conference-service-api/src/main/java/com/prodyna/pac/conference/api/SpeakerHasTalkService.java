@@ -1,5 +1,7 @@
 package com.prodyna.pac.conference.api;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
@@ -19,6 +21,8 @@ public interface SpeakerHasTalkService {
 	SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker, Talk talk)
 			throws SpeakerHasTalkNotFoundException;
 	
-
+	List<Speaker> findSpeakersByTalk(Talk talk);
+	
+	List<Talk> findTalksBySpeaker(Speaker speaker);
 	
 }

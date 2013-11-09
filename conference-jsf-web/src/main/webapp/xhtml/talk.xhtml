@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="talkId" value="#{talkController.talkId}" />
+		<f:event listener="#{talkController.initViewParams()}"
+			type="preRenderView" />
+	</f:metadata>
+
+
+	<ui:define name="content">
+
+		<prime:outputPanel>
+			<h1>Talk - #{talkController.talk.name}</h1>
+		</prime:outputPanel>
+
+		<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+
+			<prime:outputLabel value="Name:" />
+			<h:outputText value="#{talkController.talk.name}" />
+
+			<prime:outputLabel value="Start Date/Time:" />
+			<h:outputText value="#{talkController.talk.start}">
+				<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+			</h:outputText>
+
+			<prime:outputLabel value="Duration:" />
+			<h:outputText value="#{talkController.talk.duration} min" />
+
+			<prime:outputLabel value="Conference:"
+				rendered="#{talkController.talk.conference!=null}" />
+			<h:link value="Conference - #{talkController.talk.conference.name}"
+				outcome="conference" rendered="#{talkController.talk.conference!=null}">
+				<f:param name="conferenceId" value="#{talkController.talk.conference.id}" />
+			</h:link>
+
+			<prime:outputLabel value="Room:"
+				rendered="#{talkController.talk.room!=null}" />
+			<h:link value="Room - #{talkController.talk.room.name}"
+				outcome="room" rendered="#{talkController.talk.room!=null}">
+				<f:param name="roomId" value="#{talkController.talk.room.id}" />
+			</h:link>
+			
+			<prime:outputLabel value="Description:" />
+			<h:outputText value="#{talkController.talk.description}" />
+
+		</h:panelGrid>
+		
+		<prime:spacer height="10" />
+
+		<prime:outputPanel>
+			<h1>Speakers</h1>
+		</prime:outputPanel>
+
+		<prime:dataTable value="#{talkController.speakers}" var="speakerItem">
+
+			<prime:column headerText="Name">
+				<h:outputText value="#{speakerItem.name}" />
+			</prime:column>
+
+			<prime:column headerText="Description">
+				<h:outputText value="#{speakerItem.description}" />
+			</prime:column>
+			
+			<prime:column headerText="Details">
+				<h:link value="Show Details" outcome="speaker">
+					<f:param name="speakerId" value="#{speakerItem.id}" />
+				</h:link>
+			</prime:column>
+
+		</prime:dataTable>
+
+	</ui:define>
+</ui:composition>
