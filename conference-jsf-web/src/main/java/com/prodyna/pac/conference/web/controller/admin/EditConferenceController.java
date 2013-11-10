@@ -1,12 +1,13 @@
-package com.prodyna.pac.conference.web.controller;
+package com.prodyna.pac.conference.web.controller.admin;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 
@@ -16,8 +17,9 @@ import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.model.Talk;
 
-@Model
-public class ConferenceController implements Serializable {
+@Named
+@ViewScoped
+public class EditConferenceController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +41,7 @@ public class ConferenceController implements Serializable {
 	
 	public void initViewParams(){
 		conference = loadConference(conferenceId);
-		talks = talkService.findTalksByConferenceId(conferenceId);
+		//talks = talkService.findTalksByConferenceId(conferenceId);
 	}
 
 	private Conference loadConference(long id) {
@@ -56,6 +58,16 @@ public class ConferenceController implements Serializable {
 		}
 
 		return c;
+	}
+	
+	public void saveConferenceAction(){
+		try {
+			conferenceService.updateConference(conference);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Conference saved"));
+		} catch (Exception e) {
+			logger.error("Error updating Conference {}", conference, e);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error updating Conference"));
+		}
 	}
 
 	public long getConferenceId() {

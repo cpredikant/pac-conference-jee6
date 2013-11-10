@@ -14,12 +14,10 @@
 			<h1>Select a Conference</h1>
 		</prime:outputPanel>
 
-		<prime:spacer height="10" />
-
 		<prime:dataTable value="#{conferencesController.conferences}"
 			var="conferenceItem">
 
-			<prime:column headerText="Name">
+			<prime:column headerText="Name" >
 				<h:outputText value="#{conferenceItem.name}" />
 			</prime:column>
 
@@ -27,13 +25,13 @@
 				<h:outputText value="#{conferenceItem.description}" />
 			</prime:column>
 
-			<prime:column headerText="Start Date">
+			<prime:column headerText="Start Date" >
 				<h:outputText value="#{conferenceItem.start}">
 					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
 				</h:outputText>
 			</prime:column>
 
-			<prime:column headerText="End Date">
+			<prime:column headerText="End Date" >
 				<h:outputText value="#{conferenceItem.end}">
 					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
 				</h:outputText>

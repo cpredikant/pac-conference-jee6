@@ -30,10 +30,10 @@ public class SpeakerController implements Serializable {
 
 	@Inject
 	private SpeakerService speakerService;
-	
+
 	@Inject
 	private SpeakerHasTalkService speakerHasTalkService;
-	
+
 	private List<Talk> talks;
 
 	public void initViewParams() {
@@ -84,6 +84,5 @@ public class SpeakerController implements Serializable {
 	public void setTalks(List<Talk> talks) {
 		this.talks = talks;
 	}
-	
-	
+
 }

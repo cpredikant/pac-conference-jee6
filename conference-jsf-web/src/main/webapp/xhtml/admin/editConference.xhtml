@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="conferenceId"
+			value="#{editConferenceController.conferenceId}" />
+		<f:event listener="#{editConferenceController.initViewParams()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<h:form>
+			<prime:messages showDetail="true" showSummary="true" />
+
+			<prime:outputPanel>
+				<h1>Conference - #{editConferenceController.conference.name}</h1>
+			</prime:outputPanel>
+
+			<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+
+				<prime:outputLabel value="Name:" />
+				<prime:inputText value="#{editConferenceController.conference.name}" />
+
+				<prime:outputLabel value="Start Date:" />
+				<prime:calendar value="#{editConferenceController.conference.start}"
+					pattern="dd.MM.yyyy HH:mm" stepMinute="15" />
+
+
+				<prime:outputLabel value="End Date:" />
+				<prime:calendar value="#{editConferenceController.conference.end}"
+					pattern="dd.MM.yyyy HH:mm" stepMinute="15" />
+
+				<prime:outputLabel value="Description:" />
+				<prime:inputTextarea
+					value="#{editConferenceController.conference.description}" />
+
+			</h:panelGrid>
+
+			<prime:commandButton value="Save"
+				action="#{editConferenceController.saveConferenceAction()}"
+				update="@form" />
+			<prime:button value="Cancel" outcome="admin"/>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

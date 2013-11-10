@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<prime:messages globalOnly="true" showDetail="true" showSummary="true" />
+
+		<prime:outputPanel>
+			<h1>Administration Area</h1>
+		</prime:outputPanel>
+
+		<prime:outputPanel>
+			<h2>Conference Administration</h2>
+		</prime:outputPanel>
+
+		<prime:dataTable value="#{adminController.conferences}"
+			var="conferenceItem">
+
+			<prime:column headerText="Name">
+				<h:outputText value="#{conferenceItem.name}" />
+			</prime:column>
+
+			<prime:column headerText="Description">
+				<h:outputText value="#{conferenceItem.description}" />
+			</prime:column>
+
+			<prime:column headerText="Start Date">
+				<h:outputText value="#{conferenceItem.start}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				</h:outputText>
+			</prime:column>
+
+			<prime:column headerText="End Date">
+				<h:outputText value="#{conferenceItem.end}">
+					<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				</h:outputText>
+			</prime:column>
+
+			<prime:column headerText="Actions">
+				<prime:button title="Edit" icon="ui-icon-pencil" outcome="editConference">
+					<f:param name="conferenceId" value="#{conferenceItem.id}" />
+				</prime:button>
+				<prime:commandButton title="Delete" icon=" ui-icon-trash" />
+			</prime:column>
+
+		</prime:dataTable>
+
+		<prime:outputPanel>
+			<h2>Speaker Administration</h2>
+		</prime:outputPanel>
+
+		<prime:dataTable value="#{adminController.speakers}" var="speakerItem">
+
+			<prime:column headerText="Name">
+				<h:outputText value="#{speakerItem.name}" />
+			</prime:column>
+
+			<prime:column headerText="Description">
+				<h:outputText value="#{speakerItem.description}" />
+			</prime:column>
+
+			<prime:column headerText="Actions">
+				<prime:button title="Edit" icon="ui-icon-pencil">
+					<f:param name="speakerId" value="#{speakerItem.id}" />
+				</prime:button>
+				<prime:commandButton title="Delete" icon=" ui-icon-trash" />
+			</prime:column>
+
+		</prime:dataTable>
+
+
+
+	</ui:define>
+</ui:composition>

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,7 +43,8 @@ public class Talk implements Serializable {
 	private String name;
 
 	@NotNull
-	@Size(min = 1, max = 500)
+	@Lob
+	@Size(min=1)
 	private String description;
 
 	@Min(1)

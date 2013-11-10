@@ -23,9 +23,6 @@
 			<h1>Conference - #{conferenceController.conference.name}</h1>
 		</prime:outputPanel>
 
-		<prime:spacer height="5" />
-
-
 		<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
 
 			<prime:outputLabel value="Name:" />
@@ -46,14 +43,9 @@
 
 		</h:panelGrid>
 
-
-		<prime:spacer height="10" />
-
 		<prime:outputPanel>
 			<h1>Talks</h1>
 		</prime:outputPanel>
-
-		<prime:spacer height="5" />
 
 		<prime:dataTable value="#{conferenceController.talks}" var="talkItem">
 

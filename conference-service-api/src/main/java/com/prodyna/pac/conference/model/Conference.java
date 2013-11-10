@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -34,7 +35,8 @@ public class Conference implements Serializable {
 	private String name;
 	
 	@NotNull
-	@Size(min=1,max=500)
+	@Lob
+	@Size(min=1)
 	private String description;
 	
 	@NotNull
