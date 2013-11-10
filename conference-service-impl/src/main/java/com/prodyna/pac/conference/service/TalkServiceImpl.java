@@ -58,8 +58,8 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 	@Override
 	@Logging
-	public void deleteTalk(Talk talk) throws TalkNotFoundException {
-		Talk talkToDelete = findTalkById(talk.getId());
+	public void deleteTalk(long id) throws TalkNotFoundException {
+		Talk talkToDelete = findTalkById(id);
 
 		if (talkToDelete != null) {
 			em.remove(talkToDelete);

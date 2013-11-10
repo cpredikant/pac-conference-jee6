@@ -48,8 +48,8 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
 	@Override
 	@Logging
-	public void deleteRoom(Room room) throws RoomNotFoundException {
-		Room roomToDelete = findRoomById(room.getId());
+	public void deleteRoom(long id) throws RoomNotFoundException {
+		Room roomToDelete = findRoomById(id);
 
 		if (roomToDelete != null) {
 			em.remove(roomToDelete);

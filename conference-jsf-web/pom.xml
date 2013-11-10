@@ -29,6 +29,13 @@
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-common</artifactId>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.glassfish</groupId>

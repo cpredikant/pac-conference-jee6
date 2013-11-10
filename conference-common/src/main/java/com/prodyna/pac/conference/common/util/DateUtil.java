@@ -5,8 +5,8 @@ import java.util.Date;
 
 public final class DateUtil {
 	
-	private DateUtil() {
-		// Utility-Class has only private a Constructor
+	private DateUtil (){
+		
 	}
 
 	public static Date addMinutesToDate(Date date, int minutes) {

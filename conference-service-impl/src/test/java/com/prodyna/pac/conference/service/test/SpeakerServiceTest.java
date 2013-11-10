@@ -80,7 +80,7 @@ public class SpeakerServiceTest {
 
 		Assert.assertTrue(speaker.getId() > 0);
 
-		speakerService.deleteSpeaker(speaker);
+		speakerService.deleteSpeaker(speaker.getId());
 		
 		speakerService.findSpeakerById(speaker.getId());
 

@@ -54,11 +54,11 @@ public class Talk implements Serializable {
 	@Future
 	private Date start;
 
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "room_id", nullable = false)
 	private Room room;
 
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "conference_id", nullable = false)
 	private Conference conference;
 

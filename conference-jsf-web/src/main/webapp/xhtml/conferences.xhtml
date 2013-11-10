@@ -15,7 +15,7 @@
 		</prime:outputPanel>
 
 		<prime:dataTable value="#{conferencesController.conferences}"
-			var="conferenceItem">
+			var="conferenceItem" paginator="true" rows="10">
 
 			<prime:column headerText="Name" >
 				<h:outputText value="#{conferenceItem.name}" />

@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -56,9 +58,20 @@ public class AdminController implements Serializable {
 		this.speakers = speakers;
 	}
 	
-	public void deleteConference(){
-		
-		//conferenceService.deleteConference(conference);
+	public void deleteConference(long id){
+		try {
+			conferenceService.deleteConference(id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+							"Conference deleted"));
+		} catch (Exception e) {
+			logger.error("Error deleting Conference with id {}", id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
+							"Error deleting Conference"));
+		}
 	}
 
 }

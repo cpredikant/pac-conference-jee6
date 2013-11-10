@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:prime="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="speakerId"
+			value="#{editSpeakerController.speakerId}" />
+		<f:event listener="#{editSpeakerController.initViewParams()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<h:form>
+			<prime:messages showDetail="true" showSummary="true" />
+
+			<prime:outputPanel>
+				<h1>Speaker - #{editSpeakerController.speaker.name}</h1>
+			</prime:outputPanel>
+
+			<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+
+				<prime:outputLabel value="Name:" />
+				<prime:inputText value="#{editSpeakerController.speaker.name}" />
+
+				<prime:outputLabel value="Description:" />
+				<prime:inputTextarea
+					value="#{editSpeakerController.speaker.description}" />
+
+			</h:panelGrid>
+
+			<prime:commandButton value="Save"
+				action="#{editSpeakerController.saveSpeakerAction()}"
+				update="@form" />
+			
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

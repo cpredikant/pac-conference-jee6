@@ -14,7 +14,7 @@ public interface RoomService {
 	
 	Room updateRoom(Room room) throws RoomNotFoundException;
 
-	void deleteRoom(Room room) throws RoomNotFoundException;
+	void deleteRoom(long id) throws RoomNotFoundException;
 	
 	List<Room> findRoomsByConferenceId(long conferenceId);
 

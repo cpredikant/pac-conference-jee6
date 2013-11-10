@@ -15,7 +15,7 @@ public interface TalkService {
 	
 	Talk updateTalk(Talk talk) throws RoomNotAvailableException, TalkNotFoundException;
 
-	void deleteTalk(Talk talk) throws TalkNotFoundException;
+	void deleteTalk(long id) throws TalkNotFoundException;
 
 	Talk findTalkById(long id) throws TalkNotFoundException;
 

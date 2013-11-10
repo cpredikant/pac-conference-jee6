@@ -51,9 +51,9 @@ public abstract class TalkServiceDecorator implements TalkService {
 	}
 
 	@Override
-	public void deleteTalk(Talk talk) throws TalkNotFoundException {
+	public void deleteTalk(long id) throws TalkNotFoundException {
 		sendJmsStirngMessage("Delete");
-		talkService.deleteTalk(talk);
+		talkService.deleteTalk(id);
 	}
 
 	private void sendJmsStirngMessage(String message) {

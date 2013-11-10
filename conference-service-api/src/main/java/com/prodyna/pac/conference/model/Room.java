@@ -39,7 +39,7 @@ public class Room implements Serializable {
 	@Min(1)
 	private int capacity;
 	
-	@ManyToOne(optional=false,fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="conference_id")
 	private Conference conference;
 

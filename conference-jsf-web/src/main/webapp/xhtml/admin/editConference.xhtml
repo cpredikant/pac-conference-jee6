@@ -15,9 +15,9 @@
 	</f:metadata>
 
 	<ui:define name="content">
+		<prime:messages showDetail="true" showSummary="true" autoUpdate="true" />
 
 		<h:form>
-			<prime:messages showDetail="true" showSummary="true" />
 
 			<prime:outputPanel>
 				<h1>Conference - #{editConferenceController.conference.name}</h1>
@@ -46,9 +46,81 @@
 			<prime:commandButton value="Save"
 				action="#{editConferenceController.saveConferenceAction()}"
 				update="@form" />
-			<prime:button value="Cancel" outcome="admin"/>
 		</h:form>
+		
+		<prime:separator/>
 
+		<prime:outputPanel>
+			<h2>Room Administration</h2>
+		</prime:outputPanel>
+		<h:form>
+			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editRoom"/>
+			<prime:dataTable value="#{editConferenceController.rooms}"
+				var="roomItem">
+
+				<prime:column headerText="Name">
+					<h:outputText value="#{roomItem.name}" />
+				</prime:column>
+
+				<prime:column headerText="Capacity">
+					<h:outputText value="#{roomItem.capacity}" />
+				</prime:column>
+
+				<prime:column headerText="Conference">
+					<h:outputText value="#{roomItem.conference.name}" />
+				</prime:column>
+
+
+				<prime:column headerText="Actions">
+					<prime:button title="Edit" icon="ui-icon-pencil" outcome="editRoom">
+						<f:param name="roomId" value="#{roomItem.id}" />
+					</prime:button>
+					<prime:commandButton title="Delete" icon="ui-icon-trash"
+						action="#{editConferenceController.deleteRoomAction(roomItem.id)}" update="@form"/>
+				</prime:column>
+
+			</prime:dataTable>
+		</h:form>
+		
+		<prime:separator/>
+
+		<prime:outputPanel>
+			<h2>Talk Administration</h2>
+		</prime:outputPanel>
+
+		<h:form>
+			<prime:button title="Add Talk" icon="ui-icon-plus" outcome="editTalk"/>
+			<prime:dataTable value="#{editConferenceController.talks}"
+				var="talkItem">
+
+				<prime:column headerText="Name">
+					<h:outputText value="#{talkItem.name}" />
+				</prime:column>
+
+				<prime:column headerText="Description">
+					<h:outputText value="#{talkItem.description}" />
+				</prime:column>
+
+				<prime:column headerText="Start Date">
+					<h:outputText value="#{talkItem.start}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+					</h:outputText>
+				</prime:column>
+
+				<prime:column headerText="Duration (min)">
+					<h:outputText value="#{talkItem.duration}" />
+				</prime:column>
+
+				<prime:column headerText="Actions">
+					<prime:button title="Edit" icon="ui-icon-pencil" outcome="editTalk">
+						<f:param name="talkId" value="#{talkItem.id}" />
+					</prime:button>
+					<prime:commandButton title="Delete" icon="ui-icon-trash"
+						action="#{editConferenceController.deleteTalkAction(talkItem.id)}" update="@form"/>
+				</prime:column>
+
+			</prime:dataTable>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

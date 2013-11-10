@@ -34,7 +34,7 @@
 		<prime:spacer height="10" />
 
 		<prime:outputPanel>
-			<h1>Talks</h1>
+			<h2>Talks</h2>
 		</prime:outputPanel>
 
 		<prime:dataTable value="#{speakerController.talks}" var="talkItem">
@@ -44,7 +44,7 @@
 			</prime:column>
 
 			<prime:column headerText="Description">
-				<h:outputText value="#{talk.description}" />
+				<h:outputText value="#{talkItem.description}" />
 			</prime:column>
 			
 			

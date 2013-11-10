@@ -52,10 +52,10 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
 	@Override
 	@Logging
-	public void deleteConference(Conference conference)
+	public void deleteConference(long id)
 			throws ConferenceNotFoundException {
 
-		Conference conferenceToDelete = findConferenceById(conference.getId());
+		Conference conferenceToDelete = findConferenceById(id);
 
 		if (conferenceToDelete != null) {
 			em.remove(conferenceToDelete);

@@ -153,7 +153,7 @@ public class TalkServiceTest {
 
 		Assert.assertTrue(talk.getId() > 0);
 
-		talkService.deleteTalk(talk);
+		talkService.deleteTalk(talk.getId());
 
 		Talk foundTalk = talkService.findTalkById(talk.getId());
 

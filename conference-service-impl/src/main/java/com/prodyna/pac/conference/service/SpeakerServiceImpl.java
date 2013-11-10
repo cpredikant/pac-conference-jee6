@@ -50,8 +50,8 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
 	@Override
 	@Logging
-	public void deleteSpeaker(Speaker speaker) throws SpeakerNotFoundException {
-		Speaker speakerToDelete = findSpeakerById(speaker.getId());
+	public void deleteSpeaker(long id) throws SpeakerNotFoundException {
+		Speaker speakerToDelete = findSpeakerById(id);
 
 		if (speakerToDelete != null) {
 			em.remove(speakerToDelete);

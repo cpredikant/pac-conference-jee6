@@ -127,7 +127,7 @@ public class RoomServiceTest {
 
 		Assert.assertTrue(room.getId() > 0);
 
-		roomService.deleteRoom(room);
+		roomService.deleteRoom(room.getId());
 
 		roomService.findRoomById(room.getId());
 

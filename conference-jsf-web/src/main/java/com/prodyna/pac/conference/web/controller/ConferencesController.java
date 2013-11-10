@@ -4,13 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.model.Conference;
 
-@Model
+@Named
+@ViewScoped
 public class ConferencesController implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -96,7 +96,7 @@ public class ConferenceServiceTest {
 
 		Assert.assertTrue(conference.getId() > 0);
 
-		conferenceService.deleteConference(conference);
+		conferenceService.deleteConference(conference.getId());
 
 		conferenceService.findConferenceById(conference.getId());
 

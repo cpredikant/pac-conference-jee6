@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 
@@ -17,7 +18,8 @@ import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.Talk;
 
-@Model
+@Named
+@ViewScoped
 public class TalkController implements Serializable {
 
 	private static final long serialVersionUID = 1L;

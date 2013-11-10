@@ -14,7 +14,7 @@ public interface SpeakerService {
 	
 	Speaker updateSpeaker(Speaker speaker) throws SpeakerNotFoundException;
 
-	void deleteSpeaker(Speaker speaker) throws SpeakerNotFoundException;
+	void deleteSpeaker(long id) throws SpeakerNotFoundException;
 
 	Speaker findSpeakerById(long id) throws SpeakerNotFoundException;
 

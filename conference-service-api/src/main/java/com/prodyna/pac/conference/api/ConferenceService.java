@@ -14,7 +14,7 @@ public interface ConferenceService {
 	
 	Conference updateConference(Conference conference) throws ConferenceNotFoundException;
 	
-	void deleteConference(Conference conference) throws ConferenceNotFoundException;
+	void deleteConference(long id) throws ConferenceNotFoundException;
 	
 	Conference findConferenceById(long id) throws ConferenceNotFoundException;
 	
