@@ -74,16 +74,19 @@ public class EditTalkController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		rooms = roomService.findAll();
+		conferences = conferenceService.findAll();
+		speakersSource = speakerService.findAll();
+		
 		if (talk == null) {
 			talk = new Talk();
 			speakersTarget = new ArrayList<Speaker>();
 			initialSpeakers = new ArrayList<Speaker>();
+			speakersDualListModel = new DualListModel<Speaker>(speakersSource,
+					speakersTarget);
 		}
-		rooms = roomService.findAll();
-		conferences = conferenceService.findAll();
-		speakersSource = speakerService.findAll();
-		speakersDualListModel = new DualListModel<Speaker>(speakersSource,
-				speakersTarget);
+		
+		
 	}
 
 	public void initViewParams() {
@@ -94,10 +97,15 @@ public class EditTalkController implements Serializable {
 			speakersTarget = speakerHasTalkService.findSpeakersByTalk(talk);
 			initialSpeakers = new ArrayList<Speaker>(speakersTarget);
 			speakersSource.removeAll(speakersTarget);
+			speakersDualListModel = new DualListModel<Speaker>(speakersSource,
+					speakersTarget);
 		}
-		speakersDualListModel = new DualListModel<Speaker>(speakersSource,
-				speakersTarget);
-
+		
+	}
+	
+	private void updateModel(){
+		init();
+		initViewParams();
 	}
 
 	private Talk loadTalk(long id) {
@@ -155,7 +163,7 @@ public class EditTalkController implements Serializable {
 
 			}
 		}
-
+		updateModel();
 	}
 
 	private void createTalk() {

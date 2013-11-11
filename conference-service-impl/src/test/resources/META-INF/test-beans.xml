@@ -14,6 +14,7 @@
 
 	<interceptors>
 		<class>com.prodyna.pac.conference.service.interceptor.LoggingInterceptor</class>
+		<class>com.prodyna.pac.conference.service.interceptor.PerformanceInterceptor</class>
 	</interceptors>
 	<decorators>
 		<class>com.prodyna.pac.conference.decorator.TalkServiceDecorator</class>
