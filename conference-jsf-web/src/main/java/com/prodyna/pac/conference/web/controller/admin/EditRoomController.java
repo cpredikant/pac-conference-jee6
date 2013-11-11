@@ -1,6 +1,7 @@
 package com.prodyna.pac.conference.web.controller.admin;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,8 +12,10 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
+import com.prodyna.pac.conference.api.ConferenceService;
 import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.exception.RoomNotFoundException;
+import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.model.Room;
 
 @Named
@@ -30,17 +33,26 @@ public class EditRoomController implements Serializable {
 
 	@Inject
 	private RoomService roomService;
+	
+	@Inject
+	private ConferenceService conferenceService;
+	
+	private List<Conference> conferences;
+	
+	private Conference selectedConference;
 
 	@PostConstruct
 	public void init(){
 		if(room==null){
 			room = new Room();
 		}
+		conferences = conferenceService.findAll();
 	}
 	
 	public void initViewParams() {
 		if (roomId != 0) {
 			room = loadRoom(roomId);
+			selectedConference = room.getConference();
 		}
 
 	}
@@ -115,6 +127,25 @@ public class EditRoomController implements Serializable {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public List<Conference> getConferences() {
+		return conferences;
+	}
+
+	public void setConferences(List<Conference> conferences) {
+		this.conferences = conferences;
+	}
+
+	public Conference getSelectedConference() {
+		return selectedConference;
+	}
+
+	public void setSelectedConference(Conference selectedConference) {
+		this.selectedConference = selectedConference;
+		if (room!=null){
+			room.setConference(selectedConference);
+		}
 	}
 
 }

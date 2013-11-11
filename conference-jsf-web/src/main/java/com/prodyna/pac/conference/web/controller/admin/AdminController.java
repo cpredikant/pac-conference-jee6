@@ -73,5 +73,21 @@ public class AdminController implements Serializable {
 							"Error deleting Conference"));
 		}
 	}
+	
+	public void deleteSpeaker(long id){
+		try {
+			speakerService.deleteSpeaker(id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+							"Speaker deleted"));
+		} catch (Exception e) {
+			logger.error("Error deleting Speaker with id {}", id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
+							"Error deleting Speaker"));
+		}
+	}
 
 }

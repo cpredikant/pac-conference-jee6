@@ -7,6 +7,8 @@
   </parent>
   
   <artifactId>conference-common</artifactId>
+  <packaging>jar</packaging>
+  
   <name>conference-common</name>
   
 </project>

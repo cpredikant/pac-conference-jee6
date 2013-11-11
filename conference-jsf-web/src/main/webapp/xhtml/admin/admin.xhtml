@@ -84,7 +84,7 @@
 						outcome="editSpeaker">
 						<f:param name="speakerId" value="#{speakerItem.id}" />
 					</prime:button>
-					<prime:commandButton title="Delete" icon=" ui-icon-trash" update="@all"/>
+					<prime:commandButton title="Delete" icon=" ui-icon-trash" action="#{adminController.deleteSpeaker(speakerItem.id)}" update="@all"/>
 				</prime:column>
 
 			</prime:dataTable>

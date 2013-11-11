@@ -48,7 +48,15 @@
             <artifactId>conference-service-impl</artifactId>
             <type>ejb</type>
         </dependency>
-        
+
+        <dependency>
+        	<groupId>com.prodyna.pac</groupId>
+        	<artifactId>conference-common</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>com.prodyna.pac</groupId>
+        	<artifactId>conference-rest-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

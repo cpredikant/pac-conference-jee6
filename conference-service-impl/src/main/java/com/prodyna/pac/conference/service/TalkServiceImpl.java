@@ -43,9 +43,9 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 	@Override
 	@Logging
-	public Talk updateTalk(Talk talk) throws RoomNotAvailableException, TalkNotFoundException {
+	public Talk updateTalk(Talk talk) throws RoomNotAvailableException,
+			TalkNotFoundException {
 		Talk updatedTalk = findTalkById(talk.getId());
-		
 
 		roomIsAvailable(talk);
 
@@ -124,26 +124,29 @@ public class TalkServiceImpl implements TalkService, Serializable {
 	}
 
 	private void roomIsAvailable(Talk talk) throws RoomNotAvailableException {
-		
-		if (null == talk.getRoom()){
+
+		if (null == talk.getRoom()) {
 			return;
 		}
-		
+
 		List<Talk> talks = findTalksByRoomId(talk.getRoom().getId());
-		
-		for (Talk t: talks){
+
+		for (Talk t : talks) {
+
 			Date start = talk.getStart();
 
 			Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
-			
+
 			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
 					t.getDuration()))
-					|| end.before(t.getStart())) {
-				throw new RoomNotAvailableException("Room "
-						+ talk.getRoom().getName() + " is not available for talk "
-						+ talk.getName());
+					|| end.after(t.getStart())) {
+				if (talk.getId() != talk.getId()) {
+					throw new RoomNotAvailableException("Room "
+							+ talk.getRoom().getName()
+							+ " is not available for talk " + talk.getName());
+				}
 			}
+
 		}
 	}
-
 }

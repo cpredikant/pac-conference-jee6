@@ -40,12 +40,17 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 	public void assign(Speaker speaker, Talk talk)
 			throws SpeakerNotAvailableException {
 
-		speakerIsAvailable(speaker, talk);
+		List<Speaker> speakersByTalk = findSpeakersByTalk(talk);
 
-		SpeakerHasTalk sht = new SpeakerHasTalk();
-		sht.setSpeaker(speaker);
-		sht.setTalk(talk);
-		em.persist(sht);
+		if (!speakersByTalk.contains(speaker)) {
+
+			speakerIsAvailable(speaker, talk);
+
+			SpeakerHasTalk sht = new SpeakerHasTalk();
+			sht.setSpeaker(speaker);
+			sht.setTalk(talk);
+			em.persist(sht);
+		}
 
 	}
 
@@ -62,7 +67,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 			if (start.after(DateUtil.addMinutesToDate(t.getStart(),
 					t.getDuration()))
-					|| end.before(t.getStart())) {
+					|| end.after(t.getStart())) {
 				throw new SpeakerNotAvailableException("Speaker "
 						+ speaker.getName() + " is not available for talk "
 						+ talk.getName());
@@ -130,7 +135,5 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
 		return query.getResultList();
 	}
-
-	
 
 }

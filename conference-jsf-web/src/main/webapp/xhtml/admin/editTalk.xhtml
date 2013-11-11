@@ -36,18 +36,24 @@
 				<prime:inputText
 					value="#{editTalkController.talk.duration}" />
 				
-				<prime:outputLabel value="Room" />
-				<prime:inputText
-					value="TODO" />
+				<prime:outputLabel value="Room:" />
+				<prime:selectOneMenu value="#{editTalkController.selectedRoom}" converter="com.prodyna.pac.conference.RoomConverter"  >
+					<f:selectItem itemLabel="Select" noSelectionOption="true"/>
+					<f:selectItems value="#{editTalkController.rooms}" var="roomItem" itemLabel="#{roomItem.name}" itemValue="#{roomItem}" />
+				</prime:selectOneMenu>
+				
+				<prime:outputLabel value="Conference:" />	
+				<prime:selectOneMenu value="#{editTalkController.selectedConference}" converter="com.prodyna.pac.conference.ConferenceConverter"  >
+					<f:selectItem itemLabel="Select" noSelectionOption="true"/>
+					<f:selectItems value="#{editTalkController.conferences}" var="confItem" itemLabel="#{confItem.name}" itemValue="#{confItem}" />
+				</prime:selectOneMenu>
 					
 				<prime:outputLabel value="Description:" />
 				<prime:inputTextarea
 					value="#{editTalkController.talk.description}" />
 
-				<prime:outputLabel value="Speakers" />
-				<prime:inputText
-					value="TODO" />
-
+				<prime:outputLabel value="Speakers:" />
+				<prime:pickList value="#{editTalkController.speakersDualListModel}" converter="com.prodyna.pac.conference.SpeakerConverter" var="speakerItem" itemValue="#{speakerItem}" itemLabel="#{speakerItem.name}"/>
 			</h:panelGrid>
 
 			<prime:commandButton value="Save"
