@@ -41,7 +41,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	public Conference updateConference(Conference conference)
 			throws ConferenceNotFoundException {
 
-		Conference updatedConference = conference;
+		Conference updatedConference = findConferenceById(conference.getId());
 
 		if (!em.contains(conference)) {
 			updatedConference = em.merge(conference);

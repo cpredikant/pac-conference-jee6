@@ -75,7 +75,6 @@ public class ConferenceSecureRestServiceImpl implements
 		Conference updateConference = null;
 		try {
 			updateConference = conferenceService.updateConference(conference);
-			;
 		} catch (ConferenceNotFoundException e) {
 			logger.error("Conference not found for update " + conference, e);
 			throw new NotFoundException(e);
