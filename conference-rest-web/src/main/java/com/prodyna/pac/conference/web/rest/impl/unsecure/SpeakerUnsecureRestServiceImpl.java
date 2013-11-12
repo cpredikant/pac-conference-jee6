@@ -19,11 +19,8 @@ import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.SpeakerService;
-import com.prodyna.pac.conference.api.TalkService;
 import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.Talk;
 import com.prodyna.pac.conference.web.rest.api.unsecure.SpeakerUnsecureRestService;
 
 @Path("/public")
