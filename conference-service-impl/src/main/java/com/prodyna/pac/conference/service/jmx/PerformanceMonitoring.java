@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class PerformanceMonitoring implements PerformanceMonitoringMXBean,
 		Serializable {
@@ -34,6 +35,7 @@ public class PerformanceMonitoring implements PerformanceMonitoringMXBean,
 	public List<PerformanceMonitoringEntry> getAll() {
 
 		return new ArrayList<PerformanceMonitoringEntry>(entries.values());
+
 	}
 
 	@Override
@@ -44,20 +46,50 @@ public class PerformanceMonitoring implements PerformanceMonitoringMXBean,
 
 	@Override
 	public PerformanceMonitoringEntry getWorstByTime() {
-		// TODO Auto-generated method stub
-		return null;
+		long worstValue = Long.MIN_VALUE;
+
+		PerformanceMonitoringEntry worstEntry = null;
+
+		for (Entry<String, PerformanceMonitoringEntry> entry : entries
+				.entrySet()) {
+			if (entry.getValue().getMaxTime() > worstValue) {
+				worstValue = entry.getValue().getMaxTime();
+				worstEntry = entry.getValue();
+			}
+		}
+		return worstEntry;
 	}
 
 	@Override
 	public PerformanceMonitoringEntry getWorstByAverage() {
-		// TODO Auto-generated method stub
-		return null;
+		float worstValue = Float.MIN_VALUE;
+
+		PerformanceMonitoringEntry worstEntry = null;
+
+		for (Entry<String, PerformanceMonitoringEntry> entry : entries
+				.entrySet()) {
+			if (entry.getValue().getAverage() > worstValue) {
+				worstValue = entry.getValue().getAverage();
+				worstEntry = entry.getValue();
+			}
+		}
+		return worstEntry;
 	}
 
 	@Override
 	public PerformanceMonitoringEntry getWorstByCount() {
-		// TODO Auto-generated method stub
-		return null;
+		long worstValue = Long.MIN_VALUE;
+
+		PerformanceMonitoringEntry worstEntry = null;
+
+		for (Entry<String, PerformanceMonitoringEntry> entry : entries
+				.entrySet()) {
+			if (entry.getValue().getCount() > worstValue) {
+				worstValue = entry.getValue().getCount();
+				worstEntry = entry.getValue();
+			}
+		}
+		return worstEntry;
 	}
 
 	@Override
