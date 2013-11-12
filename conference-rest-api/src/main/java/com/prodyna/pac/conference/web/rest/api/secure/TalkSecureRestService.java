@@ -5,7 +5,6 @@ import javax.ws.rs.core.Response;
 
 import com.prodyna.pac.conference.model.Talk;
 
-//TODO: Add privacy. See Chapter 35. Securing JAX-RS and RESTeasy 
 @Path("/private")
 public interface TalkSecureRestService {
 
