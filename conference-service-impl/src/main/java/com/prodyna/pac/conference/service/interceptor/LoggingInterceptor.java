@@ -13,8 +13,6 @@ public class LoggingInterceptor {
 
 	@Inject
 	Logger logger;
-	
-	
 
 	@AroundInvoke
 	public Object aroundInvoke(InvocationContext ic) throws Exception {
@@ -29,9 +27,20 @@ public class LoggingInterceptor {
 
 		logger.info("SERVICE CALL on CLASS: "
 				+ ic.getTarget().getClass().getSimpleName() + " METHOD: "
-				+ ic.getMethod().getName() + " DURATION: " + duration + "ms");
+				+ ic.getMethod().getName() + " PARAMETER: " + paramtersToString(ic.getParameters())
+				+ " DURATION: " + duration + "ms");
 
 		return proceed;
+	}
+
+	private String paramtersToString(Object[]  params) {
+		String parameters = "";
+
+		for (Object o : params) {
+			parameters += "[" + o.getClass().getSimpleName() + " : "
+					+ o.toString() + "], ";
+		}
+		return parameters;
 	}
 
 }

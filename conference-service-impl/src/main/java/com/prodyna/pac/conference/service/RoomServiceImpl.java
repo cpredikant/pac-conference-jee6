@@ -30,6 +30,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	private EntityManager em;
 
 	@Override
+	@Logging
 	public void createRoom(Room room) {
 		em.persist(room);
 	}
