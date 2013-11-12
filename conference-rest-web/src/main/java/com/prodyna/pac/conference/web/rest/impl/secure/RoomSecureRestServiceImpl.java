@@ -19,20 +19,20 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Talk;
-import com.prodyna.pac.conference.web.rest.api.secure.TalkSecureRestService;
+import com.prodyna.pac.conference.api.RoomService;
+import com.prodyna.pac.conference.exception.RoomNotFoundException;
+import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.web.rest.api.secure.RoomSecureRestService;
 
 @Path("/private")
 @RequestScoped
-public class TalkSecureRestServiceImpl implements TalkSecureRestService {
+public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	
 	@Inject
 	private Logger logger;
 	
 	@Inject
-	private TalkService talkService;
+	private RoomService roomService;
 
 	/*
 	 * (non-Javadoc)
@@ -42,18 +42,18 @@ public class TalkSecureRestServiceImpl implements TalkSecureRestService {
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
 	@POST
-	@Path("/talk")
+	@Path("/room")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response createTalk(Talk talk) {
+	public Response createRoom(Room room) {
 		try {
-			talkService.createTalk(talk);
+			roomService.createRoom(room);
 			
 		} catch (Exception e) {
-			logger.error("Error create Talk " + talk, e);
+			logger.error("Error create Room " + room, e);
 			throw new InternalServerErrorException(e);
 		}
-		return Response.ok(talk).build();
+		return Response.ok(room).build();
 	}
 
 	/*
@@ -64,24 +64,24 @@ public class TalkSecureRestServiceImpl implements TalkSecureRestService {
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
 	@PUT
-	@Path("/talk")
+	@Path("/room")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response updateTalk(Talk talk) {
-		Talk updatedTalk = null;
+	public Response updateRoom(Room room) {
+		Room updatedRoom = null;
 		try {
-			updatedTalk = talkService.updateTalk(talk);
+			updatedRoom = roomService.updateRoom(room);
 			
-		} catch (TalkNotFoundException e) {
-			logger.error("Talk not found for update " + talk, e);
+		} catch ( RoomNotFoundException e) {
+			logger.error("Talk not found for update " + room, e);
 			throw new NotFoundException(e);
 		} catch (Exception e) {
-			logger.error("Error updating Talk " + talk, e);
+			logger.error("Error updating Room " + room, e);
 			throw new NotFoundException(e);
 		}
 
-		return Response.ok(updatedTalk).build();
+		return Response.ok(updatedRoom).build();
 	}
 
 	/*
@@ -92,20 +92,22 @@ public class TalkSecureRestServiceImpl implements TalkSecureRestService {
 	 * (java.lang.String)
 	 */
 	@DELETE
-	@Path("/talk/{id:[0-9][0-9]*}")
+	@Path("/room/{id:[0-9][0-9]*}")
 	@Override
-	public Response deleteTalk(@PathParam("id") String id) {
+	public Response deleteRoom(@PathParam("id") String id) {
 		try {
-			talkService.deleteTalk(Long.valueOf(id));
-		} catch (TalkNotFoundException e) {
-			logger.error("Talk not found for delete " + id, e);
+			roomService.deleteRoom(Long.valueOf(id));
+		} catch (RoomNotFoundException e) {
+			logger.error("Room not found for deletion " + id, e);
 			throw new NotFoundException(e);
 		} catch (Exception e) {
-			logger.error("Error deleting Talk " + id, e);
+			logger.error("Error deleting Room " + id, e);
 			throw new NotFoundException(e);
 		}
 
 		return Response.ok().build();
 	}
+
+	
 
 }

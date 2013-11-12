@@ -95,7 +95,6 @@ public class ConferenceSecureRestServiceImpl implements
 	@Override
 	@DELETE
 	@Path("/conference/{id:[0-9][0-9]*}")
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteConference(@PathParam("id") String id) {
 
 		try {
