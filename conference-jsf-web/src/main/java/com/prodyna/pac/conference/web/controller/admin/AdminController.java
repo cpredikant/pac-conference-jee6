@@ -13,9 +13,13 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.ConferenceService;
+import com.prodyna.pac.conference.api.RoomService;
 import com.prodyna.pac.conference.api.SpeakerService;
+import com.prodyna.pac.conference.api.TalkService;
 import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.model.Speaker;
+import com.prodyna.pac.conference.model.Talk;
 
 @Named
 @ViewScoped
@@ -30,16 +34,28 @@ public class AdminController implements Serializable {
 
 	private List<Speaker> speakers;
 
+	private List<Talk> talks;
+
+	private List<Room> rooms;
+
 	@Inject
 	private ConferenceService conferenceService;
 
 	@Inject
 	private SpeakerService speakerService;
 
+	@Inject
+	private TalkService talkService;
+
+	@Inject
+	private RoomService roomService;
+
 	@PostConstruct
 	public void init() {
 		conferences = conferenceService.findAll();
 		speakers = speakerService.findAll();
+		talks = talkService.findAll();
+		rooms = roomService.findAll();
 	}
 
 	public List<Conference> getConferences() {
@@ -57,8 +73,8 @@ public class AdminController implements Serializable {
 	public void setSpeakers(List<Speaker> speakers) {
 		this.speakers = speakers;
 	}
-	
-	public void deleteConference(long id){
+
+	public void deleteConference(long id) {
 		try {
 			conferenceService.deleteConference(id);
 			FacesContext.getCurrentInstance().addMessage(
@@ -73,8 +89,8 @@ public class AdminController implements Serializable {
 							"Error deleting Conference"));
 		}
 	}
-	
-	public void deleteSpeaker(long id){
+
+	public void deleteSpeaker(long id) {
 		try {
 			speakerService.deleteSpeaker(id);
 			FacesContext.getCurrentInstance().addMessage(
@@ -88,6 +104,56 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
 							"Error deleting Speaker"));
 		}
+	}
+
+	public void deleteRoomAction(long id) {
+		try {
+			roomService.deleteRoom(id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+							"Room deleted"));
+		} catch (Exception e) {
+			logger.error("Error deleting Room with id {}", id, e);
+
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+							"Error deleting Room"));
+		}
+	}
+
+	public void deleteTalkAction(long id) {
+		try {
+			talkService.deleteTalk(id);
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+							"Talk deleted"));
+		} catch (Exception e) {
+			logger.error("Error deleting Talk with id {}", id, e);
+
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+							"Error deleting Talk"));
+		}
+	}
+
+	public List<Talk> getTalks() {
+		return talks;
+	}
+
+	public void setTalks(List<Talk> talks) {
+		this.talks = talks;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 }

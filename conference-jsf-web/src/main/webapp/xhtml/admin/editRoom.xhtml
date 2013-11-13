@@ -31,16 +31,20 @@
 				<prime:inputText value="#{editRoomController.room.capacity}" />
 
 				<prime:outputLabel value="Conference:" />
-				<prime:selectOneMenu value="#{editRoomController.selectedConference}" converter="com.prodyna.pac.conference.ConferenceConverter"  >
-					<f:selectItem itemLabel="Select" noSelectionOption="true"/>
-					<f:selectItems value="#{editRoomController.conferences}" var="confItem" itemLabel="#{confItem.name}" itemValue="#{confItem}" />
+				<prime:selectOneMenu
+					value="#{editRoomController.selectedConference}"
+					converter="com.prodyna.pac.conference.ConferenceConverter">
+					<f:selectItem itemLabel="Select" noSelectionOption="true" />
+					<f:selectItems value="#{editRoomController.conferences}"
+						var="confItem" itemLabel="#{confItem.name}"
+						itemValue="#{confItem}" />
 				</prime:selectOneMenu>
 
 			</h:panelGrid>
 
 			<prime:commandButton value="Save"
 				action="#{editRoomController.saveRoomAction()}" update="@form" />
-
+			<prime:button value="Back" outcome="admin" />
 		</h:form>
 
 

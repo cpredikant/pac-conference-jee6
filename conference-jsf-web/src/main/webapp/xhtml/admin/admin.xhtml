@@ -16,14 +16,15 @@
 			<h1>Administration Area</h1>
 		</prime:outputPanel>
 
-		<prime:separator/>
+		<prime:separator />
 
 		<prime:outputPanel>
 			<h2>Conference Administration</h2>
 		</prime:outputPanel>
 
 		<h:form id="conferenceForm">
-			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editConference"/>
+			<prime:button title="Add Room" icon="ui-icon-plus"
+				outcome="editConference" />
 			<prime:dataTable value="#{adminController.conferences}"
 				var="conferenceItem" paginator="true" rows="10">
 
@@ -60,16 +61,94 @@
 			</prime:dataTable>
 
 		</h:form>
-		
-		<prime:separator/>
+
+		<prime:separator />
+
+		<prime:outputPanel>
+			<h2>Room Administration</h2>
+		</prime:outputPanel>
+		<h:form>
+			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editRoom" />
+
+			<prime:dataTable value="#{adminController.rooms}" var="roomItem" paginator="true" rows="10">
+
+				<prime:column headerText="Name">
+					<h:outputText value="#{roomItem.name}" />
+				</prime:column>
+
+				<prime:column headerText="Capacity">
+					<h:outputText value="#{roomItem.capacity}" />
+				</prime:column>
+
+				<prime:column headerText="Conference">
+					<h:outputText value="#{roomItem.conference.name}" />
+				</prime:column>
+
+
+				<prime:column headerText="Actions">
+					<prime:button title="Edit" icon="ui-icon-pencil" outcome="editRoom">
+						<f:param name="roomId" value="#{roomItem.id}" />
+					</prime:button>
+					<prime:commandButton title="Delete" icon="ui-icon-trash"
+						action="#{adminController.deleteRoomAction(roomItem.id)}"
+						update="@form" />
+				</prime:column>
+
+			</prime:dataTable>
+		</h:form>
+
+		<prime:separator />
+
+		<prime:outputPanel>
+			<h2>Talk Administration</h2>
+		</prime:outputPanel>
+
+		<h:form>
+			<prime:button title="Add Talk" icon="ui-icon-plus" outcome="editTalk" />
+
+			<prime:dataTable value="#{adminController.talks}" var="talkItem" paginator="true" rows="10">
+
+				<prime:column headerText="Name">
+					<h:outputText value="#{talkItem.name}" />
+				</prime:column>
+
+				<prime:column headerText="Description">
+					<h:outputText value="#{talkItem.description}" />
+				</prime:column>
+
+				<prime:column headerText="Start Date">
+					<h:outputText value="#{talkItem.start}">
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+					</h:outputText>
+				</prime:column>
+
+				<prime:column headerText="Duration (min)">
+					<h:outputText value="#{talkItem.duration}" />
+				</prime:column>
+
+				<prime:column headerText="Actions">
+					<prime:button title="Edit" icon="ui-icon-pencil" outcome="editTalk">
+						<f:param name="talkId" value="#{talkItem.id}" />
+					</prime:button>
+					<prime:commandButton title="Delete" icon="ui-icon-trash"
+						action="#{adminController.deleteTalkAction(talkItem.id)}"
+						update="@form" />
+				</prime:column>
+
+			</prime:dataTable>
+		</h:form>
+
+		<prime:separator />
 
 		<prime:outputPanel>
 			<h2>Speaker Administration</h2>
 		</prime:outputPanel>
+		
 		<h:form id="speakerForm">
-			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editSpeaker"/>
+			<prime:button title="Add Room" icon="ui-icon-plus"
+				outcome="editSpeaker" />
 			<prime:dataTable value="#{adminController.speakers}"
-				var="speakerItem" paginator="true" rows="10" >
+				var="speakerItem" paginator="true" rows="10">
 
 				<prime:column headerText="Name">
 					<h:outputText value="#{speakerItem.name}" />
@@ -84,7 +163,9 @@
 						outcome="editSpeaker">
 						<f:param name="speakerId" value="#{speakerItem.id}" />
 					</prime:button>
-					<prime:commandButton title="Delete" icon=" ui-icon-trash" action="#{adminController.deleteSpeaker(speakerItem.id)}" update="@all"/>
+					<prime:commandButton title="Delete" icon=" ui-icon-trash"
+						action="#{adminController.deleteSpeaker(speakerItem.id)}"
+						update="@all" />
 				</prime:column>
 
 			</prime:dataTable>

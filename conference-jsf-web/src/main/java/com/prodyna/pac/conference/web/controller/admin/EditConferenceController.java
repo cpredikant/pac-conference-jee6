@@ -36,21 +36,11 @@ public class EditConferenceController implements Serializable {
 	@Inject
 	private ConferenceService conferenceService;
 
-	@Inject
-	private TalkService talkService;
-
-	private List<Talk> talks;
-
-	@Inject
-	private RoomService roomService;
-
-	private List<Room> rooms;
+	
 
 	public void initViewParams() {
 		if (conferenceId != 0) {
 			conference = loadConference(conferenceId);
-			talks = talkService.findTalksByConferenceId(conferenceId);
-			rooms = roomService.findRoomsByConferenceId(conferenceId);
 		}
 	}
 	
@@ -117,39 +107,7 @@ public class EditConferenceController implements Serializable {
 		}
 	}
 
-	public void deleteRoomAction(long id) {
-		try {
-			roomService.deleteRoom(id);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-							"Room deleted"));
-		} catch (Exception e) {
-			logger.error("Error deleting Room with id {}", id, e);
-
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-							"Error deleting Room"));
-		}
-	}
-
-	public void deleteTalkAction(long id) {
-		try {
-			talkService.deleteTalk(id);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-							"Talk deleted"));
-		} catch (Exception e) {
-			logger.error("Error deleting Talk with id {}", id, e);
-
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-							"Error deleting Talk"));
-		}
-	}
+	
 
 	public long getConferenceId() {
 		return conferenceId;
@@ -167,20 +125,5 @@ public class EditConferenceController implements Serializable {
 		this.conference = conference;
 	}
 
-	public List<Talk> getTalks() {
-		return talks;
-	}
-
-	public void setTalks(List<Talk> talks) {
-		this.talks = talks;
-	}
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
 
 }
