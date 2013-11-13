@@ -39,20 +39,20 @@ public abstract class TalkServiceDecorator implements TalkService {
 
 	@Override
 	public void createTalk(Talk talk) throws RoomNotAvailableException {
-		sendJmsStirngMessage("Create");
+		sendJmsStirngMessage("Talk Created: " + talk);
 		talkService.createTalk(talk);
 	}
 
 	@Override
 	public Talk updateTalk(Talk talk) throws RoomNotAvailableException,
 			TalkNotFoundException {
-		sendJmsStirngMessage("Update");
+		sendJmsStirngMessage("Talk Updated: " + talk);
 		return talkService.updateTalk(talk);
 	}
 
 	@Override
 	public void deleteTalk(long id) throws TalkNotFoundException {
-		sendJmsStirngMessage("Delete");
+		sendJmsStirngMessage("Talk with id deleted: " + id );
 		talkService.deleteTalk(id);
 	}
 
@@ -68,7 +68,7 @@ public abstract class TalkServiceDecorator implements TalkService {
 
 			MessageProducer messageProducer = session.createProducer(queue);
 			TextMessage textMessage = session
-					.createTextMessage("Hallo JMS-Welt");
+					.createTextMessage(message);
 			messageProducer.send(textMessage);
 			logger.info("Senden von JMS-Message {}", textMessage.getText());
 			messageProducer.close();
