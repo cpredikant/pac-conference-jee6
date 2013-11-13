@@ -5,14 +5,7 @@ package com.prodyna.pac.conference.web.rest.impl.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -24,7 +17,7 @@ import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.web.rest.api.secure.RoomSecureRestService;
 
-@Path("/private")
+@Path("/private/room")
 @RequestScoped
 public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	
@@ -41,9 +34,7 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#createTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-	@POST
-	@Path("/room")
-	@Produces(MediaType.APPLICATION_JSON)
+
 	@Override
 	public Response createRoom(Room room) {
 		try {
@@ -63,10 +54,7 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#updateTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-	@PUT
-	@Path("/room")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
 	public Response updateRoom(Room room) {
 		Room updatedRoom = null;
@@ -91,10 +79,9 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#deleteTalk
 	 * (java.lang.String)
 	 */
-	@DELETE
-	@Path("/room/{id:[0-9][0-9]*}")
+
 	@Override
-	public Response deleteRoom(@PathParam("id") String id) {
+	public Response deleteRoom(String id) {
 		try {
 			roomService.deleteRoom(Long.valueOf(id));
 		} catch (RoomNotFoundException e) {

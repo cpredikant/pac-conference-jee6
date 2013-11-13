@@ -1,7 +1,6 @@
 package com.prodyna.pac.conference.web.controller.admin;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -13,12 +12,8 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.api.TalkService;
 import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
-import com.prodyna.pac.conference.model.Room;
-import com.prodyna.pac.conference.model.Talk;
 
 @Named
 @ViewScoped

@@ -5,14 +5,7 @@ package com.prodyna.pac.conference.web.rest.impl.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -24,13 +17,13 @@ import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.web.rest.api.secure.SpeakerSecureRestService;
 
-@Path("/private")
+@Path("/private/speaker")
 @RequestScoped
 public class SpeakerSecureRestServiceImpl implements SpeakerSecureRestService {
-	
+
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	private SpeakerService speakerService;
 
@@ -41,14 +34,12 @@ public class SpeakerSecureRestServiceImpl implements SpeakerSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#createTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-	@POST
-	@Path("/speaker")
-	@Produces(MediaType.APPLICATION_JSON)
+
 	@Override
 	public Response createSpeaker(Speaker speaker) {
 		try {
 			speakerService.createSpeaker(speaker);
-			
+
 		} catch (Exception e) {
 			logger.error("Error create Speaker " + speaker, e);
 			throw new InternalServerErrorException(e);
@@ -63,16 +54,13 @@ public class SpeakerSecureRestServiceImpl implements SpeakerSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#updateTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-	@PUT
-	@Path("/speaker")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+
 	@Override
 	public Response updateSpeaker(Speaker speaker) {
 		Speaker updatedSpeaker = null;
 		try {
 			updatedSpeaker = speakerService.updateSpeaker(speaker);
-			
+
 		} catch (SpeakerNotFoundException e) {
 			logger.error("Speaker not found for update " + speaker, e);
 			throw new NotFoundException(e);
@@ -91,10 +79,9 @@ public class SpeakerSecureRestServiceImpl implements SpeakerSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#deleteTalk
 	 * (java.lang.String)
 	 */
-	@DELETE
-	@Path("/speaker/{id:[0-9][0-9]*}")
+
 	@Override
-	public Response deleteSpeaker(@PathParam("id") String id) {
+	public Response deleteSpeaker(String id) {
 		try {
 			speakerService.deleteSpeaker(Long.valueOf(id));
 		} catch (SpeakerNotFoundException e) {

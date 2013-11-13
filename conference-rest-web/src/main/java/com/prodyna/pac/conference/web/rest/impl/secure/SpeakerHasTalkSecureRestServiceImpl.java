@@ -5,10 +5,7 @@ package com.prodyna.pac.conference.web.rest.impl.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -24,7 +21,7 @@ import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.model.Talk;
 import com.prodyna.pac.conference.web.rest.api.secure.SpeakerHasTalkSecureRestService;
 
-@Path("/private")
+@Path("/private/speaker")
 @RequestScoped
 public class SpeakerHasTalkSecureRestServiceImpl implements
 		SpeakerHasTalkSecureRestService {
@@ -41,11 +38,8 @@ public class SpeakerHasTalkSecureRestServiceImpl implements
 	@Inject
 	private Logger logger;
 
-	@POST
-	@Path("/speaker/{speakerId:[0-9][0-9]*}/assign/{talkId:[0-9][0-9]*}")
 	@Override
-	public Response assign(@PathParam("speakerId") String speakerId,
-			@PathParam("talkId") String talkId) {
+	public Response assign(String speakerId, String talkId) {
 		try {
 			Talk talk = talkService.findTalkById(Long.valueOf(talkId));
 			Speaker speaker = speakerService.findSpeakerById(Long
@@ -65,11 +59,8 @@ public class SpeakerHasTalkSecureRestServiceImpl implements
 		return Response.ok().build();
 	}
 
-	@DELETE
-	@Path("/speaker/{speakerId:[0-9][0-9]*}/unassign/{talkId:[0-9][0-9]*}")
 	@Override
-	public Response unassign(@PathParam("speakerId") String speakerId,
-			@PathParam("talkId") String talkId) {
+	public Response unassign(String speakerId, String talkId) {
 		try {
 			Talk talk = talkService.findTalkById(Long.valueOf(talkId));
 			Speaker speaker = speakerService.findSpeakerById(Long

@@ -7,11 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -23,7 +19,7 @@ import com.prodyna.pac.conference.exception.RoomNotFoundException;
 import com.prodyna.pac.conference.model.Room;
 import com.prodyna.pac.conference.web.rest.api.unsecure.RoomUnsecureRestService;
 
-@Path("/public")
+@Path("/public/room")
 @RequestScoped
 public class RoomUnsecureRestServiceImpl implements RoomUnsecureRestService {
 
@@ -39,9 +35,7 @@ public class RoomUnsecureRestServiceImpl implements RoomUnsecureRestService {
 	 * @see
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listAllTalks()
 	 */
-	@GET
-	@Path("/room")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
 	public Response listAllRooms() {
 		List<Room> rooms = null;
@@ -62,11 +56,9 @@ public class RoomUnsecureRestServiceImpl implements RoomUnsecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listTalkById
 	 * (java.lang.String)
 	 */
-	@GET
-	@Path("/room/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
-	public Response listRoomById(@PathParam("id") String id) {
+	public Response listRoomById(String id) {
 		Room room = null;
 		try {
 			room = roomService.findRoomById(Long.valueOf(id));
@@ -87,11 +79,9 @@ public class RoomUnsecureRestServiceImpl implements RoomUnsecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listTalkByName
 	 * (java.lang.String)
 	 */
-	@GET
-	@Path("/room/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
-	public Response listRoomsByName(@PathParam("name") String name) {
+	public Response listRoomsByName( String name) {
 		List<Room> rooms = null;
 		try {
 			rooms = roomService.findRoomsByName(name);

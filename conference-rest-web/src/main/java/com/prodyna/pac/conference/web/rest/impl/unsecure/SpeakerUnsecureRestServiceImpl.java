@@ -7,11 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -23,7 +19,7 @@ import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
 import com.prodyna.pac.conference.model.Speaker;
 import com.prodyna.pac.conference.web.rest.api.unsecure.SpeakerUnsecureRestService;
 
-@Path("/public")
+@Path("/public/speaker")
 @RequestScoped
 public class SpeakerUnsecureRestServiceImpl implements SpeakerUnsecureRestService {
 
@@ -39,9 +35,7 @@ public class SpeakerUnsecureRestServiceImpl implements SpeakerUnsecureRestServic
 	 * @see
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listAllTalks()
 	 */
-	@GET
-	@Path("/speaker")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
 	public Response listAllSpeakers() {
 		List<Speaker> speakers = null;
@@ -62,11 +56,9 @@ public class SpeakerUnsecureRestServiceImpl implements SpeakerUnsecureRestServic
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listTalkById
 	 * (java.lang.String)
 	 */
-	@GET
-	@Path("/speaker/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
-	public Response listSpeakerById(@PathParam("id") String id) {
+	public Response listSpeakerById( String id) {
 		Speaker speaker = null;
 		try {
 			speaker = speakerService.findSpeakerById(Long.valueOf(id));
@@ -87,11 +79,9 @@ public class SpeakerUnsecureRestServiceImpl implements SpeakerUnsecureRestServic
 	 * com.prodyna.pac.conference.web.rest.api.PublicRestService#listTalkByName
 	 * (java.lang.String)
 	 */
-	@GET
-	@Path("/speaker/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
-	public Response listSpeakersByName(@PathParam("name") String name) {
+	public Response listSpeakersByName(String name) {
 		List<Speaker> speakers = null;
 		try {
 			speakers = speakerService.findSpeakersByName(name);

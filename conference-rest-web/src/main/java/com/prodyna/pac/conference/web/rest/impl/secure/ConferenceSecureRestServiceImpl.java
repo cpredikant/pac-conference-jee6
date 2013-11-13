@@ -5,14 +5,7 @@ package com.prodyna.pac.conference.web.rest.impl.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -24,7 +17,7 @@ import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
 import com.prodyna.pac.conference.model.Conference;
 import com.prodyna.pac.conference.web.rest.api.secure.ConferenceSecureRestService;
 
-@Path("/private")
+@Path("/private/conference")
 @RequestScoped
 public class ConferenceSecureRestServiceImpl implements
 		ConferenceSecureRestService {
@@ -42,12 +35,8 @@ public class ConferenceSecureRestServiceImpl implements
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#createConferences
 	 * (com.prodyna.pac.conference.model.Conference)
 	 */
-	@POST
-	@Path("/conference")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public Response createConferences(Conference conference) {
+	public Response createConference(Conference conference) {
 
 		try {
 			conferenceService.createConference(conference);
@@ -66,10 +55,7 @@ public class ConferenceSecureRestServiceImpl implements
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#updateConference
 	 * (com.prodyna.pac.conference.model.Conference)
 	 */
-	@PUT
-	@Path("/conference")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	@Override
 	public Response updateConference(Conference conference) {
 		Conference updateConference = null;
@@ -93,9 +79,7 @@ public class ConferenceSecureRestServiceImpl implements
 	 * listConferencesByName(java.lang.String)
 	 */
 	@Override
-	@DELETE
-	@Path("/conference/{id:[0-9][0-9]*}")
-	public Response deleteConference(@PathParam("id") String id) {
+	public Response deleteConference(String id) {
 
 		try {
 			conferenceService.deleteConference(Long.valueOf(id));

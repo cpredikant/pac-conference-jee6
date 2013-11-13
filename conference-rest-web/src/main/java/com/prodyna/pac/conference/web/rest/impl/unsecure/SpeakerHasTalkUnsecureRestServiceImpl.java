@@ -7,9 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.spi.InternalServerErrorException;
@@ -27,7 +25,7 @@ import com.prodyna.pac.conference.model.SpeakerHasTalk;
 import com.prodyna.pac.conference.model.Talk;
 import com.prodyna.pac.conference.web.rest.api.unsecure.SpeakerHasTalkUnsecureRestService;
 
-@Path("/public")
+@Path("/public/talkSpeaker")
 @RequestScoped
 public class SpeakerHasTalkUnsecureRestServiceImpl implements
 		SpeakerHasTalkUnsecureRestService {
@@ -44,12 +42,9 @@ public class SpeakerHasTalkUnsecureRestServiceImpl implements
 	@Inject
 	private Logger logger;
 
-	@GET
-	@Path("/talksBySpeaker/{speakerId:[0-9][0-9]*}/{talkId:[0-9][0-9]*}")
 	@Override
-	public Response findSpeakerHasTalkBySpeakerAndTalk(
-			@PathParam("speakerId") String speakerId,
-			@PathParam("talkId") String talkId) {
+	public Response findSpeakerHasTalkBySpeakerAndTalk(String speakerId,
+			String talkId) {
 		SpeakerHasTalk speakerHasTalk = null;
 		try {
 			Talk talk = talkService.findTalkById(Long.valueOf(talkId));
@@ -71,15 +66,13 @@ public class SpeakerHasTalkUnsecureRestServiceImpl implements
 			throw new InternalServerErrorException(e);
 
 		}
-		
+
 		return Response.ok(speakerHasTalk).build();
-	
+
 	}
 
-	@GET
-	@Path("/speakersByTalk/{talkId:[0-9][0-9]*}")
 	@Override
-	public Response listSpeakersByTalk(@PathParam("talkId") String talkId) {
+	public Response listSpeakersByTalk(String talkId) {
 		List<Speaker> speakers = null;
 		try {
 			Talk talk = talkService.findTalkById(Long.valueOf(talkId));
@@ -95,10 +88,8 @@ public class SpeakerHasTalkUnsecureRestServiceImpl implements
 		return Response.ok(speakers).build();
 	}
 
-	@GET
-	@Path("/talsBySpeaker/{speakerId:[0-9][0-9]*}")
 	@Override
-	public Response listTalksBySpeaker(@PathParam("speakerId") String speakerId) {
+	public Response listTalksBySpeaker(String speakerId) {
 		List<Talk> talks = null;
 		try {
 			Speaker speaker = speakerService.findSpeakerById(Long
