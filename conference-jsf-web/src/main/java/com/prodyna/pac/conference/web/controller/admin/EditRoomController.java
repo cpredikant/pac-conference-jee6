@@ -12,11 +12,11 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.exception.RoomNotFoundException;
-import com.prodyna.pac.conference.model.Conference;
-import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.api.RoomService;
+import com.prodyna.pac.conference.service.exception.RoomNotFoundException;
+import com.prodyna.pac.conference.service.model.Conference;
+import com.prodyna.pac.conference.service.model.Room;
 
 @Named
 @ViewScoped

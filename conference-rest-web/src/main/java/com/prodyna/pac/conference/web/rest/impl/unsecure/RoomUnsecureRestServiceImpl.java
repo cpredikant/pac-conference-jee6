@@ -14,9 +14,9 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.exception.RoomNotFoundException;
-import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.service.api.RoomService;
+import com.prodyna.pac.conference.service.exception.RoomNotFoundException;
+import com.prodyna.pac.conference.service.model.Room;
 import com.prodyna.pac.conference.web.rest.api.unsecure.RoomUnsecureRestService;
 
 @Path("/public/room")

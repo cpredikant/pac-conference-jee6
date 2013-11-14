@@ -1,4 +1,4 @@
-package com.prodyna.pac.conference.exception;
+package com.prodyna.pac.conference.service.exception;
 
 public class SpeakerHasTalkNotFoundException extends ServiceException {
 

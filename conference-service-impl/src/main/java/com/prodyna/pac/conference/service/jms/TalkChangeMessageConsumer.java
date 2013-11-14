@@ -1,4 +1,4 @@
-package com.prodyna.pac.conference.jms;
+package com.prodyna.pac.conference.service.jms;
 
 import javax.annotation.Resource;
 import javax.ejb.MessageDriven;

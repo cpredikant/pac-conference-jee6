@@ -55,7 +55,7 @@
 					</prime:button>
 					<prime:commandButton title="Delete" icon=" ui-icon-trash"
 						action="#{adminController.deleteConference(conferenceItem.id)}"
-						update="@all" />
+						update="@form" />
 				</prime:column>
 
 			</prime:dataTable>
@@ -70,7 +70,8 @@
 		<h:form>
 			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editRoom" />
 
-			<prime:dataTable value="#{adminController.rooms}" var="roomItem" paginator="true" rows="10">
+			<prime:dataTable value="#{adminController.rooms}" var="roomItem"
+				paginator="true" rows="10">
 
 				<prime:column headerText="Name">
 					<h:outputText value="#{roomItem.name}" />
@@ -106,7 +107,8 @@
 		<h:form>
 			<prime:button title="Add Talk" icon="ui-icon-plus" outcome="editTalk" />
 
-			<prime:dataTable value="#{adminController.talks}" var="talkItem" paginator="true" rows="10">
+			<prime:dataTable value="#{adminController.talks}" var="talkItem"
+				paginator="true" rows="10">
 
 				<prime:column headerText="Name">
 					<h:outputText value="#{talkItem.name}" />
@@ -143,7 +145,7 @@
 		<prime:outputPanel>
 			<h2>Speaker Administration</h2>
 		</prime:outputPanel>
-		
+
 		<h:form id="speakerForm">
 			<prime:button title="Add Room" icon="ui-icon-plus"
 				outcome="editSpeaker" />
@@ -165,7 +167,7 @@
 					</prime:button>
 					<prime:commandButton title="Delete" icon=" ui-icon-trash"
 						action="#{adminController.deleteSpeaker(speakerItem.id)}"
-						update="@all" />
+						update="@form" />
 				</prime:column>
 
 			</prime:dataTable>

@@ -1,11 +1,11 @@
-package com.prodyna.pac.conference.api;
+package com.prodyna.pac.conference.service.api;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
-import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.exception.ConferenceNotFoundException;
+import com.prodyna.pac.conference.service.model.Conference;
 
 @Local
 public interface ConferenceService {

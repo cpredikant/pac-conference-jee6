@@ -1,11 +1,11 @@
-package com.prodyna.pac.conference.api;
+package com.prodyna.pac.conference.service.api;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
-import com.prodyna.pac.conference.model.Speaker;
+import com.prodyna.pac.conference.service.exception.SpeakerNotFoundException;
+import com.prodyna.pac.conference.service.model.Speaker;
 
 @Local
 public interface SpeakerService {

@@ -12,13 +12,13 @@ import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.TalkService;
 import com.prodyna.pac.conference.common.util.DateUtil;
-import com.prodyna.pac.conference.exception.RoomNotAvailableException;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.RoomNotAvailableException;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
 import com.prodyna.pac.conference.service.interceptor.Logging;
 import com.prodyna.pac.conference.service.interceptor.Performance;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @Stateless
 @Performance

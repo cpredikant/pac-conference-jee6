@@ -1,4 +1,4 @@
-package com.prodyna.pac.conference.model;
+package com.prodyna.pac.conference.service.model;
 
 import java.io.Serializable;
 

@@ -22,7 +22,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.model.Conference;
 import com.prodyna.pac.conference.web.rest.api.secure.ConferenceSecureRestService;
 
 @RunWith(Arquillian.class)

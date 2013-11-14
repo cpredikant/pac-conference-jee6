@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import org.apache.myfaces.extensions.cdi.core.api.Advanced;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.model.Conference;
 
 @Advanced
 @FacesConverter(value = "com.prodyna.pac.conference.ConferenceConverter")

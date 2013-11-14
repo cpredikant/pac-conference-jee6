@@ -1,30 +1,27 @@
-package com.prodyna.pac.conference.model;
+package com.prodyna.pac.conference.service.model;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @Entity
-@Table(name="room")
+@Table(name="speaker")
 @NamedQueries({
-	@NamedQuery(name = "Room.findRoomById", query = "SELECT r FROM Room r WHERE r.id = :id"),
-	@NamedQuery(name = "Room.findRoomByName", query = "SELECT r FROM Room r WHERE r.name = :name"),
-	@NamedQuery(name = "Room.findRoomsByConferenceId", query = "SELECT r FROM Room r WHERE r.conference.id = :id"),
-	@NamedQuery(name = "Room.findAll", query = "SELECT r FROM Room r"),
+	@NamedQuery(name = "Speaker.findSpeakerById", query = "SELECT s FROM Speaker s WHERE s.id = :id"),
+	@NamedQuery(name = "Speaker.findSpeakersByName", query = "SELECT s FROM Speaker s WHERE s.name = :name"),
+	@NamedQuery(name = "Speaker.findAll", query = "SELECT s FROM Speaker s"),
 })
-public class Room implements Serializable {
+public class Speaker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -36,12 +33,10 @@ public class Room implements Serializable {
 	@Size(min=1,max=100)
 	private String name;
 	
-	@Min(1)
-	private int capacity;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="conference_id")
-	private Conference conference;
+	@NotNull
+	@Lob
+	@Size(min=1)
+	private String description;
 
 	public long getId() {
 		return id;
@@ -59,29 +54,20 @@ public class Room implements Serializable {
 		this.name = name;
 	}
 
-	public int getCapacity() {
-		return capacity;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
-	public Conference getConference() {
-		return conference;
-	}
-
-	public void setConference(Conference conference) {
-		this.conference = conference;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + capacity;
 		result = prime * result
-				+ ((conference == null) ? 0 : conference.hashCode());
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -95,13 +81,11 @@ public class Room implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Room other = (Room) obj;
-		if (capacity != other.capacity)
-			return false;
-		if (conference == null) {
-			if (other.conference != null)
+		Speaker other = (Speaker) obj;
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!conference.equals(other.conference))
+		} else if (!description.equals(other.description))
 			return false;
 		if (id != other.id)
 			return false;
@@ -115,8 +99,8 @@ public class Room implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", name=" + name + ", capacity=" + capacity
-				+ ", conference=" + conference + "]";
+		return "Speaker [id=" + id + ", name=" + name + ", description="
+				+ description + "]";
 	}
 	
 	

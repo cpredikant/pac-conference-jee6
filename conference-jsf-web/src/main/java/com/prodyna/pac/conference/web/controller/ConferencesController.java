@@ -8,8 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.model.Conference;
 
 @Named
 @ViewScoped

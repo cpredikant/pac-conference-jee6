@@ -11,9 +11,9 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.exception.ConferenceNotFoundException;
-import com.prodyna.pac.conference.model.Conference;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.exception.ConferenceNotFoundException;
+import com.prodyna.pac.conference.service.model.Conference;
 
 @Named
 @ViewScoped

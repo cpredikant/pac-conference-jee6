@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.prodyna.pac.conference.model.Speaker;
+import com.prodyna.pac.conference.service.model.Speaker;
 
 public interface SpeakerSecureRestService {
 

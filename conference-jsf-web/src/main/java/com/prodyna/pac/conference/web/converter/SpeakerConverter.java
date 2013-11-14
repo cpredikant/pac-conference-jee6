@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import org.apache.myfaces.extensions.cdi.core.api.Advanced;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.SpeakerService;
-import com.prodyna.pac.conference.model.Speaker;
+import com.prodyna.pac.conference.service.api.SpeakerService;
+import com.prodyna.pac.conference.service.model.Speaker;
 
 @Advanced
 @FacesConverter(value = "com.prodyna.pac.conference.SpeakerConverter")

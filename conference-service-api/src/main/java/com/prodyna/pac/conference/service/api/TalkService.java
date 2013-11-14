@@ -1,12 +1,12 @@
-package com.prodyna.pac.conference.api;
+package com.prodyna.pac.conference.service.api;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import com.prodyna.pac.conference.exception.RoomNotAvailableException;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.exception.RoomNotAvailableException;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @Local
 public interface TalkService {

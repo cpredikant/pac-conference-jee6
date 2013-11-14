@@ -14,9 +14,9 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Talk;
 import com.prodyna.pac.conference.web.rest.api.unsecure.TalkUnsecureRestService;
 
 @Path("/public/talk")

@@ -12,11 +12,11 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.SpeakerHasTalkService;
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Speaker;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @Named
 @ViewScoped

@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.model.Talk;
 
 public interface TalkSecureRestService {
 

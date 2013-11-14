@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import org.apache.myfaces.extensions.cdi.core.api.Advanced;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.service.api.RoomService;
+import com.prodyna.pac.conference.service.model.Room;
 
 @Advanced
 @FacesConverter(value = "com.prodyna.pac.conference.RoomConverter")

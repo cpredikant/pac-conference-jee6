@@ -15,17 +15,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.api.SpeakerHasTalkService;
-import com.prodyna.pac.conference.api.SpeakerService;
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
-import com.prodyna.pac.conference.model.Conference;
-import com.prodyna.pac.conference.model.Room;
-import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.SpeakerHasTalk;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.api.RoomService;
+import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.service.api.SpeakerService;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.SpeakerHasTalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Conference;
+import com.prodyna.pac.conference.service.model.Room;
+import com.prodyna.pac.conference.service.model.Speaker;
+import com.prodyna.pac.conference.service.model.SpeakerHasTalk;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @RunWith(Arquillian.class)
 public class SpeakerHasTalkServiceTest {

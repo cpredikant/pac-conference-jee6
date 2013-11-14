@@ -12,15 +12,15 @@ import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.common.util.DateUtil;
-import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
-import com.prodyna.pac.conference.exception.SpeakerNotAvailableException;
-import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.SpeakerHasTalk;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.service.exception.SpeakerHasTalkNotFoundException;
+import com.prodyna.pac.conference.service.exception.SpeakerNotAvailableException;
 import com.prodyna.pac.conference.service.interceptor.Logging;
 import com.prodyna.pac.conference.service.interceptor.Performance;
+import com.prodyna.pac.conference.service.model.Speaker;
+import com.prodyna.pac.conference.service.model.SpeakerHasTalk;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @Stateless
 @Performance

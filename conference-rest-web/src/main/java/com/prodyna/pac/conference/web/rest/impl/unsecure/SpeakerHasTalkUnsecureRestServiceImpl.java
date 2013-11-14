@@ -14,15 +14,15 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.SpeakerHasTalkService;
-import com.prodyna.pac.conference.api.SpeakerService;
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.exception.SpeakerHasTalkNotFoundException;
-import com.prodyna.pac.conference.exception.SpeakerNotFoundException;
-import com.prodyna.pac.conference.exception.TalkNotFoundException;
-import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.SpeakerHasTalk;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
+import com.prodyna.pac.conference.service.api.SpeakerService;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.SpeakerHasTalkNotFoundException;
+import com.prodyna.pac.conference.service.exception.SpeakerNotFoundException;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Speaker;
+import com.prodyna.pac.conference.service.model.SpeakerHasTalk;
+import com.prodyna.pac.conference.service.model.Talk;
 import com.prodyna.pac.conference.web.rest.api.unsecure.SpeakerHasTalkUnsecureRestService;
 
 @Path("/public/talkSpeaker")

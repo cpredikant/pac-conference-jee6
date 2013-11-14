@@ -12,14 +12,14 @@ import javax.inject.Named;
 
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.api.ConferenceService;
-import com.prodyna.pac.conference.api.RoomService;
-import com.prodyna.pac.conference.api.SpeakerService;
-import com.prodyna.pac.conference.api.TalkService;
-import com.prodyna.pac.conference.model.Conference;
-import com.prodyna.pac.conference.model.Room;
-import com.prodyna.pac.conference.model.Speaker;
-import com.prodyna.pac.conference.model.Talk;
+import com.prodyna.pac.conference.service.api.ConferenceService;
+import com.prodyna.pac.conference.service.api.RoomService;
+import com.prodyna.pac.conference.service.api.SpeakerService;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.model.Conference;
+import com.prodyna.pac.conference.service.model.Room;
+import com.prodyna.pac.conference.service.model.Speaker;
+import com.prodyna.pac.conference.service.model.Talk;
 
 @Named
 @ViewScoped
@@ -88,6 +88,8 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
 							"Error deleting Conference"));
 		}
+		
+		conferences = conferenceService.findAll();
 	}
 
 	public void deleteSpeaker(long id) {
@@ -104,6 +106,7 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
 							"Error deleting Speaker"));
 		}
+		speakers = speakerService.findAll();
 	}
 
 	public void deleteRoomAction(long id) {
@@ -121,6 +124,7 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
 							"Error deleting Room"));
 		}
+		rooms = roomService.findAll();
 	}
 
 	public void deleteTalkAction(long id) {
@@ -138,6 +142,7 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
 							"Error deleting Talk"));
 		}
+		talks = talkService.findAll();
 	}
 
 	public List<Talk> getTalks() {

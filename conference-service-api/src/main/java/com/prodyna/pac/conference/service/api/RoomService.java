@@ -1,11 +1,11 @@
-package com.prodyna.pac.conference.api;
+package com.prodyna.pac.conference.service.api;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import com.prodyna.pac.conference.exception.RoomNotFoundException;
-import com.prodyna.pac.conference.model.Room;
+import com.prodyna.pac.conference.service.exception.RoomNotFoundException;
+import com.prodyna.pac.conference.service.model.Room;
 
 @Local
 public interface RoomService {
