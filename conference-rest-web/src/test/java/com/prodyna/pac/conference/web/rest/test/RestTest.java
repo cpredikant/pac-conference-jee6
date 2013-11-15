@@ -3,6 +3,7 @@ package com.prodyna.pac.conference.web.rest.test;
 import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.apache.http.HttpStatus;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -13,6 +14,7 @@ import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.jboss.resteasy.util.GenericType;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -24,6 +26,7 @@ import org.junit.runner.RunWith;
 
 import com.prodyna.pac.conference.service.model.Conference;
 import com.prodyna.pac.conference.web.rest.api.secure.ConferenceSecureRestService;
+import com.prodyna.pac.conference.web.rest.api.unsecure.ConferenceUnsecureRestService;
 
 @RunWith(Arquillian.class)
 public class RestTest {
@@ -46,7 +49,6 @@ public class RestTest {
 				.deletePackages(true, "com.prodyna.pac.conference.web.rest.test")
 				.addAsWebInfResource("META-INF/test-beans.xml", "beans.xml")
 				.addAsLibraries(libs);
-		System.out.println(archive.toString(true));
 		return archive;
 	}
 	
@@ -80,6 +82,27 @@ public class RestTest {
 				.createConference(conference);
 		Assert.assertTrue(response.getStatus() == HttpStatus.SC_OK);
 		response.releaseConnection();
+		
+		
+		ConferenceUnsecureRestService conferenceUnsecureRestService = ProxyFactory
+				.create(ConferenceUnsecureRestService.class,
+						contextPath.toString() + "public/conference");
+		
+		response = (ClientResponse<?>) conferenceUnsecureRestService
+				.listConferencesByName("W-JAX");
+		List<Conference> conferences =  response.getEntity(new GenericType<List<Conference>>() {
+		});
+		Assert.assertTrue(response.getStatus() == HttpStatus.SC_OK);
+		Assert.assertTrue(conferences.size() > 0 );
+		response.releaseConnection();
+		
+		for (Conference c : conferences){
+		response = (ClientResponse<?>) conferenceSecureRestService
+				.deleteConference(String.valueOf(c.getId()));
+		Assert.assertTrue(response.getStatus() == HttpStatus.SC_OK);
+		response.releaseConnection();
+		}
+		
 
 		
 	}
