@@ -5,17 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prodyna.pac</groupId>
 	<artifactId>conference</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
-
-	<url>http://jboss.org/jbossas</url>
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<distribution>repo</distribution>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-		</license>
-	</licenses>
 	
 	<modules>
 		<module>conference-ear</module>
@@ -41,8 +32,9 @@
 		<version.ejb.plugin>2.3</version.ejb.plugin>
 		<version.surefire.plugin>2.10</version.surefire.plugin>
 		<version.war.plugin>2.1.1</version.war.plugin>
+		<version.source.plugin>2.2.1</version.source.plugin>
+		<version.javadoc.plugin>2.9.1</version.javadoc.plugin>
 		
-
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<maven.compiler.source>1.6</maven.compiler.source>
 	</properties>

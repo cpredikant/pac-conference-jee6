@@ -28,7 +28,7 @@
 			<prime:dataTable value="#{adminController.conferences}"
 				var="conferenceItem" paginator="true" rows="10">
 
-				<prime:column headerText="Name">
+				<prime:column headerText="Name" >
 					<h:outputText value="#{conferenceItem.name}" />
 				</prime:column>
 
@@ -71,9 +71,9 @@
 			<prime:button title="Add Room" icon="ui-icon-plus" outcome="editRoom" />
 
 			<prime:dataTable value="#{adminController.rooms}" var="roomItem"
-				paginator="true" rows="10">
+				paginator="true" rows="10" >
 
-				<prime:column headerText="Name">
+				<prime:column headerText="Name" sortBy="name">
 					<h:outputText value="#{roomItem.name}" />
 				</prime:column>
 

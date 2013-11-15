@@ -71,12 +71,12 @@ public class RestTest {
 				.create(ConferenceSecureRestService.class,
 						contextPath.toString() + "private/conference");
 
-		// Create conference
+		
 		Conference conference = new Conference();
-		conference.setDescription("Description W-JAX");
-		conference.setName("W-JAX");
-		conference.setStart(SDF.parse("12.12.2013 08:00:00"));
-		conference.setEnd(SDF.parse("16.12.2013 17:00:00"));
+		conference.setDescription("Description of Conference");
+		conference.setName("Conference");
+		conference.setStart(SDF.parse("12.12.2013 12:00:00"));
+		conference.setEnd(SDF.parse("16.12.2013 15:00:00"));
 
 		ClientResponse<?> response = (ClientResponse<?>) conferenceSecureRestService
 				.createConference(conference);
@@ -89,9 +89,10 @@ public class RestTest {
 						contextPath.toString() + "public/conference");
 		
 		response = (ClientResponse<?>) conferenceUnsecureRestService
-				.listConferencesByName("W-JAX");
+				.listConferencesByName("Conference");
 		List<Conference> conferences =  response.getEntity(new GenericType<List<Conference>>() {
 		});
+		
 		Assert.assertTrue(response.getStatus() == HttpStatus.SC_OK);
 		Assert.assertTrue(conferences.size() > 0 );
 		response.releaseConnection();

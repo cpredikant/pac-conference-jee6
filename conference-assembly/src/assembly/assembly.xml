@@ -2,40 +2,34 @@
 	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	
 	<id>bin</id>
+	
 	<formats>
 		<format>zip</format>
 	</formats>
 	<includeBaseDirectory>false</includeBaseDirectory>
+	
 	<fileSets>
 		<fileSet>
-			<directory>../</directory>
+			<directory>../conference-documentation</directory>
 			<outputDirectory></outputDirectory>
 			<includes>
-				<include>README*</include>
 				<include>*.docx</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<directory>../conference-service-impl/</directory>
+			<directory>../conference-service-impl/src/sql</directory>
 			<outputDirectory>/sql</outputDirectory>
 			<includes>
 				<include>*.sql</include>
 			</includes>
 		</fileSet>
 	</fileSets>
+	
 	<moduleSets>
+	
 		<moduleSet>
-			<useAllReactorProjects>true</useAllReactorProjects>
-			<includes>
-				<include>com.prodyna.pac:conference-ear:ear</include>
-			</includes>
-			<binaries>
-				<unpack>false</unpack>
-			</binaries>
-		</moduleSet>
-		<moduleSet>
-			<!-- Collect sources -->
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<excludes>
 				<exclude>com.prodyna.pac:conference-ear</exclude>
@@ -47,6 +41,7 @@
 				<unpack>false</unpack>
 			</binaries>
 		</moduleSet>
+		
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<includes>
@@ -60,8 +55,18 @@
 				<unpack>false</unpack>
 			</binaries>
 		</moduleSet>
+		
 		<moduleSet>
-			<!-- Collect javadoc -->
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<includes>
+				<include>com.prodyna.pac:conference-ear:ear</include>
+			</includes>
+			<binaries>
+				<unpack>false</unpack>
+			</binaries>
+		</moduleSet>
+		
+		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<excludes>
 				<exclude>com.prodyna.pac:conference-ear</exclude>
@@ -73,11 +78,14 @@
 				<unpack>false</unpack>
 			</binaries>
 		</moduleSet>
+		
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
+			
 			<excludes>
 				<exclude>com.prodyna.pac:conference-assembly</exclude>
 			</excludes>
+			
 			<includes>
 				<include>com.prodyna.pac:*</include>
 			</includes>

@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>com.prodyna.pac</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
         <artifactId>conference</artifactId>
     </parent>
 
@@ -12,16 +12,6 @@
     <packaging>ear</packaging>
 
     <name>conference-ear</name>
-
-    <url>http://jboss.org/jbossas</url>
-    
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
 
     <dependencies>
 
@@ -66,14 +56,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>${version.ear.plugin}</version>
-                <configuration>
-                    <!-- Tell Maven we are using Java EE 6 -->
-                    <version>6</version>
-                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
-                        are in easy way to package any libraries needed in the ear, and automatically 
-                        have any modules (EJB-JARs and WARs) use them -->
+                <configuration>              
+                    <version>6</version>        
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
-                    <modules></modules>
+                    <modules/>
                     <fileNameMapping>no-version</fileNameMapping>
                     
                 </configuration>
