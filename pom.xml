@@ -25,7 +25,7 @@
 		<module>conference-rest-api</module>
 		<module>conference-rest-web</module>
 		<module>conference-common</module>
-		
+		<module>conference-assembly</module>
 	</modules>
 
 	<properties>
@@ -35,10 +35,13 @@
 		<version.jboss.maven.plugin>7.3.Final</version.jboss.maven.plugin>
 		<version.jboss.bom>1.0.7.CR8</version.jboss.bom>		
 		<version.jboss.as>7.2.0.Final</version.jboss.as>
+		
+		<version.compiler.plugin>2.3.1</version.compiler.plugin>
 		<version.ear.plugin>2.6</version.ear.plugin>
 		<version.ejb.plugin>2.3</version.ejb.plugin>
 		<version.surefire.plugin>2.10</version.surefire.plugin>
 		<version.war.plugin>2.1.1</version.war.plugin>
+		
 
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -121,6 +124,25 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<descriptors>
+							<descriptor>src/assembly/dist.xml</descriptor>
+						</descriptors>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.compiler.plugin}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+				
 				<plugin>
 					<groupId>org.jboss.as.plugins</groupId>
 					<artifactId>jboss-as-maven-plugin</artifactId>

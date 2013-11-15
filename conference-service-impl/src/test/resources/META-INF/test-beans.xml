@@ -17,6 +17,6 @@
 		<class>com.prodyna.pac.conference.service.interceptor.PerformanceInterceptor</class>
 	</interceptors>
 	<decorators>
-		<class>com.prodyna.pac.conference.serivce.decorator.TalkServiceDecorator</class>
+		<class>com.prodyna.pac.conference.service.decorator.TalkServiceDecorator</class>
 	</decorators>
 </beans>

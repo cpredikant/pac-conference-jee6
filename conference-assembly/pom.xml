@@ -6,11 +6,18 @@
 		<artifactId>conference</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<artifactId>conference-assembly</artifactId>
+	<packaging>pom</packaging>
 
-	<artifactId>conference-common</artifactId>
-	<packaging>jar</packaging>
+	<name>confenrence-assembly</name>
 
-	<name>conference-common</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-ear</artifactId>
+			<type>ear</type>
+		</dependency>
+	</dependencies>
 
 	<profiles>
 		<profile>
@@ -40,31 +47,19 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.2.1</version>
+						<artifactId>maven-assembly-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>attach-sources</id>
+								<id>distro-assembly</id>
 								<phase>package</phase>
 								<goals>
-									<goal>jar-no-fork</goal>
-									<goal>test-jar-no-fork</goal>
+									<goal>single</goal>
 								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<executions>
-							<execution>
-								<id>default-jar</id>
-								<phase>package</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/assembly/assembly.xml</descriptor>
+									</descriptors>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -72,5 +67,4 @@
 			</build>
 		</profile>
 	</profiles>
-
 </project>

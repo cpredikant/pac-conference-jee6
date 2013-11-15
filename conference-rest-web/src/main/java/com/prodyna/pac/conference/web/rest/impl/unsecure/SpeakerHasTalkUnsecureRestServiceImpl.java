@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.prodyna.pac.conference.web.rest.impl.unsecure;
 
 import java.util.List;

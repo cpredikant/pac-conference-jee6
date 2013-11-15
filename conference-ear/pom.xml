@@ -59,18 +59,23 @@
         </dependency>
     </dependencies>
 
-    <build>
+   <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>${version.ear.plugin}</version>
-                <configuration>          
+                <configuration>
+                    <!-- Tell Maven we are using Java EE 6 -->
                     <version>6</version>
+                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
+                        are in easy way to package any libraries needed in the ear, and automatically 
+                        have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules></modules>
                     <fileNameMapping>no-version</fileNameMapping>
+                    
                 </configuration>
             </plugin>
             <plugin>
@@ -83,22 +88,5 @@
             </plugin>
         </plugins>
     </build>
-   
-    <profiles>
-        <profile>
-            <id>openshift</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>${version.ear.plugin}</version>
-                        <configuration>
-                            <outputDirectory>deployments</outputDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
