@@ -86,7 +86,7 @@
              <plugins>
                 <plugin>
                    <artifactId>maven-ear-plugin</artifactId>
-                   <version>${ear.plugin.version}</version>
+                   <version>${version.ear.plugin}</version>
                    <configuration>
                       <outputDirectory>deployments</outputDirectory>
                    </configuration>
