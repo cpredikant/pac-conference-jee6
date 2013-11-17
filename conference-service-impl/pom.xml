@@ -15,23 +15,22 @@
 	<name>conference-service-impl</name>
 
 	<dependencies>
-	
+
 		<dependency>
-                <groupId>org.jboss.spec.javax.jms</groupId>
-                <artifactId>jboss-jms-api_1.1_spec</artifactId>
-        </dependency>
+			<groupId>org.jboss.spec.javax.jms</groupId>
+			<artifactId>jboss-jms-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>com.prodyna.pac</groupId>
 			<artifactId>conference-service-api</artifactId>
-			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.prodyna.pac</groupId>
 			<artifactId>conference-common</artifactId>
-			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
 

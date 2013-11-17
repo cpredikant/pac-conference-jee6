@@ -1,6 +1,5 @@
 package com.prodyna.pac.conference.web.rest.test;
 
-import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -18,7 +17,6 @@ import org.jboss.resteasy.util.GenericType;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,20 +33,19 @@ public class RestTest {
 	
 	@Deployment(testable = false)
 	public static Archive<?> createTestArchive() {
-		File[] libs = Maven
-				.resolver()
-				.loadPomFromFile("pom.xml")
-				.resolve("com.prodyna.pac:conference-common",
-						"com.prodyna.pac:conference-service-api",
-						"com.prodyna.pac:conference-service-impl")
-				.withoutTransitivity().asFile();
+	
 
 		WebArchive archive = ShrinkWrap
 				.create(WebArchive.class, "rest-test.war")
 				.addPackages(true, "com.prodyna.pac.conference.web.rest")
 				.deletePackages(true, "com.prodyna.pac.conference.web.rest.test")
+				.addPackages(true, "com.prodyna.pac.conference.service")
+				.deletePackages(true, "com.prodyna.pac.conference.service.test")
+				.addPackages(true, "com.prodyna.pac.conference.common")
 				.addAsWebInfResource("META-INF/test-beans.xml", "beans.xml")
-				.addAsLibraries(libs);
+				.addAsResource("META-INF/test-persistence.xml",
+						"META-INF/persistence.xml");
+		
 		return archive;
 	}
 	

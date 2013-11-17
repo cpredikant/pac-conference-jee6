@@ -44,10 +44,13 @@
 		
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
-			<includes>
-				<include>com.prodyna.pac:conference-*-impl</include>
-				<include>com.prodyna.pac:conference-rest-web</include>
-			</includes>
+			<excludes>
+				<exclude>com.prodyna.pac:conference-ear</exclude>
+				<exclude>com.prodyna.pac:conference-assembly</exclude>
+				<exclude>com.prodyna.pac:conference-common</exclude>
+				<exclude>com.prodyna.pac:conference-*-api</exclude>
+				<exclude>com.prodyna.pac:conference-jsf-web</exclude>
+			</excludes>
 			<binaries>
 				<includeDependencies>false</includeDependencies>
 				<attachmentClassifier>test-sources</attachmentClassifier>

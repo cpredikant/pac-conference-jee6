@@ -41,12 +41,14 @@
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>2.1.26</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>4.0</version>
+			<scope>compile</scope>
 		</dependency>
 
 

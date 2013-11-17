@@ -42,11 +42,15 @@
         <dependency>
         	<groupId>com.prodyna.pac</groupId>
         	<artifactId>conference-common</artifactId>
+        	<type>jar</type>
         </dependency>
+        
         <dependency>
         	<groupId>com.prodyna.pac</groupId>
         	<artifactId>conference-rest-api</artifactId>
+        	<type>jar</type>
         </dependency>
+        
     </dependencies>
 
    <build>
@@ -77,10 +81,6 @@
     
     <profiles>
        <profile>
-         <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-          <!-- Use this profile for any OpenShift specific customization your app will need. -->
-          <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-          <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
           <id>openshift</id>
           <build>
              <plugins>

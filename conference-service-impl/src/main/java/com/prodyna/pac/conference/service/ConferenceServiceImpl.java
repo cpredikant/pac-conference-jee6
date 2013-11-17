@@ -30,6 +30,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	private EntityManager em;
 
 	@Override
+	@Logging
 	public void createConference(Conference conference) {
 
 		em.persist(conference);
