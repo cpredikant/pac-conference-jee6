@@ -12,6 +12,7 @@
 	<artifactId>conference-rest-web</artifactId>
 	<packaging>war</packaging>
 
+
 	<name>conference-rest-web</name>
 
 	<dependencies>
