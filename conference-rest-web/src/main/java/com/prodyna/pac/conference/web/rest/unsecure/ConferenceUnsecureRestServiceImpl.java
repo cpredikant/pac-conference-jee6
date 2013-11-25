@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.prodyna.pac.conference.web.rest.impl.unsecure;
+package com.prodyna.pac.conference.web.rest.unsecure;
 
 import java.util.List;
 

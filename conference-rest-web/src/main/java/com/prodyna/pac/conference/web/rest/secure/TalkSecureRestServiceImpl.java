@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.prodyna.pac.conference.web.rest.impl.secure;
+package com.prodyna.pac.conference.web.rest.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -12,20 +12,20 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.NotFoundException;
 import org.slf4j.Logger;
 
-import com.prodyna.pac.conference.service.api.RoomService;
-import com.prodyna.pac.conference.service.exception.RoomNotFoundException;
-import com.prodyna.pac.conference.service.model.Room;
-import com.prodyna.pac.conference.web.rest.api.secure.RoomSecureRestService;
+import com.prodyna.pac.conference.service.api.TalkService;
+import com.prodyna.pac.conference.service.exception.TalkNotFoundException;
+import com.prodyna.pac.conference.service.model.Talk;
+import com.prodyna.pac.conference.web.rest.api.secure.TalkSecureRestService;
 
-@Path("/private/room")
+@Path("/private/talk")
 @RequestScoped
-public class RoomSecureRestServiceImpl implements RoomSecureRestService {
+public class TalkSecureRestServiceImpl implements TalkSecureRestService {
 	
 	@Inject
 	private Logger logger;
 	
 	@Inject
-	private RoomService roomService;
+	private TalkService talkService;
 
 	/*
 	 * (non-Javadoc)
@@ -34,17 +34,16 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#createTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-
 	@Override
-	public Response createRoom(Room room) {
+	public Response createTalk(Talk talk) {
 		try {
-			roomService.createRoom(room);
+			talkService.createTalk(talk);
 			
 		} catch (Exception e) {
-			logger.error("Error create Room " + room, e);
+			logger.error("Error create Talk " + talk, e);
 			throw new InternalServerErrorException(e);
 		}
-		return Response.ok(room).build();
+		return Response.ok(talk).build();
 	}
 
 	/*
@@ -54,22 +53,21 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#updateTalk
 	 * (com.prodyna.pac.conference.model.Talk)
 	 */
-	
 	@Override
-	public Response updateRoom(Room room) {
-		Room updatedRoom = null;
+	public Response updateTalk(Talk talk) {
+		Talk updatedTalk = null;
 		try {
-			updatedRoom = roomService.updateRoom(room);
+			updatedTalk = talkService.updateTalk(talk);
 			
-		} catch ( RoomNotFoundException e) {
-			logger.error("Talk not found for update " + room, e);
+		} catch (TalkNotFoundException e) {
+			logger.error("Talk not found for update " + talk, e);
 			throw new NotFoundException(e);
 		} catch (Exception e) {
-			logger.error("Error updating Room " + room, e);
+			logger.error("Error updating Talk " + talk, e);
 			throw new NotFoundException(e);
 		}
 
-		return Response.ok(updatedRoom).build();
+		return Response.ok(updatedTalk).build();
 	}
 
 	/*
@@ -79,22 +77,20 @@ public class RoomSecureRestServiceImpl implements RoomSecureRestService {
 	 * com.prodyna.pac.conference.web.rest.api.PrivateRestService#deleteTalk
 	 * (java.lang.String)
 	 */
-
+	
 	@Override
-	public Response deleteRoom(String id) {
+	public Response deleteTalk(String id) {
 		try {
-			roomService.deleteRoom(Long.valueOf(id));
-		} catch (RoomNotFoundException e) {
-			logger.error("Room not found for deletion " + id, e);
+			talkService.deleteTalk(Long.valueOf(id));
+		} catch (TalkNotFoundException e) {
+			logger.error("Talk not found for delete " + id, e);
 			throw new NotFoundException(e);
 		} catch (Exception e) {
-			logger.error("Error deleting Room " + id, e);
+			logger.error("Error deleting Talk " + id, e);
 			throw new NotFoundException(e);
 		}
 
 		return Response.ok().build();
 	}
-
-	
 
 }

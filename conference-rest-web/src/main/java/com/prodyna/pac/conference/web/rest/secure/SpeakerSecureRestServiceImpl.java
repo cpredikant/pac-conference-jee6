@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.prodyna.pac.conference.web.rest.impl.secure;
+package com.prodyna.pac.conference.web.rest.secure;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
