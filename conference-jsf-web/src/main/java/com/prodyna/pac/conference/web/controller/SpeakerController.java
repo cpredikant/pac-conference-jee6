@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.service.api.SpeakerService;
@@ -53,7 +53,7 @@ public class SpeakerController implements Serializable {
 		try {
 			s = speakerService.findSpeakerById(id);
 		} catch (SpeakerNotFoundException e) {
-			logger.error("Speaker with id {} not Found", id);
+			logger.errorf("Speaker with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

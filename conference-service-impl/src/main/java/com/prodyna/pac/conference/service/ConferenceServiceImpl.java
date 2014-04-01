@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.ConferenceService;
 import com.prodyna.pac.conference.service.exception.ConferenceNotFoundException;
@@ -77,7 +77,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 		try {
 			conference = query.getSingleResult();
 		} catch (NoResultException exception) {
-			log.info("No result for Entity {} with id {}",
+			log.infof("No result for Entity {} with id {}",
 					Conference.class.getName(), id);
 			throw new ConferenceNotFoundException("Conference with id " + id
 					+ " not found.");

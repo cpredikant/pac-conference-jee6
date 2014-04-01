@@ -3,13 +3,15 @@ package com.prodyna.pac.conference.web.controller;
 import java.io.Serializable;
 import java.util.List;
 
+
+
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.ConferenceService;
 import com.prodyna.pac.conference.service.api.TalkService;
@@ -50,7 +52,7 @@ public class ConferenceController implements Serializable {
 		try {
 			c = conferenceService.findConferenceById(id);
 		} catch (ConferenceNotFoundException e) {
-			logger.error("Conference with id {} not Found", id);
+			logger.errorf("Conference with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

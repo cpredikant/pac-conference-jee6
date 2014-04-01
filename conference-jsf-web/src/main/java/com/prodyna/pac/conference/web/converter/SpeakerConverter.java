@@ -6,13 +6,15 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import org.apache.myfaces.extensions.cdi.core.api.Advanced;
-import org.slf4j.Logger;
+
+
+
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.SpeakerService;
 import com.prodyna.pac.conference.service.model.Speaker;
 
-@Advanced
+
 @FacesConverter(value = "com.prodyna.pac.conference.SpeakerConverter")
 public class SpeakerConverter implements Converter {
 

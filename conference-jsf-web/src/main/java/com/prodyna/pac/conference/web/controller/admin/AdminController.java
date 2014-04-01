@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.slf4j.Logger;
+
+
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.ConferenceService;
 import com.prodyna.pac.conference.service.api.RoomService;
@@ -82,7 +84,7 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
 							"Conference deleted"));
 		} catch (Exception e) {
-			logger.error("Error deleting Conference with id {}", id);
+			logger.errorf("Error deleting Conference with id {}", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
@@ -100,7 +102,7 @@ public class AdminController implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
 							"Speaker deleted"));
 		} catch (Exception e) {
-			logger.error("Error deleting Speaker with id {}", id);
+			logger.errorf("Error deleting Speaker with id {}", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

@@ -12,7 +12,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.TalkService;
 import com.prodyna.pac.conference.service.exception.RoomNotAvailableException;
@@ -70,7 +70,7 @@ public abstract class TalkServiceDecorator implements TalkService {
 			TextMessage textMessage = session
 					.createTextMessage(message);
 			messageProducer.send(textMessage);
-			logger.info("Senden von JMS-Message {}", textMessage.getText());
+			logger.infof("Senden von JMS-Message {}", textMessage.getText());
 			messageProducer.close();
 
 			session.commit();

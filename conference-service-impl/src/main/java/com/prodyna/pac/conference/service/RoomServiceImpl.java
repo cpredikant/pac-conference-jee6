@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.RoomService;
 import com.prodyna.pac.conference.service.exception.RoomNotFoundException;
@@ -71,7 +71,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 		try {
 			room = query.getSingleResult();
 		} catch (NoResultException exception) {
-			log.info("No result for Entity {} with id {}",
+			log.infof("No result for Entity {} with id {}",
 					Room.class.getName(), id);
 			throw new RoomNotFoundException("Room with id " + id
 					+ " not found.");

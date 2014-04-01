@@ -5,7 +5,7 @@
 	
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Production</param-value>
+		<param-value>development</param-value>
 	</context-param>
 	
 </web-app>

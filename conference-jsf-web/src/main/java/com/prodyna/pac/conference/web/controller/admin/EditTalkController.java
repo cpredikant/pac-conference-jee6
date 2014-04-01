@@ -6,13 +6,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.jboss.logging.Logger;
 import org.primefaces.model.DualListModel;
-import org.slf4j.Logger;
+
+
 
 import com.prodyna.pac.conference.service.api.ConferenceService;
 import com.prodyna.pac.conference.service.api.RoomService;
@@ -114,7 +116,7 @@ public class EditTalkController implements Serializable {
 		try {
 			t = talkService.findTalkById(id);
 		} catch (TalkNotFoundException e) {
-			logger.error("Talk with id {} not Found", id);
+			logger.errorf("Talk with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

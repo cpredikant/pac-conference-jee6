@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 
 @Singleton
 @Startup
