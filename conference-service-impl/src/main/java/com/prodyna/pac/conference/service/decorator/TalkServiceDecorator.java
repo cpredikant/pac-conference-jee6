@@ -1,18 +1,12 @@
 package com.prodyna.pac.conference.service.decorator;
 
+import javax.annotation.Resource;
 import javax.decorator.Decorator;
 import javax.decorator.Delegate;
 import javax.enterprise.inject.Any;
 import javax.inject.Inject;
-import javax.jms.Connection;
-import javax.jms.MessageProducer;
+import javax.jms.JMSContext;
 import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.naming.InitialContext;
-
-import org.jboss.logging.Logger;
 
 import com.prodyna.pac.conference.service.api.TalkService;
 import com.prodyna.pac.conference.service.exception.RoomNotAvailableException;
@@ -26,15 +20,12 @@ public abstract class TalkServiceDecorator implements TalkService {
 	@Delegate
 	@Any
 	private TalkService talkService;
-
+	
+	@Resource(mappedName = "java:jboss/jms/queue/test")
+	private Queue queue;
+	
 	@Inject
-	private Logger logger;
-
-	@Inject
-	private InitialContext ctx;
-
-	@Inject
-	private QueueConnectionFactory qcf;
+	private JMSContext context;
 
 
 	@Override
@@ -58,26 +49,7 @@ public abstract class TalkServiceDecorator implements TalkService {
 
 	private void sendJmsStirngMessage(String message) {
 		try {
-			Queue queue = (Queue) ctx.lookup("queue/test");
-
-			Connection connection = qcf.createConnection();
-			connection.start();
-
-			Session session = connection.createSession(true,
-					Session.AUTO_ACKNOWLEDGE);
-
-			MessageProducer messageProducer = session.createProducer(queue);
-			TextMessage textMessage = session
-					.createTextMessage(message);
-			messageProducer.send(textMessage);
-			logger.infof("Senden von JMS-Message {}", textMessage.getText());
-			messageProducer.close();
-
-			session.commit();
-			session.close();
-
-			connection.stop();
-			connection.close();
+			context.createProducer().send(queue, message); 
 
 		} catch (Exception e) {
 			throw new RuntimeException(e);
