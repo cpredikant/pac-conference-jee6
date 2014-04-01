@@ -39,6 +39,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 		roomIsAvailable(talk);
 
 		em.persist(talk);
+		em.flush();
 	}
 
 	@Override
@@ -51,6 +52,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 		if (!em.contains(talk)) {
 			updatedTalk = em.merge(talk);
+			em.flush();
 		}
 
 		return updatedTalk;
@@ -63,6 +65,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
 		if (talkToDelete != null) {
 			em.remove(talkToDelete);
+			em.flush();
 		}
 	}
 

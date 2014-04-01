@@ -34,6 +34,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 	public void createConference(Conference conference) {
 
 		em.persist(conference);
+		em.flush();
 
 	}
 
@@ -46,6 +47,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
 		if (!em.contains(conference)) {
 			updatedConference = em.merge(conference);
+			em.flush();
 		}
 
 		return updatedConference;
@@ -60,6 +62,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
 		if (conferenceToDelete != null) {
 			em.remove(conferenceToDelete);
+			em.flush();
 		}
 	}
 

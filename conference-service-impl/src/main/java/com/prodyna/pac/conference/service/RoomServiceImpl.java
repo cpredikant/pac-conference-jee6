@@ -33,6 +33,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 	@Logging
 	public void createRoom(Room room) {
 		em.persist(room);
+		em.flush();
 	}
 
 	@Override
@@ -42,6 +43,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
 		if (!em.contains(room)) {
 			updatedRoom = em.merge(room);
+			em.flush();
 		}
 
 		return updatedRoom;
@@ -54,6 +56,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
 		if (roomToDelete != null) {
 			em.remove(roomToDelete);
+			em.flush();
 		}
 
 	}

@@ -50,6 +50,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 			sht.setSpeaker(speaker);
 			sht.setTalk(talk);
 			em.persist(sht);
+			em.flush();
 		}
 
 	}
@@ -112,6 +113,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 		SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
 		em.remove(sht);
+		em.flush();
 
 	}
 

@@ -33,6 +33,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 	@Logging
 	public void createSpeaker(Speaker speaker) {
 		em.persist(speaker);
+		em.flush();
 
 	}
 
@@ -43,6 +44,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
 		if (!em.contains(speaker)) {
 			updatedSpeaker = em.merge(speaker);
+			em.flush();
 		}
 
 		return updatedSpeaker;
@@ -55,6 +57,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
 		if (speakerToDelete != null) {
 			em.remove(speakerToDelete);
+			em.flush();
 		}
 	}
 
