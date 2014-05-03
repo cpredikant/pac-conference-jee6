@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prodyna.pac</groupId>
 	<artifactId>conference</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Conference</name>
 
 	<scm>
 		<connection>scm:git:https://github.com/cpredikant/pac-conference-jee6.git</connection>
-		<developerConnection>scm:git:https://git@github.com/cpredikant/pac-conference-jee6</developerConnection>
+		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/pac-conference-jee6</developerConnection>
 		<url>https://github.com/cpredikant/pac-conference-jee6</url>
 		<tag>conference-1.0.1</tag>
 	</scm>
