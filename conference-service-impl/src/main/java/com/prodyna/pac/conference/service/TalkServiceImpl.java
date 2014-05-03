@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.common.util.DateUtil;
 import com.prodyna.pac.conference.service.api.TalkService;
@@ -81,7 +81,7 @@ public class TalkServiceImpl implements TalkService, Serializable {
 		try {
 			talk = query.getSingleResult();
 		} catch (NoResultException exception) {
-			log.infof("No result for Entity {} with id {}",
+			log.info("No result for Entity {} with id {}",
 					Talk.class.getName(), id);
 			throw new TalkNotFoundException("Talk with id " + id + " not found");
 		}

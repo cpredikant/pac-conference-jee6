@@ -11,7 +11,7 @@ import javax.management.MBeanServerInvocationHandler;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.jmx.PerformanceMonitoringMXBean;
 
@@ -54,7 +54,7 @@ public class PerformanceInterceptor implements Serializable {
 								PerformanceMonitoringMXBean.OBJECT_NAME),
 								PerformanceMonitoringMXBean.class, false);
 			} catch (MalformedObjectNameException e) {
-				logger.errorv("Error creating MxBeanProxy", e);
+				logger.error("Error creating MxBeanProxy", e);
 			}
 		}
 		return performance;

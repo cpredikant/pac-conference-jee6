@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.SpeakerService;
 import com.prodyna.pac.conference.service.exception.SpeakerNotFoundException;
@@ -73,7 +73,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 		try {
 			speaker = query.getSingleResult();
 		} catch (NoResultException exception) {
-			log.infof("No result for Entity {} with id {}",
+			log.info("No result for Entity {} with id {}",
 					Speaker.class.getName(), id);
 			throw new SpeakerNotFoundException("Speaker with id " + id
 					+ " not found");

@@ -6,9 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-
-
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.ConferenceService;
 import com.prodyna.pac.conference.service.model.Conference;

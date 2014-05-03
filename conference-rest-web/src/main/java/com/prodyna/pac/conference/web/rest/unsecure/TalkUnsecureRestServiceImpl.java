@@ -12,7 +12,7 @@ import javax.ws.rs.Path;
 
 import javax.ws.rs.core.Response;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.TalkService;
 import com.prodyna.pac.conference.service.exception.TalkNotFoundException;

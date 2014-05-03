@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
 import com.prodyna.pac.conference.service.api.TalkService;
@@ -55,7 +55,7 @@ public class TalkController implements Serializable {
 		try {
 			t = talkService.findTalkById(id);
 		} catch (TalkNotFoundException e) {
-			logger.errorf("Talk with id {} not Found", id);
+			logger.error("Talk with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

@@ -5,7 +5,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 @Logging
 @Interceptor
@@ -25,7 +25,7 @@ public class LoggingInterceptor {
 
 		long duration = end - start;
 
-		logger.infov("SERVICE CALL on CLASS: "
+		logger.info("SERVICE CALL on CLASS: "
 				+ ic.getTarget().getClass().getSimpleName() + " METHOD: "
 				+ ic.getMethod().getName() + " PARAMETER: " + paramtersToString(ic.getParameters())
 				+ " DURATION: " + duration + "ms");

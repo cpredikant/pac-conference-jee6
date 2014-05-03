@@ -11,7 +11,7 @@ import javax.inject.Named;
 
 
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.SpeakerService;
 import com.prodyna.pac.conference.service.exception.SpeakerNotFoundException;
@@ -53,7 +53,7 @@ public class EditSpeakerController implements Serializable {
 		try {
 			s = speakerService.findSpeakerById(id);
 		} catch (SpeakerNotFoundException e) {
-			logger.errorf("Speaker with id {} not Found", id);
+			logger.error("Speaker with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

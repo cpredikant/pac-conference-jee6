@@ -1,100 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.prodyna.pac</groupId>
-        <version>1.0.0</version>
-        <artifactId>conference</artifactId>
-    </parent>
+	<parent>
+		<groupId>com.prodyna.pac</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+		<artifactId>conference</artifactId>
+	</parent>
 
-    <artifactId>conference-ear</artifactId>
-    <packaging>ear</packaging>
+	<artifactId>conference-ear</artifactId>
+	<packaging>ear</packaging>
 
-    <name>conference-ear</name>
+	<name>conference-ear</name>
 
-    <dependencies>
+	<dependencies>
 
-        <dependency>
-            <groupId>com.prodyna.pac</groupId>
-            <artifactId>conference-jsf-web</artifactId>
-            <type>war</type>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.prodyna.pac</groupId>
-            <artifactId>conference-rest-web</artifactId>
-            <type>war</type>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.prodyna.pac</groupId>
-            <artifactId>conference-service-api</artifactId>
-            <type>jar</type>
-        </dependency>
-      
-        <dependency>
-            <groupId>com.prodyna.pac</groupId>
-            <artifactId>conference-service-impl</artifactId>
-            <type>ejb</type>
-        </dependency>
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-jsf-web</artifactId>
+			<type>war</type>
+		</dependency>
 
-        <dependency>
-        	<groupId>com.prodyna.pac</groupId>
-        	<artifactId>conference-common</artifactId>
-        	<type>jar</type>
-        </dependency>
-        
-        <dependency>
-        	<groupId>com.prodyna.pac</groupId>
-        	<artifactId>conference-rest-api</artifactId>
-        	<type>jar</type>
-        </dependency>
-        
-    </dependencies>
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-rest-web</artifactId>
+			<type>war</type>
+		</dependency>
 
-   <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>${maven.ear.plugin.version}</version>
-                <configuration>              
-                    <version>6</version>        
-                    <defaultLibBundleDir>lib</defaultLibBundleDir>
-                    <modules/>
-                    <fileNameMapping>no-version</fileNameMapping>
-                    
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${jboss.as.maven.plugin.version}</version>
-                <configuration>
-                    <filename>${project.artifactId}.ear</filename>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    
-    <profiles>
-       <profile>
-          <id>openshift</id>
-          <build>
-             <plugins>
-                <plugin>
-                   <artifactId>maven-ear-plugin</artifactId>
-                   <version>${version.ear.plugin}</version>
-                   <configuration>
-                      <outputDirectory>deployments</outputDirectory>
-                   </configuration>
-                </plugin>
-             </plugins>
-          </build>
-       </profile>
-    </profiles>
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-service-api</artifactId>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-service-impl</artifactId>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-common</artifactId>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.prodyna.pac</groupId>
+			<artifactId>conference-rest-api</artifactId>
+			<type>jar</type>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>				
+			</plugin>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>openshift</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-ear-plugin</artifactId>
+						<version>${version.ear.plugin}</version>
+						<configuration>
+							<outputDirectory>deployments</outputDirectory>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

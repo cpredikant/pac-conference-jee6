@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.common.util.DateUtil;
 import com.prodyna.pac.conference.service.api.SpeakerHasTalkService;
@@ -93,7 +93,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 		try {
 			speakerHasTalk = query.getSingleResult();
 		} catch (NoResultException exception) {
-			log.infof("No result for Entity {} for Speaker {} and Talk {}",
+			log.info("No result for Entity {} for Speaker {} and Talk {}",
 					new Object[] { SpeakerHasTalk.class.getName(), speaker,
 							talk });
 			throw new SpeakerHasTalkNotFoundException(

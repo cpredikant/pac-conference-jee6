@@ -9,7 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 import com.prodyna.pac.conference.service.api.RoomService;
 import com.prodyna.pac.conference.service.api.TalkService;
@@ -53,7 +53,7 @@ public class RoomController implements Serializable {
 		try {
 			r = roomService.findRoomById(id);
 		} catch (RoomNotFoundException e) {
-			logger.errorf("Room with id {} not Found", id);
+			logger.error("Room with id {} not Found", id);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",

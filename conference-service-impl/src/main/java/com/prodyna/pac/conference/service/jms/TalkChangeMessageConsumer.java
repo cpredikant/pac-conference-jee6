@@ -10,7 +10,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
 
 @MessageDriven(mappedName = "TalkChangeMessageConsumer", activationConfig = {
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
@@ -31,14 +31,14 @@ public class TalkChangeMessageConsumer implements MessageListener {
 	    try {
 	        if (message instanceof TextMessage) {
 	            msg = (TextMessage) message;
-	            logger.infov("MESSAGE BEAN: Message received: " +
+	            logger.info("MESSAGE BEAN: Message received: " +
 	                msg.getText());
 	        } else {
-	            logger.warnv("Message of wrong type: " +
+	            logger.warn("Message of wrong type: " +
 	                message.getClass().getName());
 	        }
 	    } catch (JMSException e) {
-	        logger.errorv("Error", e);
+	        logger.error("Error", e);
 	        mdc.setRollbackOnly();
 	    }
 
