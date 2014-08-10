@@ -12,7 +12,7 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/cpredikant/conference.git</connection>
-		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/pac-conference-jee6</developerConnection>
+		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/conference</developerConnection>
 		<url>https://github.com/cpredikant/conference</url>
 		
 	</scm>
