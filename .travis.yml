@@ -10,4 +10,4 @@ deploy:
   app: showcase
   domain: cpredikant
   on:
-    master: cpredikant/pac-conference-jee6
+    master: cpredikant/conference

@@ -1,7 +1,7 @@
-pac-conference-jee6 [![Build Status](https://travis-ci.org/cpredikant/pac-conference-jee6.png)](https://travis-ci.org/cpredikant/pac-conference-jee6)
+conference [![Build Status](https://travis-ci.org/cpredikant/conference.png)](https://travis-ci.org/cpredikant/conference)
 ===================
 
-Exam-Project for PAC
+Wildfly playground
 
 On Openshift:
 
