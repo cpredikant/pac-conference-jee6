@@ -1,7 +1,7 @@
 conference [![Build Status](https://travis-ci.org/cpredikant/conference.png)](https://travis-ci.org/cpredikant/conference)
 ===================
 
-Wildfly playground
+A little conference application for wildfly. 
 
 On Openshift:
 
