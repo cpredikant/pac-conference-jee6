@@ -35,7 +35,7 @@
 
 				<prime:outputLabel value="Room:" />
 				<prime:selectOneMenu value="#{editTalkController.selectedRoom}"
-					converter="com.prodyna.pac.conference.RoomConverter">
+					converter="de.predikant.conference.RoomConverter">
 					<f:selectItem itemLabel="Select" noSelectionOption="true" />
 					<f:selectItems value="#{editTalkController.rooms}" var="roomItem"
 						itemLabel="#{roomItem.name}" itemValue="#{roomItem}" />
@@ -44,7 +44,7 @@
 				<prime:outputLabel value="Conference:" />
 				<prime:selectOneMenu
 					value="#{editTalkController.selectedConference}"
-					converter="com.prodyna.pac.conference.ConferenceConverter">
+					converter="de.predikant.conference.ConferenceConverter">
 					<f:selectItem itemLabel="Select" noSelectionOption="true" />
 					<f:selectItems value="#{editTalkController.conferences}"
 						var="confItem" itemLabel="#{confItem.name}"
@@ -56,7 +56,7 @@
 
 				<prime:outputLabel value="Speakers:" />
 				<prime:pickList value="#{editTalkController.speakersDualListModel}"
-					converter="com.prodyna.pac.conference.SpeakerConverter"
+					converter="de.predikant.conference.SpeakerConverter"
 					var="speakerItem" itemValue="#{speakerItem}"
 					itemLabel="#{speakerItem.name}" />
 			</h:panelGrid>

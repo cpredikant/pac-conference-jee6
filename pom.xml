@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.prodyna.pac</groupId>
+	<groupId>de.predikant</groupId>
 	<artifactId>conference</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>Conference</name>
+	<name>conference</name>
 
 	<scm>
-		<connection>scm:git:https://github.com/cpredikant/pac-conference-jee6.git</connection>
+		<connection>scm:git:https://github.com/cpredikant/conference.git</connection>
 		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/pac-conference-jee6</developerConnection>
-		<url>https://github.com/cpredikant/pac-conference-jee6</url>
-		<tag>conference-1.0.2</tag>
+		<url>https://github.com/cpredikant/conference</url>
+		
 	</scm>
 
 	<distributionManagement>
@@ -45,7 +45,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- JBoss dependency versions -->
-		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+		<version.wildfly.maven.plugin>1.0.3-SNAPSHOT.Final</version.wildfly.maven.plugin>
 
 		<!-- Define the version of the JBoss BOMs we want to import to specify 
 			tested stacks. -->
@@ -75,35 +75,35 @@
 		<dependencies>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-common</artifactId>
 				<version>${project.version}</version>
 				<type>jar</type>
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-service-api</artifactId>
 				<version>${project.version}</version>
 				<type>jar</type>
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-service-impl</artifactId>
 				<version>${project.version}</version>
 				<type>ejb</type>
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-ear</artifactId>
 				<version>${project.version}</version>
 				<type>ear</type>
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-jsf-web</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
@@ -111,7 +111,7 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-rest-api</artifactId>
 				<version>${project.version}</version>
 				<type>jar</type>
@@ -119,7 +119,7 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.prodyna.pac</groupId>
+				<groupId>de.predikant</groupId>
 				<artifactId>conference-rest-web</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>

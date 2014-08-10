@@ -32,7 +32,7 @@
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<excludes>
-				<exclude>com.prodyna.pac:conference-ear</exclude>
+				<exclude>de.predikant:conference-ear</exclude>
 			</excludes>
 			<binaries>
 				<includeDependencies>false</includeDependencies>
@@ -45,11 +45,11 @@
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<excludes>
-				<exclude>com.prodyna.pac:conference-ear</exclude>
-				<exclude>com.prodyna.pac:conference-assembly</exclude>
-				<exclude>com.prodyna.pac:conference-common</exclude>
-				<exclude>com.prodyna.pac:conference-*-api</exclude>
-				<exclude>com.prodyna.pac:conference-jsf-web</exclude>
+				<exclude>de.predikant:conference-ear</exclude>
+				<exclude>de.predikant:conference-assembly</exclude>
+				<exclude>de.predikant:conference-common</exclude>
+				<exclude>de.predikant:conference-*-api</exclude>
+				<exclude>de.predikant:conference-jsf-web</exclude>
 			</excludes>
 			<binaries>
 				<includeDependencies>false</includeDependencies>
@@ -62,7 +62,7 @@
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<includes>
-				<include>com.prodyna.pac:conference-ear:ear</include>
+				<include>de.predikant:conference-ear:ear</include>
 			</includes>
 			<binaries>
 				<unpack>false</unpack>
@@ -72,7 +72,7 @@
 		<moduleSet>
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<excludes>
-				<exclude>com.prodyna.pac:conference-ear</exclude>
+				<exclude>de.predikant:conference-ear</exclude>
 			</excludes>
 			<binaries>
 				<includeDependencies>false</includeDependencies>
@@ -86,11 +86,11 @@
 			<useAllReactorProjects>true</useAllReactorProjects>
 			
 			<excludes>
-				<exclude>com.prodyna.pac:conference-assembly</exclude>
+				<exclude>de.predikant:conference-assembly</exclude>
 			</excludes>
 			
 			<includes>
-				<include>com.prodyna.pac:*</include>
+				<include>de.predikant:*</include>
 			</includes>
 
 			<sources>

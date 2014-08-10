@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.prodyna.pac</groupId>
+		<groupId>de.predikant</groupId>
 		<artifactId>conference</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>conference-rest-api</artifactId>
@@ -14,7 +14,7 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-service-api</artifactId>
 			<scope>provided</scope>
 		</dependency>

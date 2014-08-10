@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.prodyna.pac</groupId>
-		<version>1.0.2</version>
+		<groupId>de.predikant</groupId>
+		<version>1.0.3-SNAPSHOT</version>
 		<artifactId>conference</artifactId>
 	</parent>
 
@@ -16,37 +16,37 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-jsf-web</artifactId>
 			<type>war</type>
 		</dependency>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-rest-web</artifactId>
 			<type>war</type>
 		</dependency>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-service-api</artifactId>
 			<type>jar</type>
 		</dependency>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-service-impl</artifactId>
 			<type>ejb</type>
 		</dependency>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-common</artifactId>
 			<type>jar</type>
 		</dependency>
 
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-rest-api</artifactId>
 			<type>jar</type>
 		</dependency>

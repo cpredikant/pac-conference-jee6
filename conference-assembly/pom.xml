@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.prodyna.pac</groupId>
+		<groupId>de.predikant</groupId>
 		<artifactId>conference</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>conference-assembly</artifactId>
@@ -15,7 +15,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.prodyna.pac</groupId>
+			<groupId>de.predikant</groupId>
 			<artifactId>conference-ear</artifactId>
 			<type>ear</type>
 		</dependency>

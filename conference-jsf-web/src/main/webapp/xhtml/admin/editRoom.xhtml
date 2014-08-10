@@ -33,7 +33,7 @@
 				<prime:outputLabel value="Conference:" />
 				<prime:selectOneMenu
 					value="#{editRoomController.selectedConference}"
-					converter="com.prodyna.pac.conference.ConferenceConverter">
+					converter="de.predikant.conference.ConferenceConverter">
 					<f:selectItem itemLabel="Select" noSelectionOption="true" />
 					<f:selectItems value="#{editRoomController.conferences}"
 						var="confItem" itemLabel="#{confItem.name}"

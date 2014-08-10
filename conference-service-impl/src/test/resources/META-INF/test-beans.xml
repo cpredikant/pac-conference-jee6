@@ -13,10 +13,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd">
 
 	<interceptors>
-		<class>com.prodyna.pac.conference.service.interceptor.LoggingInterceptor</class>
-		<class>com.prodyna.pac.conference.service.interceptor.PerformanceInterceptor</class>
+		<class>de.predikant.conference.service.interceptor.LoggingInterceptor</class>
+		<class>de.predikant.conference.service.interceptor.PerformanceInterceptor</class>
 	</interceptors>
 	<decorators>
-		<class>com.prodyna.pac.conference.service.decorator.TalkServiceDecorator</class>
+		<class>de.predikant.conference.service.decorator.TalkServiceDecorator</class>
 	</decorators>
 </beans>
