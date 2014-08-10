@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.0.2</version>
 		<groupId>com.prodyna.pac</groupId>
 		<artifactId>conference</artifactId>
 	</parent>
@@ -56,10 +56,6 @@
 			<version>4.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>

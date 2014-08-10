@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prodyna.pac</groupId>
 	<artifactId>conference</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<packaging>pom</packaging>
 
 	<name>Conference</name>
@@ -13,7 +14,7 @@
 		<connection>scm:git:https://github.com/cpredikant/pac-conference-jee6.git</connection>
 		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/pac-conference-jee6</developerConnection>
 		<url>https://github.com/cpredikant/pac-conference-jee6</url>
-		<tag>conference-1.0.1</tag>
+		<tag>conference-1.0.2</tag>
 	</scm>
 
 	<distributionManagement>
@@ -37,25 +38,37 @@
 
 	<properties>
 
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<!-- Explicitly declaring the source encoding eliminates the following 
+			message: -->
+		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+			resources, i.e. build is platform dependent! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<maven.jboss.as.plugin.version>7.5.Final</maven.jboss.as.plugin.version>
-		<maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
-		<maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
-		<maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
-		<maven.wildfly.plugin.version>1.0.1.Final</maven.wildfly.plugin.version>
-		<maven.war.plugin.version>2.4</maven.war.plugin.version>
-		<maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
-		<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
-		<maven.ear.plugin.version>2.9</maven.ear.plugin.version>
+		<!-- JBoss dependency versions -->
+		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 
-		<slf4j.version>1.7.7</slf4j.version>
-		<logback.version>1.1.2</logback.version>
-		<jboss.wildfly.bom.version>8.0.0.Final</jboss.wildfly.bom.version>
+		<!-- Define the version of the JBoss BOMs we want to import to specify 
+			tested stacks. -->
+		<version.jboss.bom>8.0.0.Final</version.jboss.bom>
+		<version.wildfly>8.1.0.Final</version.wildfly>
+		<version.arquillian.container>8.0.0.Final</version.arquillian.container>
 
+		<!-- other plugin versions -->
+		<version.compiler.plugin>3.1</version.compiler.plugin>
+		<version.ear.plugin>2.9.1</version.ear.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+		<version.surefire.plugin>2.16</version.surefire.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+
+		<version.javadoc.plugin>2.9.1</version.javadoc.plugin>
+		<version.source.plugin>2.2.1</version.source.plugin>
+
+		<version.slf4j>1.7.7</version.slf4j>
+		<version.logback>1.1.2</version.logback>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
 	</properties>
 
 	<dependencyManagement>
@@ -115,17 +128,24 @@
 
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-all</artifactId>
-				<version>8.0.0.Final</version>
+				<artifactId>jboss-javaee-7.0-with-tools</artifactId>
+				<version>${version.jboss.bom}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
-
 			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-all-7.0</artifactId>
-				<version>1.0.0.Final</version>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>jboss-javaee-7.0-with-resteasy</artifactId>
+				<version>${version.jboss.bom}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -133,42 +153,42 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
+				<version>${version.slf4j}</version>
 				<scope>compile</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jul-to-slf4j</artifactId>
-				<version>${slf4j.version}</version>
+				<version>${version.slf4j}</version>
 				<scope>runtime</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>log4j-over-slf4j</artifactId>
-				<version>${slf4j.version}</version>
+				<version>${version.slf4j}</version>
 				<scope>runtime</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${slf4j.version}</version>
+				<version>${version.slf4j}</version>
 				<scope>runtime</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
+				<version>${version.logback}</version>
 				<scope>runtime</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
+				<version>${version.logback}</version>
 				<scope>runtime</scope>
 			</dependency>
 
@@ -199,7 +219,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-ejb-plugin</artifactId>
-					<version>${maven.ejb.plugin.version}</version>
+					<version>${version.ejb.plugin}</version>
 					<configuration>
 						<ejbVersion>3.1</ejbVersion>
 					</configuration>
@@ -208,7 +228,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven.compiler.plugin.version}</version>
+					<version>${version.compiler.plugin}</version>
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
@@ -260,38 +280,38 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven.surefire.plugin.version}</version>
+					<version>${version.surefire.plugin}</version>
 				</plugin>
 
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>${maven.wildfly.plugin.version}</version>
-				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-ear-plugin</artifactId>
-					<version>${maven.ear.plugin.version}</version>
+					<version>${version.ear.plugin}</version>
 					<configuration>
 						<version>7</version>
 						<defaultLibBundleDir>lib</defaultLibBundleDir>
+						<fileNameMapping>no-version</fileNameMapping>
 					</configuration>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>${maven.war.plugin.version}</version>
+					<version>${version.war.plugin}</version>
 					<configuration>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
 
 				<plugin>
-					<groupId>org.jboss.as.plugins</groupId>
-					<artifactId>jboss-as-maven-plugin</artifactId>
-					<version>${maven.jboss.as.plugin.version}</version>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>${version.wildfly.maven.plugin}</version>
+					<inherited>true</inherited>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
 				</plugin>
 
 			</plugins>

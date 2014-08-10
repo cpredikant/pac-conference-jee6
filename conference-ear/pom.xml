@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>com.prodyna.pac</groupId>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.0.2</version>
 		<artifactId>conference</artifactId>
 	</parent>
 
@@ -58,10 +58,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>				
-			</plugin>
-			<plugin>
-				<groupId>org.jboss.as.plugins</groupId>
-				<artifactId>jboss-as-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
