@@ -14,7 +14,7 @@
 		<connection>scm:git:https://github.com/cpredikant/conference.git</connection>
 		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/conference</developerConnection>
 		<url>https://github.com/cpredikant/conference</url>
-		
+
 	</scm>
 
 	<distributionManagement>
@@ -45,30 +45,34 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- JBoss dependency versions -->
-		<version.wildfly.maven.plugin>1.0.3-SNAPSHOT.Final</version.wildfly.maven.plugin>
+		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 
 		<!-- Define the version of the JBoss BOMs we want to import to specify 
 			tested stacks. -->
-		<version.jboss.bom>8.0.0.Final</version.jboss.bom>
-		<version.wildfly>8.1.0.Final</version.wildfly>
-		<version.arquillian.container>8.0.0.Final</version.arquillian.container>
+		<version.jboss.bom>8.2.0.Final</version.jboss.bom>
+		<version.wildfly>8.2.0.Final</version.wildfly>
+		<version.arquillian.container>8.2.0.Final</version.arquillian.container>
 
 		<!-- other plugin versions -->
-		<version.compiler.plugin>3.1</version.compiler.plugin>
+		<version.compiler.plugin>3.2</version.compiler.plugin>
 		<version.ear.plugin>2.9.1</version.ear.plugin>
-		<version.ejb.plugin>2.3</version.ejb.plugin>
-		<version.surefire.plugin>2.16</version.surefire.plugin>
-		<version.war.plugin>2.1.1</version.war.plugin>
+		<version.ejb.plugin>2.4</version.ejb.plugin>
+		<version.surefire.plugin>2.18</version.surefire.plugin>
+		<version.war.plugin>2.5</version.war.plugin>
+		<version.assembly.plugin>2.5.3</version.assembly.plugin>
+		<version.release.plugin>2.5.1</version.release.plugin>
 
-		<version.javadoc.plugin>2.9.1</version.javadoc.plugin>
-		<version.source.plugin>2.2.1</version.source.plugin>
+		<version.javadoc.plugin>2.10.1</version.javadoc.plugin>
+		<version.source.plugin>2.4</version.source.plugin>
 
-		<version.slf4j>1.7.7</version.slf4j>
+		<version.slf4j>1.7.9</version.slf4j>
 		<version.logback>1.1.2</version.logback>
+		<version.primefaces>5.0</version.primefaces>
+		
 
 		<!-- maven-compiler-plugin -->
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
 	<dependencyManagement>
@@ -141,7 +145,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>jboss-javaee-7.0-with-resteasy</artifactId>
@@ -193,9 +197,9 @@
 			</dependency>
 
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.11</version>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${version.primefaces}</version>
 			</dependency>
 
 		</dependencies>
@@ -207,13 +211,13 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${maven.assembly.plugin.version}</version>
+					<version>${version.assembly.plugin}</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.5</version>
+					<version>${version.release.plugin}</version>
 				</plugin>
 
 				<plugin>
@@ -248,7 +252,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2.1</version>
+					<version>${version.source.plugin}</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -264,7 +268,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.9.1</version>
+					<version>${version.javadoc.plugin}</version>
 					<executions>
 						<execution>
 							<id>default-jar</id>

@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 
 @MessageDriven(mappedName = "TalkChangeMessageConsumer", activationConfig = {
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-		@ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/test"),
+		@ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/conference"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
 public class TalkChangeMessageConsumer implements MessageListener {
 	
