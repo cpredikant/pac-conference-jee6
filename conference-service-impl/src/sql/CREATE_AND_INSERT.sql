@@ -40,7 +40,7 @@ CREATE TABLE `conference` (
 
 LOCK TABLES `conference` WRITE;
 /*!40000 ALTER TABLE `conference` DISABLE KEYS */;
-INSERT INTO `conference` VALUES (49,'Alles Jahre wieder gibt es die beliebte Hausmesse mit den Themen Bowling, Java, kabelfernsehen und Fliegen','2013-11-29 18:00:00','Hausmesse','2013-11-25 08:00:00');
+INSERT INTO `conference` VALUES (49,'Alles Jahre wieder gibt es die beliebte Hausmesse mit den Themen Bowling, Java, Kabelfernsehen und Fliegen','2015-11-29 18:00:00','Hausmesse','2013-11-25 08:00:00');
 /*!40000 ALTER TABLE `conference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `talk` (
 
 LOCK TABLES `talk` WRITE;
 /*!40000 ALTER TABLE `talk` DISABLE KEYS */;
-INSERT INTO `talk` VALUES (58,'Diskussion über das Usercases in denen Bowling Sinn macht.',200,'Bowling Pro und Kontra','2013-11-26 07:00:00',49,52),(60,'Kabelfernsehen eine Revolution oder nur Evolution',300,'Java Revolutions','2013-11-27 10:15:00',49,50);
+INSERT INTO `talk` VALUES (58,'Diskussion über das Usercases in denen Bowling Sinn macht.',200,'Bowling Pro und Kontra','2015-11-26 07:00:00',49,52),(60,'Kabelfernsehen eine Revolution oder nur Evolution',300,'Java Revolutions','2013-11-27 10:15:00',49,50);
 /*!40000 ALTER TABLE `talk` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

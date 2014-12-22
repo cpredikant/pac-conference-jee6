@@ -22,14 +22,10 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
    <persistence-unit name="conference">
       <jta-data-source>java:jboss/datasources/ConferenceDS</jta-data-source>
-      <class>de.predikant.conference.service.model.Conference</class>
-      <class>de.predikant.conference.service.model.Room</class>
-      <class>de.predikant.conference.service.model.Talk</class>
-      <class>de.predikant.conference.service.model.Speaker</class>
-      <class>de.predikant.conference.service.model.SpeakerHasTalk</class>
+      <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
          <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="validate" />
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="false" />
       </properties>
    </persistence-unit>
