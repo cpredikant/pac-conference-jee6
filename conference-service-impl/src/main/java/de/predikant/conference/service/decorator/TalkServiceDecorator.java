@@ -21,7 +21,7 @@ public abstract class TalkServiceDecorator implements TalkService {
 	@Any
 	private TalkService talkService;
 	
-	@Resource(mappedName = "java:jboss/jms/queue/conference")
+	@Resource(mappedName = "java:/jms/queue/conference")
 	private Queue queue;
 	
 	@Inject
