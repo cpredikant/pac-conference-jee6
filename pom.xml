@@ -45,12 +45,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- JBoss dependency versions -->
-		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+		<version.wildfly.maven.plugin>1.1.0.Final</version.wildfly.maven.plugin>
 
 		<!-- Define the version of the JBoss BOMs we want to import to specify 
 			tested stacks. -->
-		<version.jboss.bom>8.2.0.Final</version.jboss.bom>
-		<version.wildfly>8.2.0.Final</version.wildfly>
+		<version.wildfly.bom>10.1.1.Final</version.wildfly.bom>
 		<version.arquillian.container>8.2.0.Final</version.arquillian.container>
 
 		<!-- other plugin versions -->
@@ -65,14 +64,14 @@
 		<version.javadoc.plugin>2.10.1</version.javadoc.plugin>
 		<version.source.plugin>2.4</version.source.plugin>
 
-		<version.slf4j>1.7.9</version.slf4j>
-		<version.logback>1.1.2</version.logback>
-		<version.primefaces>5.0</version.primefaces>
-		
+		<version.slf4j>1.7.25</version.slf4j>
+		<version.logback>1.2.2</version.logback>
+		<version.primefaces>6.1</version.primefaces>
+
 
 		<!-- maven-compiler-plugin -->
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
 	<dependencyManagement>
@@ -132,27 +131,20 @@
 
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-tools</artifactId>
-				<version>${version.jboss.bom}</version>
+				<artifactId>wildfly-javaee7</artifactId>
+				<version>10.1.1.Final</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-				<version>${version.jboss.bom}</version>
+				<artifactId>wildfly-javaee7-with-tools</artifactId>
+				<version>10.1.1.Final</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-resteasy</artifactId>
-				<version>${version.jboss.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
