@@ -14,13 +14,19 @@
 	<name>conference-ear</name>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>de.predikant</groupId>
+			<artifactId>conference-common</artifactId>
+			<type>jar</type>
+		</dependency>
 
 		<dependency>
 			<groupId>de.predikant</groupId>
-			<artifactId>conference-jsf-web</artifactId>
-			<type>war</type>
+			<artifactId>conference-rest-api</artifactId>
+			<type>jar</type>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>de.predikant</groupId>
 			<artifactId>conference-rest-web</artifactId>
@@ -38,18 +44,15 @@
 			<artifactId>conference-service-impl</artifactId>
 			<type>ejb</type>
 		</dependency>
-
+	
 		<dependency>
 			<groupId>de.predikant</groupId>
-			<artifactId>conference-common</artifactId>
-			<type>jar</type>
+			<artifactId>conference-jsf-web</artifactId>
+			<type>war</type>
 		</dependency>
+		
 
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-rest-api</artifactId>
-			<type>jar</type>
-		</dependency>
+		
 
 	</dependencies>
 

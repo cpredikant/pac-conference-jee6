@@ -24,6 +24,7 @@
             <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
             <scope>provided</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<profiles>

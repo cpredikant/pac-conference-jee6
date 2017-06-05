@@ -15,15 +15,16 @@
 	<name>conference-service-impl</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-service-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
+	
 		<dependency>
 			<groupId>de.predikant</groupId>
 			<artifactId>conference-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>de.predikant</groupId>
+			<artifactId>conference-service-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 

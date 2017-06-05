@@ -28,18 +28,17 @@
 			<artifactId>conference-service-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-rest-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-
+		
 		<dependency>
 			<groupId>de.predikant</groupId>
 			<artifactId>conference-service-impl</artifactId>
 			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.predikant</groupId>
+			<artifactId>conference-rest-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
