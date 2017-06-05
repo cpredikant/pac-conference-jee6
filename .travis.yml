@@ -2,7 +2,7 @@ language: java
 script: mvn package 
 # script: mvn package -Popenshift -e
 jdk:
-- openjdk8
+- oraclejdk8
 # deploy:
 #   provider: openshift
 #   user: christian.predikant@gmail.com
