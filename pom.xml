@@ -67,6 +67,7 @@
 		<version.slf4j>1.7.25</version.slf4j>
 		<version.logback>1.2.2</version.logback>
 		<version.primefaces>6.1</version.primefaces>
+		<version.omnifaces>2.6.3</version.omnifaces>
 
 
 		<!-- maven-compiler-plugin -->
@@ -193,6 +194,14 @@
 				<artifactId>primefaces</artifactId>
 				<version>${version.primefaces}</version>
 			</dependency>
+
+
+			<dependency>
+				<groupId>org.omnifaces</groupId>
+				<artifactId>omnifaces</artifactId>
+				<version>${version.omnifaces}</version>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
