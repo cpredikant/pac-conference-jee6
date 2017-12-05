@@ -9,6 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>conference</name>
+	
 
 	<scm>
 		<connection>scm:git:https://github.com/cpredikant/conference.git</connection>
