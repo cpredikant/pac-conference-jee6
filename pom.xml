@@ -46,12 +46,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- JBoss dependency versions -->
-		<version.wildfly.maven.plugin>1.1.0.Final</version.wildfly.maven.plugin>
+		<version.wildfly.maven.plugin>1.2.1.Final</version.wildfly.maven.plugin>
 
 		<!-- Define the version of the JBoss BOMs we want to import to specify 
 			tested stacks. -->
-		<version.wildfly.bom>10.1.1.Final</version.wildfly.bom>
-		<version.arquillian.container>8.2.0.Final</version.arquillian.container>
+		<version.wildfly.bom>11.0.0.Final</version.wildfly.bom>
+		<version.arquillian.container>2.1.0.Final</version.arquillian.container>
+		<version.arquillian.embedded>2.1.0.Final</version.arquillian.embedded>
 
 		<!-- other plugin versions -->
 		<version.compiler.plugin>3.2</version.compiler.plugin>
@@ -134,7 +135,7 @@
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>wildfly-javaee7</artifactId>
-				<version>10.1.1.Final</version>
+				<version>11.0.0.Final</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -142,7 +143,7 @@
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>wildfly-javaee7-with-tools</artifactId>
-				<version>10.1.1.Final</version>
+				<version>11.0.0.Final</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
