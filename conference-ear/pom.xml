@@ -50,9 +50,6 @@
 			<artifactId>conference-jsf-web</artifactId>
 			<type>war</type>
 		</dependency>
-		
-
-		
 
 	</dependencies>
 
