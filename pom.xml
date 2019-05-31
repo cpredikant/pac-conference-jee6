@@ -1,327 +1,384 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.predikant</groupId>
-	<artifactId>conference</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
-	<packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.predikant</groupId>
+    <artifactId>conference</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-	<name>conference</name>
-	
-
-	<scm>
-		<connection>scm:git:https://github.com/cpredikant/conference.git</connection>
-		<developerConnection>scm:git:https://cpredikant@github.com/cpredikant/conference</developerConnection>
-		<url>https://github.com/cpredikant/conference</url>
-	</scm>
+    <name>conference</name>
 
 
-
-	<modules>
-		<module>conference-ear</module>
-		<module>conference-service-api</module>
-		<module>conference-service-impl</module>
-		<module>conference-jsf-web</module>
-		<module>conference-rest-api</module>
-		<module>conference-rest-web</module>
-		<module>conference-common</module>
-		<module>conference-assembly</module>
-	</modules>
-
-	<properties>
-
-		<!-- Explicitly declaring the source encoding eliminates the following 
-			message: -->
-		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
-			resources, i.e. build is platform dependent! -->
+    <scm>
+        <connection>scm:git:https://github.com/cpredikant/conference.git</connection>
+        <developerConnection>scm:git:https://cpredikant@github.com/cpredikant/conference</developerConnection>
+        <url>https://github.com/cpredikant/conference</url>
+    </scm>
 
 
-		<!-- JBoss dependency versions -->
-		<version.wildfly.maven.plugin>1.2.2.Final</version.wildfly.maven.plugin>
+    <modules>
+        <module>conference-ear</module>
+        <module>conference-service-api</module>
+        <module>conference-service-impl</module>
+        <module>conference-jsf-web</module>
+        <module>conference-rest-api</module>
+        <module>conference-rest-web</module>
+        <module>conference-common</module>
+        <module>conference-assembly</module>
+    </modules>
 
-		<!-- Define the version of the JBoss BOMs we want to import to specify 
-			tested stacks. -->
-		<version.wildfly.bom>14.0.1.Final</version.wildfly.bom>
-		<version.arquillian.container>2.1.1.Final</version.arquillian.container>
+    <properties>
 
-		<!-- other plugin versions -->
-		<version.maven.compiler.plugin>3.8.0</version.maven.compiler.plugin>
-		<version.maven.ear.plugin>3.0.1</version.maven.ear.plugin>
-		<version.maven.ejb.plugin>3.0.1</version.maven.ejb.plugin>
-		<version.maven.surefire.plugin>2.22.0</version.maven.surefire.plugin>
-		<version.maven.war.plugin>3.2.2</version.maven.war.plugin>
-		<version.maven.assembly.plugin>3.1.0</version.maven.assembly.plugin>
-		<version.maven.release.plugin>2.5.3</version.maven.release.plugin>
-		<version.maven.resources.plugin>3.1.0</version.maven.resources.plugin>
-
-		<version.maven.javadoc.plugin>3.0.1</version.maven.javadoc.plugin>
-		<version.maven.source.plugin>3.0.1</version.maven.source.plugin>
-
-		<version.slf4j>1.7.25</version.slf4j>
-		<version.logback>1.2.3</version.logback>
-		<version.primefaces>6.2</version.primefaces>
-		<version.omnifaces>3.2</version.omnifaces>
+        <!-- Explicitly declaring the source encoding eliminates the following
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+            resources, i.e. build is platform dependent! -->
 
 
-		<!-- maven-compiler-plugin -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<ejb.version>3.2</ejb.version>
+        <!-- JBoss dependency versions -->
+        <version.wildfly.maven.plugin>2.0.1.Final</version.wildfly.maven.plugin>
 
-	</properties>
+        <!-- Define the version of the JBoss BOMs we want to import to specify
+            tested stacks. -->
+        <version.jee8.spec>1.0.3.Final</version.jee8.spec>
+        <version.wildfly.bom>16.0.0.Final</version.wildfly.bom>
+        <version.arquillian.container>2.1.1.Final</version.arquillian.container>
 
-	<dependencyManagement>
-		<dependencies>
+        <!-- other plugin versions -->
+        <version.maven.compiler.plugin>3.8.1</version.maven.compiler.plugin>
+        <version.maven.ear.plugin>3.0.1</version.maven.ear.plugin>
+        <version.maven.ejb.plugin>3.0.1</version.maven.ejb.plugin>
+        <version.maven.surefire.plugin>2.22.2</version.maven.surefire.plugin>
+        <version.maven.war.plugin>3.2.3</version.maven.war.plugin>
+        <version.maven.assembly.plugin>3.1.1</version.maven.assembly.plugin>
+        <version.maven.release.plugin>2.5.3</version.maven.release.plugin>
+        <version.maven.resources.plugin>3.1.0</version.maven.resources.plugin>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-common</artifactId>
-				<version>${project.version}</version>
-				<type>jar</type>
-			</dependency>
+        <version.maven.javadoc.plugin>3.1.0</version.maven.javadoc.plugin>
+        <version.maven.source.plugin>3.1.0</version.maven.source.plugin>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-service-api</artifactId>
-				<version>${project.version}</version>
-				<type>jar</type>
-			</dependency>
+        <version.maven.jacoco.plugin>0.8.4</version.maven.jacoco.plugin>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-service-impl</artifactId>
-				<version>${project.version}</version>
-				<type>ejb</type>
-			</dependency>
+        <version.slf4j>1.7.26</version.slf4j>
+        <version.logback>1.2.3</version.logback>
+        <version.primefaces>7.0</version.primefaces>
+        <version.omnifaces>3.3</version.omnifaces>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-ear</artifactId>
-				<version>${project.version}</version>
-				<type>ear</type>
-			</dependency>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-jsf-web</artifactId>
-				<version>${project.version}</version>
-				<type>war</type>
-				<scope>compile</scope>
-			</dependency>
+        <!-- maven-compiler-plugin -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <ejb.version>3.2</ejb.version>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-rest-api</artifactId>
-				<version>${project.version}</version>
-				<type>jar</type>
-				<scope>compile</scope>
-			</dependency>
+    </properties>
 
-			<dependency>
-				<groupId>de.predikant</groupId>
-				<artifactId>conference-rest-web</artifactId>
-				<version>${project.version}</version>
-				<type>war</type>
-				<scope>compile</scope>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-common</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-service-api</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-service-impl</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-ear</artifactId>
+                <version>${project.version}</version>
+                <type>ear</type>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-jsf-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-rest-api</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-rest-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+                <scope>compile</scope>
+            </dependency>
 
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-8.0</artifactId>
-                <version>1.0.1.Final</version>
+                <version>${version.jee8.spec}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>wildfly-javaee8</artifactId>
-				<version>${version.wildfly.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-javaee8</artifactId>
+                <version>${version.wildfly.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>wildfly-javaee8-with-tools</artifactId>
-				<version>${version.wildfly.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${version.slf4j}</version>
-				<scope>compile</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jul-to-slf4j</artifactId>
-				<version>${version.slf4j}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>log4j-over-slf4j</artifactId>
-				<version>${version.slf4j}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${version.slf4j}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${version.logback}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${version.logback}</version>
-				<scope>runtime</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.primefaces</groupId>
-				<artifactId>primefaces</artifactId>
-				<version>${version.primefaces}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-javaee8-with-tools</artifactId>
+                <version>${version.wildfly.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
 
-			<dependency>
-				<groupId>org.omnifaces</groupId>
-				<artifactId>omnifaces</artifactId>
-				<version>${version.omnifaces}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.slf4j}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${version.slf4j}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${version.slf4j}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${version.slf4j}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${version.logback}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${version.logback}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${version.primefaces}</version>
+            </dependency>
 
 
-		</dependencies>
-	</dependencyManagement>
+            <dependency>
+                <groupId>org.omnifaces</groupId>
+                <artifactId>omnifaces</artifactId>
+                <version>${version.omnifaces}</version>
+            </dependency>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${version.maven.assembly.plugin}</version>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${version.maven.release.plugin}</version>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-ejb-plugin</artifactId>
-					<version>${version.maven.ejb.plugin}</version>
-					<configuration>
-						<ejbVersion>${ejb.version}</ejbVersion>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${version.maven.compiler.plugin}</version>
-					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>${version.maven.resources.plugin}</version>
-					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>${version.maven.source.plugin}</version>
-					<executions>
-						<execution>
-							<id>attach-sources</id>
-							<phase>package</phase>
-							<goals>
-								<goal>jar</goal>
-								<goal>test-jar</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>${version.maven.javadoc.plugin}</version>
-					<executions>
-						<execution>
-							<id>default-jar</id>
-							<phase>package</phase>
-							<goals>
-								<goal>jar</goal>
-								<goal>test-jar</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${version.maven.surefire.plugin}</version>
-				</plugin>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>1.3.2</version>
+            </dependency>
 
 
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-ear-plugin</artifactId>
-					<version>${version.maven.ear.plugin}</version>
-				</plugin>
+        </dependencies>
+    </dependencyManagement>
 
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>${version.maven.war.plugin}</version>
-					<configuration>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
-				</plugin>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${version.maven.assembly.plugin}</version>
+                </plugin>
 
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>${version.wildfly.maven.plugin}</version>
-				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${version.maven.release.plugin}</version>
+                </plugin>
 
-			</plugins>
-		</pluginManagement>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>${version.maven.ejb.plugin}</version>
+                    <configuration>
+                        <ejbVersion>${ejb.version}</ejbVersion>
+                    </configuration>
+                </plugin>
 
-	</build>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.maven.compiler.plugin}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
 
-	<profiles>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.maven.resources.plugin}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${version.maven.source.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.maven.javadoc.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.maven.surefire.plugin}</version>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>${version.maven.ear.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.maven.war.plugin}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${version.maven.jacoco.plugin}</version>
+                    <configuration>
+                        <excludes>
+
+                        </excludes>
+                    </configuration>
+                    <executions>
+                        <!--
+                            Prepares the property pointing to the JaCoCo runtime agent which
+                            is passed as VM argument when Maven the Surefire plugin is executed.
+                        -->
+                        <execution>
+                            <id>pre-unit-test</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <!-- Sets the path to the file which contains the execution data. -->
+                                <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                                <!--
+                                    Sets the name of the property containing the settings
+                                    for JaCoCo runtime agent.
+                                -->
+                                <propertyName>surefireArgLine</propertyName>
+                            </configuration>
+                        </execution>
+                        <!--
+                            Ensures that the code coverage report for unit tests is created after
+                            unit tests have been run.
+                        -->
+                        <execution>
+                            <id>post-unit-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <!-- Sets the path to the file which contains the execution data. -->
+                                <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                                <!-- Sets the output directory for the code coverage report. -->
+                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+    <profiles>
         <profile>
             <id>default</id>
             <activation>
@@ -334,31 +391,32 @@
                         <artifactId>maven-resources-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
 
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

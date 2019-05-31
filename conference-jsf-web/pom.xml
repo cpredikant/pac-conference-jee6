@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<version>1.0.3-SNAPSHOT</version>
+        <version>1.0.4-SNAPSHOT</version>
 		<groupId>de.predikant</groupId>
 		<artifactId>conference</artifactId>
 	</parent>

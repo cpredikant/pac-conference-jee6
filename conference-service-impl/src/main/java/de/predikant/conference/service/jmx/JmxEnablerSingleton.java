@@ -1,5 +1,7 @@
 package de.predikant.conference.service.jmx;
 
+import org.slf4j.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
@@ -8,7 +10,7 @@ import javax.inject.Inject;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-import org.slf4j.Logger;;
+;
 
 @Singleton
 @Startup
