@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-	version="2.1">
+             version="2.1">
 
-	<persistence-unit name="conference" transaction-type="JTA">
-		<jta-data-source>java:jboss/datasources/ConferenceDS</jta-data-source>
-		
-		<class>de.predikant.conference.service.model.Conference</class>
-		<class>de.predikant.conference.service.model.Room</class>
-		<class>de.predikant.conference.service.model.Talk</class>
-		<class>de.predikant.conference.service.model.Speaker</class>
-		<class>de.predikant.conference.service.model.SpeakerHasTalk</class>
-		
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-		<properties>
-			<!-- Properties for Hibernate -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			<property name="hibernate.show_sql" value="false" />
-		</properties>
-	</persistence-unit>
+    <persistence-unit name="conference-pu" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+
+        <class>de.predikant.conference.service.model.Conference</class>
+        <class>de.predikant.conference.service.model.Room</class>
+        <class>de.predikant.conference.service.model.Talk</class>
+        <class>de.predikant.conference.service.model.Speaker</class>
+        <class>de.predikant.conference.service.model.SpeakerHasTalk</class>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <!-- Properties for Hibernate -->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
+            <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
+        </properties>
+    </persistence-unit>
 
 
 </persistence>

@@ -1,111 +1,59 @@
 package de.predikant.conference.service;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-
-import org.slf4j.Logger;
-
 import de.predikant.conference.service.api.ConferenceService;
-import de.predikant.conference.service.exception.ConferenceNotFoundException;
 import de.predikant.conference.service.interceptor.Logging;
 import de.predikant.conference.service.interceptor.Performance;
 import de.predikant.conference.service.model.Conference;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import java.io.Serializable;
+import java.util.List;
+
 @Stateless
 @Performance
+@Logging
 public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	private Logger log;
 
-	@Inject
-	private EntityManager em;
+    @Inject
+    private ConferenceRepository conferenceRepository;
 
-	@Override
-	@Logging
-	public void createConference(Conference conference) {
 
-		em.persist(conference);
-		em.flush();
+    @Override
+    public void createConference(Conference conference) {
+        conferenceRepository.save(conference);
+    }
 
-	}
+    @Override
+    public Conference updateConference(Conference conference) {
 
-	@Override
-	@Logging
-	public Conference updateConference(Conference conference)
-			throws ConferenceNotFoundException {
+        return conferenceRepository.save(conference);
+    }
 
-		Conference updatedConference = findConferenceById(conference.getId());
+    @Override
+    public void deleteConference(Long id) {
 
-		if (!em.contains(conference)) {
-			updatedConference = em.merge(conference);
-			em.flush();
-		}
+        conferenceRepository.deleteById(id);
+    }
 
-		return updatedConference;
-	}
+    @Override
+    public Conference findConferenceById(Long id) {
 
-	@Override
-	@Logging
-	public void deleteConference(long id)
-			throws ConferenceNotFoundException {
+        return conferenceRepository.findById(id).orElse(null);
+    }
 
-		Conference conferenceToDelete = findConferenceById(id);
+    @Override
+    public List<Conference> findConferenceByName(String name) {
+        return conferenceRepository.findAllByName(name);
+    }
 
-		if (conferenceToDelete != null) {
-			em.remove(conferenceToDelete);
-			em.flush();
-		}
-	}
+    @Override
+    public List<Conference> findAll() {
 
-	@Override
-	@Logging
-	public Conference findConferenceById(long id)
-			throws ConferenceNotFoundException {
-
-		TypedQuery<Conference> query = em.createNamedQuery(
-				"Conference.findConferenceById", Conference.class);
-		query.setParameter("id", id);
-
-		Conference conference = null;
-
-		try {
-			conference = query.getSingleResult();
-		} catch (NoResultException exception) {
-			log.info("No result for Entity {} with id {}",
-					Conference.class.getName(), id);
-			throw new ConferenceNotFoundException("Conference with id " + id
-					+ " not found.");
-		}
-
-		return conference;
-	}
-
-	@Override
-	@Logging
-	public List<Conference> findConferenceByName(String name) {
-
-		TypedQuery<Conference> query = em.createNamedQuery(
-				"Conference.findConferenceByName", Conference.class);
-		query.setParameter("name", name);
-
-		return query.getResultList();
-	}
-
-	@Override
-	@Logging
-	public List<Conference> findAll() {
-		TypedQuery<Conference> query = em.createNamedQuery(
-				"Conference.findAll", Conference.class);
-		return query.getResultList();
-	}
+        return conferenceRepository.findAll();
+    }
 
 }

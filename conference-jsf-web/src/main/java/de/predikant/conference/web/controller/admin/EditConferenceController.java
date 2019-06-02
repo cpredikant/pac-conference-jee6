@@ -1,124 +1,116 @@
 package de.predikant.conference.web.controller.admin;
 
-import java.io.Serializable;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.view.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.slf4j.Logger;
-
 import de.predikant.conference.service.api.ConferenceService;
 import de.predikant.conference.service.exception.ConferenceNotFoundException;
 import de.predikant.conference.service.model.Conference;
+import org.slf4j.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
 @ViewScoped
 public class EditConferenceController implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
-	private Logger logger;
+    @Inject
+    private Logger logger;
 
-	private long conferenceId;
+    private long conferenceId;
 
-	private Conference conference;
+    private Conference conference;
 
-	@Inject
-	private ConferenceService conferenceService;
+    @Inject
+    private ConferenceService conferenceService;
 
-	
 
-	public void initViewParams() {
-		if (conferenceId != 0) {
-			conference = loadConference(conferenceId);
-		}
-	}
-	
-	@PostConstruct
-	public void init(){
-		if(conference == null){
-			conference = new Conference();
-		}
-	}
+    public void initViewParams() {
+        if (conferenceId != 0) {
+            conference = loadConference(conferenceId);
+        }
+    }
 
-	private Conference loadConference(long id) {
-		Conference c = null;
+    @PostConstruct
+    public void init() {
+        if (conference == null) {
+            conference = new Conference();
+        }
+    }
 
-		try {
-			c = conferenceService.findConferenceById(id);
-		} catch (ConferenceNotFoundException e) {
-			logger.error("Conference with id {} not Found", id);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
-							"Conference not Found"));
-		}
+    private Conference loadConference(long id) {
+        Conference c = null;
 
-		return c;
-	}
+        try {
+            c = conferenceService.findConferenceById(id);
+        } catch (ConferenceNotFoundException e) {
+            logger.error("Conference with id {} not Found", id);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
+                            "Conference not Found"));
+        }
 
-	public void saveConferenceAction() {
-		if (conference.getId() == 0){
-			createConfrence();
-		} else {
-			updateConference();
-		}
-	}
-	
-	private void createConfrence(){
-		try {
-			conferenceService.createConference(conference);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-							"Conference created"));
-		} catch (Exception e) {
-			logger.error("Error updating Conference {}", conference, e);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-							"Error creating Conference"));
-		}
-	}
-	
-	private void updateConference(){
-		try {
-			conferenceService.updateConference(conference);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-							"Conference saved"));
-		} catch (Exception e) {
-			logger.error("Error updating Conference {}", conference, e);
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-							"Error updating Conference"));
-		}
-	}
+        return c;
+    }
 
-	
+    public void saveConferenceAction() {
+        createConfrence();
+    }
 
-	public long getConferenceId() {
-		return conferenceId;
-	}
+    private void createConfrence() {
+        try {
+            conferenceService.createConference(conference);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+                            "Conference created"));
+        } catch (Exception e) {
+            logger.error("Error updating Conference {}", conference, e);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                            "Error creating Conference"));
+        }
+    }
 
-	public void setConferenceId(long conferenceId) {
-		this.conferenceId = conferenceId;
-	}
+    private void updateConference() {
+        try {
+            conferenceService.updateConference(conference);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+                            "Conference saved"));
+        } catch (Exception e) {
+            logger.error("Error updating Conference {}", conference, e);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                            "Error updating Conference"));
+        }
+    }
 
-	public Conference getConference() {
-		return conference;
-	}
 
-	public void setConference(Conference conference) {
-		this.conference = conference;
-	}
+    public long getConferenceId() {
+        return conferenceId;
+    }
+
+    public void setConferenceId(long conferenceId) {
+        this.conferenceId = conferenceId;
+    }
+
+    public Conference getConference() {
+        return conference;
+    }
+
+    public void setConference(Conference conference) {
+        this.conference = conference;
+    }
 
 
 }
