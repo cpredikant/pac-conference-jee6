@@ -3,85 +3,85 @@ package de.predikant.conference.service.jmx;
 import java.io.Serializable;
 
 public class PerformanceMonitoringEntry implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
 
-	private final String service;
-	
-	private final String method;
+    private static final long serialVersionUID = 1L;
 
-	private long count;
+    private final String service;
 
-	private long sum;
+    private final String method;
 
-	private long minTime = Long.MAX_VALUE;
+    private long count;
 
-	private long maxTime = Long.MIN_VALUE;
+    private long sum;
 
-	public PerformanceMonitoringEntry(String service, String method) {
-		super();
-		this.service = service;
-		this.method = method;
-	}
+    private long minTime = Long.MAX_VALUE;
 
-	public void report(long time) {
-		if (time < minTime) {
-			minTime = time;
-		}
-		if (time > maxTime) {
-			maxTime = time;
-		}
+    private long maxTime = Long.MIN_VALUE;
 
-		sum += time;
+    public PerformanceMonitoringEntry(String service, String method) {
+        super();
+        this.service = service;
+        this.method = method;
+    }
 
-		count++;
-	}
+    public void report(long time) {
+        if (time < minTime) {
+            minTime = time;
+        }
+        if (time > maxTime) {
+            maxTime = time;
+        }
 
-	public float getAverage() {
-		if (count == 0) {
-			return 0;
-		}
+        sum += time;
 
-		return (float) sum / (float) count;
-	}
+        count++;
+    }
 
-	public long getCount() {
-		return count;
-	}
+    public float getAverage() {
+        if (count == 0) {
+            return 0;
+        }
 
-	public void setCount(long count) {
-		this.count = count;
-	}
+        return (float) sum / (float) count;
+    }
 
-	public long getSum() {
-		return sum;
-	}
+    public long getCount() {
+        return count;
+    }
 
-	public void setSum(long sum) {
-		this.sum = sum;
-	}
+    public void setCount(long count) {
+        this.count = count;
+    }
 
-	public long getMinTime() {
-		return minTime;
-	}
+    public long getSum() {
+        return sum;
+    }
 
-	public void setMinTime(long minTime) {
-		this.minTime = minTime;
-	}
+    public void setSum(long sum) {
+        this.sum = sum;
+    }
 
-	public long getMaxTime() {
-		return maxTime;
-	}
+    public long getMinTime() {
+        return minTime;
+    }
 
-	public void setMaxTime(long maxTime) {
-		this.maxTime = maxTime;
-	}
+    public void setMinTime(long minTime) {
+        this.minTime = minTime;
+    }
 
-	public String getService() {
-		return service;
-	}
+    public long getMaxTime() {
+        return maxTime;
+    }
 
-	public String getMethod() {
-		return method;
-	}
+    public void setMaxTime(long maxTime) {
+        this.maxTime = maxTime;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public String getMethod() {
+        return method;
+    }
 }

@@ -7,20 +7,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Path("/private/room")
 public interface RoomUnsecureRestService {
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listAllRooms();
+    @GET
+    public Response listAllRooms();
 
-	@GET
-	@Path("/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listRoomById(@PathParam("id") String id);
+    @GET
+    @Path("/{id:[0-9][0-9]*}")
+    public Response listRoomById(@PathParam("id") String id);
 
-	@GET
-	@Path("/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listRoomsByName(@PathParam("name") String name);
+    @GET
+    @Path("/{name}")
+    public Response listRoomsByName(@PathParam("name") String name);
 
 }

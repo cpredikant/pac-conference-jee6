@@ -1,57 +1,56 @@
 package de.predikant.conference.web.converter;
 
+import de.predikant.conference.service.api.SpeakerService;
+import de.predikant.conference.service.model.Speaker;
+import org.slf4j.Logger;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-
-import de.predikant.conference.service.api.SpeakerService;
-import de.predikant.conference.service.model.Speaker;
-
 
 @FacesConverter(value = "de.predikant.conference.SpeakerConverter")
 public class SpeakerConverter implements Converter {
 
-	@Inject
-	private SpeakerService service;
+    @Inject
+    private Logger logger;
 
-	@Inject
-	private Logger logger;
+    @Inject
+    private SpeakerService service;
 
-	@Override
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component,
+                              String value) {
 
-		Speaker speaker = null;
+        Speaker speaker = null;
 
-		long id = Long.valueOf(value);
-		
-		if (id != 0) {
-			try {
-				speaker = service.findSpeakerById(id);
-			} catch (Exception e) {
-				logger.error("Error converting Speaker", e);
-			}
-		}
+        long id = Long.valueOf(value);
 
-		return speaker;
-	}
+        if (id != 0) {
+            try {
+                speaker = service.findSpeakerById(id);
+            } catch (Exception e) {
+                logger.error("Error converting Speaker", e);
+            }
+        }
 
-	@Override
-	public String getAsString(FacesContext context, UIComponent component,
-			Object value) {
+        return speaker;
+    }
 
-		String id = "";
+    @Override
+    public String getAsString(FacesContext context, UIComponent component,
+                              Object value) {
 
-		if (value != null && value instanceof Speaker) {
-			Speaker s = (Speaker) value;
-			id = String.valueOf(s.getId());
-		}
+        String id = "";
 
-		return id;
+        if (value != null && value instanceof Speaker) {
+            Speaker s = (Speaker) value;
+            id = String.valueOf(s.getId());
+        }
 
-	}
+        return id;
+
+    }
 }

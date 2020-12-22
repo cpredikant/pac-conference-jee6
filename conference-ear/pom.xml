@@ -1,85 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>de.predikant</groupId>
-		<version>1.0.3-SNAPSHOT</version>
-		<artifactId>conference</artifactId>
-	</parent>
+    <parent>
+        <groupId>de.predikant</groupId>
+        <version>1.1.0-SNAPSHOT</version>
+        <artifactId>conference</artifactId>
+    </parent>
 
-	<artifactId>conference-ear</artifactId>
-	<packaging>ear</packaging>
+    <artifactId>conference-ear</artifactId>
+    <packaging>ear</packaging>
 
-	<name>conference-ear</name>
+    <name>conference-ear</name>
 
-	<dependencies>
-	
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-common</artifactId>
-			<type>jar</type>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-common</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
 
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-rest-api</artifactId>
-			<type>jar</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-rest-web</artifactId>
-			<type>war</type>
-		</dependency>
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-service-api</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
 
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-service-api</artifactId>
-			<type>jar</type>
-		</dependency>
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-service-impl</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
 
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-service-impl</artifactId>
-			<type>ejb</type>
-		</dependency>
-	
-		<dependency>
-			<groupId>de.predikant</groupId>
-			<artifactId>conference-jsf-web</artifactId>
-			<type>war</type>
-		</dependency>
-		
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-jsf-web</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
 
-		
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-rest-web</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-ear-plugin</artifactId>				
-			</plugin>
-		</plugins>
-	</build>
-
-	<profiles>
-		<profile>
-			<id>openshift</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-ear-plugin</artifactId>
-						<configuration>
-							<outputDirectory>deployments</outputDirectory>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <version>8</version>
+                    <defaultLibBundleDir>libs</defaultLibBundleDir>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -7,20 +7,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Produces(MediaType.APPLICATION_JSON)
+@Path("/private/speaker")
 public interface SpeakerUnsecureRestService {
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listAllSpeakers();
+    @GET
+    Response listAllSpeakers();
 
-	@GET
-	@Path("/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listSpeakerById(@PathParam("id") String id);
+    @GET
+    @Path("/{id:[0-9][0-9]*}")
+    Response listSpeakerById(@PathParam("id") String id);
 
-	@GET
-	@Path("/{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listSpeakersByName(@PathParam("name") String name);
+    @GET
+    @Path("/{name}")
+    Response listSpeakersByName(@PathParam("name") String name);
 
 }
