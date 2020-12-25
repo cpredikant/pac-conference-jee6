@@ -1,7 +1,11 @@
 package de.predikant.conference.web.controller.admin;
 
-import java.io.Serializable;
-import java.util.List;
+import de.predikant.conference.service.api.ConferenceService;
+import de.predikant.conference.service.api.RoomService;
+import de.predikant.conference.service.exception.RoomNotFoundException;
+import de.predikant.conference.service.model.Conference;
+import de.predikant.conference.service.model.Room;
+import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -9,14 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.slf4j.Logger;
-
-import de.predikant.conference.service.api.ConferenceService;
-import de.predikant.conference.service.api.RoomService;
-import de.predikant.conference.service.exception.RoomNotFoundException;
-import de.predikant.conference.service.model.Conference;
-import de.predikant.conference.service.model.Room;
+import java.io.Serializable;
+import java.util.List;
 
 @Named
 @ViewScoped

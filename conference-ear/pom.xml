@@ -59,6 +59,8 @@
                 <configuration>
                     <version>8</version>
                     <defaultLibBundleDir>libs</defaultLibBundleDir>
+                    <skinnyWars>false</skinnyWars>
+                    <outputDirectory>deployments</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

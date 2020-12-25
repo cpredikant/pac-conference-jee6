@@ -1,19 +1,17 @@
 package de.predikant.conference.web.controller.admin;
 
-import java.io.Serializable;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.view.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.slf4j.Logger;
-
 import de.predikant.conference.service.api.ConferenceService;
 import de.predikant.conference.service.exception.ConferenceNotFoundException;
 import de.predikant.conference.service.model.Conference;
+import org.slf4j.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
 @ViewScoped

@@ -1,24 +1,6 @@
 package de.predikant.conference.web.controller.admin;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.primefaces.model.DualListModel;
-import org.slf4j.Logger;
-
-import de.predikant.conference.service.api.ConferenceService;
-import de.predikant.conference.service.api.RoomService;
-import de.predikant.conference.service.api.SpeakerHasTalkService;
-import de.predikant.conference.service.api.SpeakerService;
-import de.predikant.conference.service.api.TalkService;
+import de.predikant.conference.service.api.*;
 import de.predikant.conference.service.exception.RoomNotAvailableException;
 import de.predikant.conference.service.exception.SpeakerHasTalkNotFoundException;
 import de.predikant.conference.service.exception.SpeakerNotAvailableException;
@@ -27,6 +9,18 @@ import de.predikant.conference.service.model.Conference;
 import de.predikant.conference.service.model.Room;
 import de.predikant.conference.service.model.Speaker;
 import de.predikant.conference.service.model.Talk;
+import org.primefaces.model.DualListModel;
+import org.slf4j.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @ViewScoped

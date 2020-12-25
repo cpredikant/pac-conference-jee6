@@ -3,6 +3,7 @@ package de.predikant.conference.service.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.jms.QueueConnectionFactory;
@@ -13,7 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.management.ManagementFactory;
 
-
+@ApplicationScoped
 public class Resources {
 
     @Produces
