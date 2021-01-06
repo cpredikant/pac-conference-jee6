@@ -7,6 +7,7 @@ import de.predikant.conference.service.api.ConferenceService;
 import de.predikant.conference.service.exception.ConferenceNotFoundException;
 import de.predikant.conference.service.model.Conference;
 import de.predikant.conference.web.rest.api.unsecure.ConferenceUnsecureRestService;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RequestScoped
+@Timed
 public class ConferenceUnsecureRestServiceImpl implements
         ConferenceUnsecureRestService {
 

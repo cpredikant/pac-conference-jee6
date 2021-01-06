@@ -7,6 +7,7 @@ import de.predikant.conference.service.api.TalkService;
 import de.predikant.conference.service.exception.TalkNotFoundException;
 import de.predikant.conference.service.model.Talk;
 import de.predikant.conference.web.rest.api.secure.TalkSecureRestService;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,6 +17,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
+@Timed
 public class TalkSecureRestServiceImpl implements TalkSecureRestService {
 
     @Inject

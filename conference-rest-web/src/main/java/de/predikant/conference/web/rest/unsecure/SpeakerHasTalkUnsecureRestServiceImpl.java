@@ -10,6 +10,7 @@ import de.predikant.conference.service.model.Speaker;
 import de.predikant.conference.service.model.SpeakerHasTalk;
 import de.predikant.conference.service.model.Talk;
 import de.predikant.conference.web.rest.api.unsecure.SpeakerHasTalkUnsecureRestService;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RequestScoped
+@Timed
 public class SpeakerHasTalkUnsecureRestServiceImpl implements
         SpeakerHasTalkUnsecureRestService {
 

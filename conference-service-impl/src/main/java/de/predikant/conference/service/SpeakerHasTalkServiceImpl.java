@@ -9,6 +9,7 @@ import de.predikant.conference.service.interceptor.Performance;
 import de.predikant.conference.service.model.Speaker;
 import de.predikant.conference.service.model.SpeakerHasTalk;
 import de.predikant.conference.service.model.Talk;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Stateless
 @Performance
+@Timed
 public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
         Serializable {
 

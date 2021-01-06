@@ -5,6 +5,7 @@ import de.predikant.conference.service.exception.SpeakerNotFoundException;
 import de.predikant.conference.service.interceptor.Logging;
 import de.predikant.conference.service.interceptor.Performance;
 import de.predikant.conference.service.model.Speaker;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Stateless
 @Performance
+@Timed
 public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -36,6 +36,7 @@
         <module>conference-rest-web</module>
         <module>conference-common</module>
         <module>conference-assembly</module>
+        <module>conference-wildfly-ueber</module>
     </modules>
 
     <properties>
@@ -53,7 +54,7 @@
 
         <!-- Frameworks -->
         <version.slf4j>1.7.30</version.slf4j>
-        
+
         <!-- Maven Plugins -->
         <version.compiler.plugin>3.8.1</version.compiler.plugin>
         <version.ear.plugin>3.1.0</version.ear.plugin>
@@ -68,6 +69,7 @@
 
         <!-- Deploy to Wildfly -->
         <version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
+        <version.wildfly.jar.plugin>2.0.2.Final</version.wildfly.jar.plugin>
 
     </properties>
 
@@ -133,11 +135,20 @@
             </dependency>
 
             <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-microprofile</artifactId>
+                <version>${version.wildfly.bom}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${version.slf4j}</version>
                 <scope>compile</scope>
             </dependency>
+
 
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -275,6 +286,53 @@
                     <inherited>true</inherited>
                     <configuration>
                         <skip>true</skip>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-jar-maven-plugin</artifactId>
+                    <version>${version.wildfly.jar.plugin}</version>
+                    <configuration>
+                        <feature-pack-location>
+                            wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly.bom}
+                        </feature-pack-location>
+                        <layers>
+                            <layer>core-server</layer>
+                            <layer>core-security-realms</layer>
+                            <layer>security-manager</layer>
+                            <layer>legacy-security</layer>
+                            <layer>web-console</layer>
+                            <layer>core-tools</layer>
+                            <layer>logging</layer>
+                            <layer>datasources</layer>
+                            <layer>h2-driver</layer>
+                            <layer>h2-datasource</layer>
+                            <layer>h2-default-datasource</layer>
+                            <layer>ejb</layer>
+                            <layer>cdi</layer>
+                            <layer>jpa</layer>
+                            <layer>web-server</layer>
+                            <layer>jaxrs</layer>
+                            <layer>jsf</layer>
+                            <layer>microprofile-config</layer>
+                            <layer>microprofile-health</layer>
+                            <layer>microprofile-metrics</layer>
+                            <layer>microprofile-openapi</layer>
+                            <layer>open-tracing</layer>
+                        </layers>
+                        <cli-sessions>
+                            <cli-session>
+                                <script-files>
+                                    <script>../cli/add-user.cli</script>
+                                    <script>../cli/datasource.cli</script>
+                                    <script>../cli/messaging.cli</script>
+                                </script-files>
+                            </cli-session>
+                        </cli-sessions>
+                        <plugin-options>
+                            <jboss-fork-embedded>true</jboss-fork-embedded>
+                        </plugin-options>
                     </configuration>
                 </plugin>
 

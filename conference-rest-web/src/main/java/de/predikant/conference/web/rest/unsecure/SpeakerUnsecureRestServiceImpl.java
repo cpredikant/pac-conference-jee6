@@ -7,6 +7,7 @@ import de.predikant.conference.service.api.SpeakerService;
 import de.predikant.conference.service.exception.SpeakerNotFoundException;
 import de.predikant.conference.service.model.Speaker;
 import de.predikant.conference.web.rest.api.unsecure.SpeakerUnsecureRestService;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RequestScoped
+@Timed
 public class SpeakerUnsecureRestServiceImpl implements SpeakerUnsecureRestService {
 
     @Inject
