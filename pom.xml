@@ -37,6 +37,7 @@
         <module>conference-common</module>
         <module>conference-assembly</module>
         <module>conference-wildfly-ueber</module>
+        <module>conference-widerstpennstiges-arschloch</module>
     </modules>
 
     <properties>
@@ -66,10 +67,17 @@
         <version.source.plugin>3.2.1</version.source.plugin>
         <version.surefire.plugin>2.22.2</version.surefire.plugin>
         <version.assembly.plugin>3.3.0</version.assembly.plugin>
+        <version.failsafe.plugin>2.22.2</version.failsafe.plugin>
 
         <!-- Deploy to Wildfly -->
         <version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
         <version.wildfly.jar.plugin>2.0.2.Final</version.wildfly.jar.plugin>
+
+        <!-- Arquillian Tests -->
+        <version.org.wildfly.arquillian>3.0.0.Final</version.org.wildfly.arquillian>
+        <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
+        <version.junit>4.13.1</version.junit>
+        <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
 
     </properties>
 
@@ -176,6 +184,41 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${version.logback}</version>
                 <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.wildfly.arquillian</groupId>
+                <artifactId>wildfly-arquillian-container-bootable</artifactId>
+                <version>${version.org.wildfly.arquillian}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <version>${version.org.jboss.arquillian.junit}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${version.org.jboss.shrinkwrap.shrinkwrap}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-impl-base</artifactId>
+                <version>${version.org.jboss.shrinkwrap.shrinkwrap}</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>
@@ -290,50 +333,15 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${version.failsafe.plugin}</version>
+                </plugin>
+
+                <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-jar-maven-plugin</artifactId>
                     <version>${version.wildfly.jar.plugin}</version>
-                    <configuration>
-                        <feature-pack-location>
-                            wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly.bom}
-                        </feature-pack-location>
-                        <layers>
-                            <layer>core-server</layer>
-                            <layer>core-security-realms</layer>
-                            <layer>security-manager</layer>
-                            <layer>legacy-security</layer>
-                            <layer>web-console</layer>
-                            <layer>core-tools</layer>
-                            <layer>logging</layer>
-                            <layer>datasources</layer>
-                            <layer>h2-driver</layer>
-                            <layer>h2-datasource</layer>
-                            <layer>h2-default-datasource</layer>
-                            <layer>ejb</layer>
-                            <layer>cdi</layer>
-                            <layer>jpa</layer>
-                            <layer>web-server</layer>
-                            <layer>jaxrs</layer>
-                            <layer>jsf</layer>
-                            <layer>microprofile-config</layer>
-                            <layer>microprofile-health</layer>
-                            <layer>microprofile-metrics</layer>
-                            <layer>microprofile-openapi</layer>
-                            <layer>open-tracing</layer>
-                        </layers>
-                        <cli-sessions>
-                            <cli-session>
-                                <script-files>
-                                    <script>../cli/add-user.cli</script>
-                                    <script>../cli/datasource.cli</script>
-                                    <script>../cli/messaging.cli</script>
-                                </script-files>
-                            </cli-session>
-                        </cli-sessions>
-                        <plugin-options>
-                            <jboss-fork-embedded>true</jboss-fork-embedded>
-                        </plugin-options>
-                    </configuration>
                 </plugin>
 
             </plugins>

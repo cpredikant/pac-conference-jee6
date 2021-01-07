@@ -11,43 +11,6 @@
 
     <artifactId>conference-wildfly-ueber</artifactId>
     <packaging>jar</packaging>
-    <properties>
-        <plugin.fork.embedded>true</plugin.fork.embedded>
-    </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>de.predikant</groupId>
-            <artifactId>conference-ear</artifactId>
-            <version>${project.version}</version>
-            <type>ear</type>
-        </dependency>
-    </dependencies>
-
-
-    <profiles>
-        <profile>
-            <id>hollow-wildfly</id>
-            <build>
-                <finalName>${project.artifactId}</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <configuration>
-                            <hollow-jar>true</hollow-jar>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>package</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

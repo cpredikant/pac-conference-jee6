@@ -1,5 +1,5 @@
 language: java
-script: mvn package
+script: mvn clean verify
 
 jdk:
   - openjdk11
