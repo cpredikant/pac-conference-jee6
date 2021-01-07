@@ -1,4 +1,4 @@
-package de.predikant.conference.arschloch;
+package de.predikant.conference.arquillian.example;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

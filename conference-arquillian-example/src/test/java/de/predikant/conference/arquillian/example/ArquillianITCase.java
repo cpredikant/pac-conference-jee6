@@ -1,5 +1,7 @@
-package de.predikant.conference.arschloch;
+package de.predikant.conference.arquillian.example;
 
+import de.predikant.conference.arquillian.example.HelloWorldEndpoint;
+import de.predikant.conference.arquillian.example.RestApplication;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
