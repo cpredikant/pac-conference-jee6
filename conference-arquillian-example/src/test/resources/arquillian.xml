@@ -9,7 +9,7 @@
             <property name="managementAddress">127.0.0.1</property>
             <property name="managementPort">9990</property>
             <property name="waitForPorts">9990</property>
-            <property name="waitForPortsTimeoutInSeconds">12</property>
+            <property name="waitForPortsTimeoutInSeconds">8</property>
         </configuration>
     </container>
 

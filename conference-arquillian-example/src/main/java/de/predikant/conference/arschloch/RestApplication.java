@@ -1,4 +1,4 @@
-package org.wildfly.plugins.demo.hollowjar;
+package de.predikant.conference.arschloch;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

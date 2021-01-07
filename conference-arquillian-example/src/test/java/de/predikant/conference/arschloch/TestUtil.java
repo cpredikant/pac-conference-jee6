@@ -1,4 +1,4 @@
-package org.wildfly.plugins.demo.hollowjar;
+package de.predikant.conference.arschloch;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

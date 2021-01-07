@@ -1,10 +1,9 @@
-package org.wildfly.plugins.demo.hollowjar;
+package de.predikant.conference.arschloch;
 
 import javax.ejb.Stateful;
 
 /**
  * A simple Hello World EJB. The EJB does not use an interface.
- *
  */
 @Stateful
 public class GreeterEJB {
