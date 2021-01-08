@@ -56,7 +56,6 @@ public class RestIntegrationTest {
 
     @Test
     @RunAsClient
-    @Ignore
     public void testPublicConferenceRestService() throws Exception {
 
         final ResteasyClient client = new ResteasyClientBuilder().build();
