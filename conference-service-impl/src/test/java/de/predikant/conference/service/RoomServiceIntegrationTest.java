@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class RoomServiceTestITCase {
+public class RoomServiceIntegrationTest {
 
     @Inject
     private RoomService roomService;

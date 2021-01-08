@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class SpeakerServiceTestITCase {
+public class SpeakerServiceIntegrationTest {
 
     @Inject
     private SpeakerService speakerService;

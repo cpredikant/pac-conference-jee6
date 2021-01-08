@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class TalkServiceTestITCase {
+public class TalkServiceIntegrationTest {
 
     @Inject
     private RoomService roomService;

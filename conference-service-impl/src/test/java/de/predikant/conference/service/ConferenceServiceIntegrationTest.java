@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class ConferenceServiceTestITCase {
+public class ConferenceServiceIntegrationTest {
 
     @Inject
     private ConferenceService conferenceService;

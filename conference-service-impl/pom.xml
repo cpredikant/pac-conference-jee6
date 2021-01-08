@@ -145,94 +145,15 @@
                 <artifactId>maven-ejb-plugin</artifactId>
             </plugin>
 
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-jar-maven-plugin</artifactId>
-                <configuration>
-                    <feature-pack-location>
-                        wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly.bom}
-                    </feature-pack-location>
-                    <layers>
-                        <layer>core-server</layer>
-                        <layer>core-security-realms</layer>
-                        <layer>security-manager</layer>
-                        <layer>legacy-security</layer>
-                        <layer>web-console</layer>
-                        <layer>core-tools</layer>
-                        <layer>logging</layer>
-                        <layer>datasources</layer>
-                        <layer>h2-driver</layer>
-                        <layer>h2-datasource</layer>
-                        <layer>h2-default-datasource</layer>
-                        <layer>ejb</layer>
-                        <layer>cdi</layer>
-                        <layer>jpa</layer>
-                        <layer>web-server</layer>
-                        <layer>jaxrs</layer>
-                        <layer>jsf</layer>
-                        <layer>microprofile-config</layer>
-                        <layer>microprofile-health</layer>
-                        <layer>microprofile-metrics</layer>
-                        <layer>microprofile-openapi</layer>
-                        <layer>open-tracing</layer>
-                    </layers>
-                    <excluded-layers>
-                        <layer>deployment-scanner</layer>
-                    </excluded-layers>
-                    <cli-sessions>
-                        <cli-session>
-                            <script-files>
-                                <script>../cli/add-user.cli</script>
-                                <script>../cli/datasource.cli</script>
-                                <script>../cli/messaging.cli</script>
-                            </script-files>
-                        </cli-session>
-                    </cli-sessions>
-                    <plugin-options>
-                        <jboss-fork-embedded>true</jboss-fork-embedded>
-                    </plugin-options>
-                    <hollow-jar>true</hollow-jar>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skipTests>true</skipTests>
-                    <skip>true</skip>
+                    <excludes>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>jaxrs.surefire</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <failIfNoTests>true</failIfNoTests>
-                            <systemPropertyVariables>
-                                <bootable.jar>
-                                    ${project.build.directory}/${project.artifactId}-${project.version}-bootable.jar
-                                </bootable.jar>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>
@@ -250,6 +171,97 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>integration-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-jar-maven-plugin</artifactId>
+                        <configuration>
+                            <feature-pack-location>
+                                wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly.bom}
+                            </feature-pack-location>
+                            <layers>
+                                <layer>core-server</layer>
+                                <layer>core-security-realms</layer>
+                                <layer>security-manager</layer>
+                                <layer>legacy-security</layer>
+                                <layer>web-console</layer>
+                                <layer>core-tools</layer>
+                                <layer>logging</layer>
+                                <layer>datasources</layer>
+                                <layer>h2-driver</layer>
+                                <layer>h2-datasource</layer>
+                                <layer>h2-default-datasource</layer>
+                                <layer>ejb</layer>
+                                <layer>cdi</layer>
+                                <layer>jpa</layer>
+                                <layer>web-server</layer>
+                                <layer>jaxrs</layer>
+                                <layer>jsf</layer>
+                                <layer>microprofile-config</layer>
+                                <layer>microprofile-health</layer>
+                                <layer>microprofile-metrics</layer>
+                                <layer>microprofile-openapi</layer>
+                                <layer>open-tracing</layer>
+                            </layers>
+                            <excluded-layers>
+                                <layer>deployment-scanner</layer>
+                            </excluded-layers>
+                            <cli-sessions>
+                                <cli-session>
+                                    <script-files>
+                                        <script>../cli/add-user.cli</script>
+                                        <script>../cli/datasource.cli</script>
+                                        <script>../cli/messaging.cli</script>
+                                    </script-files>
+                                </cli-session>
+                            </cli-sessions>
+                            <plugin-options>
+                                <jboss-fork-embedded>true</jboss-fork-embedded>
+                            </plugin-options>
+                            <hollow-jar>true</hollow-jar>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>package</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>jintegration-test.${project.artifactId}</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                                <configuration>
+                                    <failIfNoTests>true</failIfNoTests>
+                                    <includes>
+                                        <include>**/*IntegrationTest.java</include>
+                                    </includes>
+                                    <systemPropertyVariables>
+                                        <bootable.jar>
+                                            ${project.build.directory}/${project.artifactId}-${project.version}-bootable.jar
+                                        </bootable.jar>
+                                        <arquillian.xml>arquillian.xml</arquillian.xml>
+                                    </systemPropertyVariables>
+                                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>

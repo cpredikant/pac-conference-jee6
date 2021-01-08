@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import java.time.LocalDateTime;
 
 @RunWith(Arquillian.class)
-public class SpeakerHasTalkServiceTestITCase {
+public class SpeakerHasTalkServiceIntegrationTest {
 
     @Inject
     private SpeakerService speakerService;
