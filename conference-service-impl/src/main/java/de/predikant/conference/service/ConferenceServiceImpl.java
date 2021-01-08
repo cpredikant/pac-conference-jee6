@@ -31,7 +31,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
     @Override
     @Logging
-    public void createConference(Conference conference) {
+    public void createConference(final Conference conference) {
 
         em.persist(conference);
         em.flush();
@@ -40,7 +40,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
     @Override
     @Logging
-    public Conference updateConference(Conference conference)
+    public Conference updateConference(final Conference conference)
             throws ConferenceNotFoundException {
 
         Conference updatedConference = findConferenceById(conference.getId());
@@ -55,10 +55,10 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
     @Override
     @Logging
-    public void deleteConference(long id)
+    public void deleteConference(final long id)
             throws ConferenceNotFoundException {
 
-        Conference conferenceToDelete = findConferenceById(id);
+        final Conference conferenceToDelete = findConferenceById(id);
 
         if (conferenceToDelete != null) {
             em.remove(conferenceToDelete);
@@ -68,10 +68,10 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
     @Override
     @Logging
-    public Conference findConferenceById(long id)
+    public Conference findConferenceById(final long id)
             throws ConferenceNotFoundException {
 
-        TypedQuery<Conference> query = em.createNamedQuery(
+        final TypedQuery<Conference> query = em.createNamedQuery(
                 "Conference.findConferenceById", Conference.class);
         query.setParameter("id", id);
 
@@ -79,7 +79,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
         try {
             conference = query.getSingleResult();
-        } catch (NoResultException exception) {
+        } catch (final NoResultException exception) {
             log.info("No result for Entity {} with id {}",
                     Conference.class.getName(), id);
             throw new ConferenceNotFoundException("Conference with id " + id
@@ -91,9 +91,9 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
 
     @Override
     @Logging
-    public List<Conference> findConferenceByName(String name) {
+    public List<Conference> findConferenceByName(final String name) {
 
-        TypedQuery<Conference> query = em.createNamedQuery(
+        final TypedQuery<Conference> query = em.createNamedQuery(
                 "Conference.findConferenceByName", Conference.class);
         query.setParameter("name", name);
 
@@ -103,7 +103,7 @@ public class ConferenceServiceImpl implements ConferenceService, Serializable {
     @Override
     @Logging
     public List<Conference> findAll() {
-        TypedQuery<Conference> query = em.createNamedQuery(
+        final TypedQuery<Conference> query = em.createNamedQuery(
                 "Conference.findAll", Conference.class);
         return query.getResultList();
     }

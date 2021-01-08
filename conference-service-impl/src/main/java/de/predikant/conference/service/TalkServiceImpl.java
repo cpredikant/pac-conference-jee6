@@ -1,6 +1,5 @@
 package de.predikant.conference.service;
 
-import de.predikant.conference.common.util.DateUtil;
 import de.predikant.conference.service.api.TalkService;
 import de.predikant.conference.service.exception.RoomNotAvailableException;
 import de.predikant.conference.service.exception.TalkNotFoundException;
@@ -16,7 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -136,13 +135,12 @@ public class TalkServiceImpl implements TalkService, Serializable {
 
         for (Talk t : talks) {
 
-            Date start = talk.getStart();
+            LocalDateTime start = talk.getStart();
 
-            Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
+            LocalDateTime end = start.plusMinutes(talk.getDuration());
 
-            if (start.after(DateUtil.addMinutesToDate(t.getStart(),
-                    t.getDuration()))
-                    || end.after(t.getStart())) {
+            if (start.isAfter(t.getStart().plusMinutes(t.getDuration()))
+                    || end.isAfter(t.getStart())) {
                 if (talk.getId() != talk.getId()) {
                     throw new RoomNotAvailableException("Room "
                             + talk.getRoom().getName()

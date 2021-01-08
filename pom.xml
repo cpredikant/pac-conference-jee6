@@ -52,6 +52,7 @@
         <version.wildfly.bom>21.0.2.Final</version.wildfly.bom>
         <version.ejb>3.2</version.ejb>
         <version.jboss.jakartaee8>1.0.0.Final</version.jboss.jakartaee8>
+        <lombok.version>1.18.16</lombok.version>
 
         <!-- Frameworks -->
         <version.slf4j>1.7.30</version.slf4j>
@@ -78,6 +79,7 @@
         <version.org.jboss.arquillian.junit>1.6.0.Final</version.org.jboss.arquillian.junit>
         <version.junit>4.13.1</version.junit>
         <version.org.jboss.shrinkwrap.shrinkwrap>1.2.6</version.org.jboss.shrinkwrap.shrinkwrap>
+
 
     </properties>
 
@@ -229,6 +231,15 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

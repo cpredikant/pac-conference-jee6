@@ -32,7 +32,7 @@ public class JmxEnablerSingleton {
 
             }
 
-        } catch (Exception e) {
+        } catch (final Exception e) {
             logger.error("Error registering JMX-Beans", e);
         }
     }
@@ -47,7 +47,7 @@ public class JmxEnablerSingleton {
                         PerformanceMonitoringMXBean.OBJECT_NAME));
 
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             logger.error("Error unregistering JMX-Beans", e);
         }
     }

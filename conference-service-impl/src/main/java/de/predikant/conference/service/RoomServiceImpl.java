@@ -31,14 +31,14 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
     @Override
     @Logging
-    public void createRoom(Room room) {
+    public void createRoom(final Room room) {
         em.persist(room);
         em.flush();
     }
 
     @Override
     @Logging
-    public Room updateRoom(Room room) throws RoomNotFoundException {
+    public Room updateRoom(final Room room) throws RoomNotFoundException {
         Room updatedRoom = findRoomById(room.getId());
 
         if (!em.contains(room)) {
@@ -51,8 +51,8 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
     @Override
     @Logging
-    public void deleteRoom(long id) throws RoomNotFoundException {
-        Room roomToDelete = findRoomById(id);
+    public void deleteRoom(final long id) throws RoomNotFoundException {
+        final Room roomToDelete = findRoomById(id);
 
         if (roomToDelete != null) {
             em.remove(roomToDelete);
@@ -63,9 +63,9 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
     @Override
     @Logging
-    public Room findRoomById(long id) throws RoomNotFoundException {
+    public Room findRoomById(final long id) throws RoomNotFoundException {
 
-        TypedQuery<Room> query = em.createNamedQuery("Room.findRoomById",
+        final TypedQuery<Room> query = em.createNamedQuery("Room.findRoomById",
                 Room.class);
         query.setParameter("id", id);
 
@@ -73,7 +73,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
         try {
             room = query.getSingleResult();
-        } catch (NoResultException exception) {
+        } catch (final NoResultException exception) {
             log.info("No result for Entity {} with id {}",
                     Room.class.getName(), id);
             throw new RoomNotFoundException("Room with id " + id
@@ -85,8 +85,8 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
     @Override
     @Logging
-    public List<Room> findRoomsByName(String name) {
-        TypedQuery<Room> query = em.createNamedQuery("Room.findRoomByName",
+    public List<Room> findRoomsByName(final String name) {
+        final TypedQuery<Room> query = em.createNamedQuery("Room.findRoomByName",
                 Room.class);
         query.setParameter("name", name);
 
@@ -95,8 +95,8 @@ public class RoomServiceImpl implements RoomService, Serializable {
 
     @Override
     @Logging
-    public List<Room> findRoomsByConferenceId(long conferenceId) {
-        TypedQuery<Room> query = em.createNamedQuery(
+    public List<Room> findRoomsByConferenceId(final long conferenceId) {
+        final TypedQuery<Room> query = em.createNamedQuery(
                 "Room.findRoomsByConferenceId", Room.class);
         query.setParameter("id", conferenceId);
 
@@ -107,7 +107,7 @@ public class RoomServiceImpl implements RoomService, Serializable {
     @Override
     @Logging
     public List<Room> findAll() {
-        TypedQuery<Room> query = em
+        final TypedQuery<Room> query = em
                 .createNamedQuery("Room.findAll", Room.class);
         return query.getResultList();
     }

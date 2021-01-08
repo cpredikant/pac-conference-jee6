@@ -31,7 +31,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     @Override
     @Logging
-    public void createSpeaker(Speaker speaker) {
+    public void createSpeaker(final Speaker speaker) {
         em.persist(speaker);
         em.flush();
 
@@ -39,7 +39,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     @Override
     @Logging
-    public Speaker updateSpeaker(Speaker speaker) throws SpeakerNotFoundException {
+    public Speaker updateSpeaker(final Speaker speaker) throws SpeakerNotFoundException {
         Speaker updatedSpeaker = findSpeakerById(speaker.getId());
 
         if (!em.contains(speaker)) {
@@ -52,8 +52,8 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     @Override
     @Logging
-    public void deleteSpeaker(long id) throws SpeakerNotFoundException {
-        Speaker speakerToDelete = findSpeakerById(id);
+    public void deleteSpeaker(final long id) throws SpeakerNotFoundException {
+        final Speaker speakerToDelete = findSpeakerById(id);
 
         if (speakerToDelete != null) {
             em.remove(speakerToDelete);
@@ -63,8 +63,8 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     @Override
     @Logging
-    public Speaker findSpeakerById(long id) throws SpeakerNotFoundException {
-        TypedQuery<Speaker> query = em.createNamedQuery(
+    public Speaker findSpeakerById(final long id) throws SpeakerNotFoundException {
+        final TypedQuery<Speaker> query = em.createNamedQuery(
                 "Speaker.findSpeakerById", Speaker.class);
         query.setParameter("id", id);
 
@@ -72,7 +72,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
         try {
             speaker = query.getSingleResult();
-        } catch (NoResultException exception) {
+        } catch (final NoResultException exception) {
             log.info("No result for Entity {} with id {}",
                     Speaker.class.getName(), id);
             throw new SpeakerNotFoundException("Speaker with id " + id
@@ -85,8 +85,8 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
 
     @Override
     @Logging
-    public List<Speaker> findSpeakersByName(String name) {
-        TypedQuery<Speaker> query = em.createNamedQuery(
+    public List<Speaker> findSpeakersByName(final String name) {
+        final TypedQuery<Speaker> query = em.createNamedQuery(
                 "Speaker.findSpeakersByName", Speaker.class);
         query.setParameter("name", name);
 
@@ -96,7 +96,7 @@ public class SpeakerServiceImpl implements SpeakerService, Serializable {
     @Override
     @Logging
     public List<Speaker> findAll() {
-        TypedQuery<Speaker> query = em.createNamedQuery("Speaker.findAll",
+        final TypedQuery<Speaker> query = em.createNamedQuery("Speaker.findAll",
                 Speaker.class);
         return query.getResultList();
     }

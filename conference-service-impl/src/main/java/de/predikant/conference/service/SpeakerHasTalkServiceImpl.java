@@ -1,6 +1,5 @@
 package de.predikant.conference.service;
 
-import de.predikant.conference.common.util.DateUtil;
 import de.predikant.conference.service.api.SpeakerHasTalkService;
 import de.predikant.conference.service.exception.SpeakerHasTalkNotFoundException;
 import de.predikant.conference.service.exception.SpeakerNotAvailableException;
@@ -18,7 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -37,16 +36,16 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     @Override
     @Logging
-    public void assign(Speaker speaker, Talk talk)
+    public void assign(final Speaker speaker, final Talk talk)
             throws SpeakerNotAvailableException {
 
-        List<Speaker> speakersByTalk = findSpeakersByTalk(talk);
+        final List<Speaker> speakersByTalk = findSpeakersByTalk(talk);
 
         if (!speakersByTalk.contains(speaker)) {
 
             speakerIsAvailable(speaker, talk);
 
-            SpeakerHasTalk sht = new SpeakerHasTalk();
+            final SpeakerHasTalk sht = new SpeakerHasTalk();
             sht.setSpeaker(speaker);
             sht.setTalk(talk);
             em.persist(sht);
@@ -55,20 +54,19 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     }
 
-    private void speakerIsAvailable(Speaker speaker, Talk talk)
+    private void speakerIsAvailable(final Speaker speaker, final Talk talk)
             throws SpeakerNotAvailableException {
 
-        List<Talk> talks = findTalksBySpeaker(speaker);
+        final List<Talk> talks = findTalksBySpeaker(speaker);
 
-        Date start = talk.getStart();
+        final LocalDateTime start = talk.getStart();
 
-        Date end = DateUtil.addMinutesToDate(start, talk.getDuration());
+        final LocalDateTime end = start.plusMinutes(talk.getDuration());
 
-        for (Talk t : talks) {
+        for (final Talk t : talks) {
 
-            if (start.after(DateUtil.addMinutesToDate(t.getStart(),
-                    t.getDuration()))
-                    || end.after(t.getStart())) {
+            if (start.isAfter(t.getStart().plusMinutes(t.getDuration()))
+                    || end.isAfter(t.getStart())) {
                 throw new SpeakerNotAvailableException("Speaker "
                         + speaker.getName() + " is not available for talk "
                         + talk.getName());
@@ -78,10 +76,10 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     @Override
     @Logging
-    public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(Speaker speaker,
-                                                             Talk talk) throws SpeakerHasTalkNotFoundException {
+    public SpeakerHasTalk findSpeakerHasTalkBySpeakerAndTalk(final Speaker speaker,
+                                                             final Talk talk) throws SpeakerHasTalkNotFoundException {
 
-        TypedQuery<SpeakerHasTalk> query = em.createNamedQuery(
+        final TypedQuery<SpeakerHasTalk> query = em.createNamedQuery(
                 "SpeakerHasTalk.findSpeakerHasTalkBySpeakerAndTalk",
                 SpeakerHasTalk.class);
 
@@ -92,7 +90,7 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
         try {
             speakerHasTalk = query.getSingleResult();
-        } catch (NoResultException exception) {
+        } catch (final NoResultException exception) {
             log.info("No result for Entity {} for Speaker {} and Talk {}",
                     new Object[]{SpeakerHasTalk.class.getName(), speaker,
                             talk});
@@ -107,10 +105,10 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     @Override
     @Logging
-    public void unassign(Speaker speaker, Talk talk)
+    public void unassign(final Speaker speaker, final Talk talk)
             throws SpeakerHasTalkNotFoundException {
 
-        SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
+        final SpeakerHasTalk sht = findSpeakerHasTalkBySpeakerAndTalk(speaker, talk);
 
         em.remove(sht);
         em.flush();
@@ -119,9 +117,9 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     @Override
     @Logging
-    public List<Talk> findTalksBySpeaker(Speaker speaker) {
+    public List<Talk> findTalksBySpeaker(final Speaker speaker) {
 
-        TypedQuery<Talk> query = em.createNamedQuery(
+        final TypedQuery<Talk> query = em.createNamedQuery(
                 "SpeakerHasTalk.findTalksBySpeaker", Talk.class);
         query.setParameter("speaker", speaker);
 
@@ -130,8 +128,8 @@ public class SpeakerHasTalkServiceImpl implements SpeakerHasTalkService,
 
     @Override
     @Logging
-    public List<Speaker> findSpeakersByTalk(Talk talk) {
-        TypedQuery<Speaker> query = em.createNamedQuery(
+    public List<Speaker> findSpeakersByTalk(final Talk talk) {
+        final TypedQuery<Speaker> query = em.createNamedQuery(
                 "SpeakerHasTalk.findSpeakersByTalk", Speaker.class);
         query.setParameter("talk", talk);
 

@@ -27,7 +27,7 @@ public class TalkChangeMessageConsumer implements MessageListener {
     private MessageDrivenContext mdc;
 
     @Override
-    public void onMessage(Message message) {
+    public void onMessage(final Message message) {
         TextMessage msg = null;
 
         try {
@@ -39,7 +39,7 @@ public class TalkChangeMessageConsumer implements MessageListener {
                 logger.warn("Message of wrong type: " +
                         message.getClass().getName());
             }
-        } catch (JMSException e) {
+        } catch (final JMSException e) {
             logger.error("Error", e);
             mdc.setRollbackOnly();
         }
