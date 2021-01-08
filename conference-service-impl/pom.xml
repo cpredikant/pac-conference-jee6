@@ -256,6 +256,9 @@
                                         <bootable.jar>
                                             ${project.build.directory}/${project.artifactId}-${project.version}-bootable.jar
                                         </bootable.jar>
+                                        <install-dir>
+                                            ${project.build.directory}/${project.artifactId}-${project.version}-bootable-temp
+                                        </install-dir>
                                         <arquillian.xml>arquillian.xml</arquillian.xml>
                                     </systemPropertyVariables>
                                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
