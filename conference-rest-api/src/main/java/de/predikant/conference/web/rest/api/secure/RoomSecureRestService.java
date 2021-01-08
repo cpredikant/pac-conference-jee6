@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/public/room")
+@Path("/private/room")
 public interface RoomSecureRestService {
 
     @POST

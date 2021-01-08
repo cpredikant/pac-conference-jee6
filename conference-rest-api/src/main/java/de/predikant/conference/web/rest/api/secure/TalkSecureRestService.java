@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/public/talk")
+@Path("/private/talk")
 public interface TalkSecureRestService {
 
     @POST

@@ -122,14 +122,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-            <version>3.1.4</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
             <groupId>org.jboss.spec.javax.ws.rs</groupId>
             <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
             <scope>test</scope>
@@ -140,11 +132,11 @@
     <build>
 
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -242,7 +234,7 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>jintegration-test.${project.artifactId}</id>
+                                <id>integration-test.${project.artifactId}</id>
                                 <goals>
                                     <goal>integration-test</goal>
                                     <goal>verify</goal>

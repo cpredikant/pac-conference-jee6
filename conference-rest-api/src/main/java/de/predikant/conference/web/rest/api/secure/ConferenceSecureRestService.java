@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Path("/public/conference")
+@Path("/private/conference")
 public interface ConferenceSecureRestService {
 
     @POST
