@@ -1,6 +1,5 @@
 package de.predikant.conference.service.jms;
 
-import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.slf4j.Logger;
 
 import javax.annotation.Resource;
@@ -17,7 +16,6 @@ import javax.jms.TextMessage;
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "/jms/queue/conference"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")})
-@Timed
 public class TalkChangeMessageConsumer implements MessageListener {
 
     @Inject
