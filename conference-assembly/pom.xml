@@ -18,6 +18,8 @@
         <dependency>
             <groupId>de.predikant</groupId>
             <artifactId>conference-ear</artifactId>
+            <type>ear</type>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

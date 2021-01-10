@@ -29,12 +29,12 @@
 
 			<prime:outputLabel value="Start Date:" />
 			<h:outputText value="#{conferenceController.conference.start}">
-				<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				<f:convertDateTime type="localDateTime" pattern="dd.MM.yyyy HH:mm" />
 			</h:outputText>
 
 			<prime:outputLabel value="End Date:" />
 			<h:outputText value="#{conferenceController.conference.end}">
-				<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+				<f:convertDateTime type="localDateTime" pattern="dd.MM.yyyy HH:mm" />
 			</h:outputText>
 
 			<prime:outputLabel value="Description:" />
@@ -58,13 +58,13 @@
 
 			<prime:column headerText="Day">
 				<h:outputText value="#{talkItem.start}">
-					<f:convertDateTime pattern="dd.MM.yyyy" />
+					<f:convertDateTime type="localDateTime" pattern="dd.MM.yyyy" />
 				</h:outputText>
 			</prime:column>
 
 			<prime:column headerText="Start Time">
 				<h:outputText value="#{talkItem.start}">
-					<f:convertDateTime pattern="HH:mm" />
+					<f:convertDateTime type="localDateTime" pattern="HH:mm" />
 				</h:outputText>
 			</prime:column>
 

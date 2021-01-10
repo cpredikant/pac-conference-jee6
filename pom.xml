@@ -28,6 +28,7 @@
     </repositories>
 
     <modules>
+        <module>conference-assembly</module>
         <module>conference-ear</module>
         <module>conference-service-api</module>
         <module>conference-service-impl</module>
@@ -35,8 +36,7 @@
         <module>conference-rest-api</module>
         <module>conference-rest-web</module>
         <module>conference-common</module>
-        <module>conference-assembly</module>
-        <module>conference-wildfly-ueber</module>
+        <module>conference-arquillian-server</module>
         <module>conference-arquillian-example</module>
     </modules>
 
@@ -56,6 +56,7 @@
 
         <!-- Frameworks -->
         <version.slf4j>1.7.30</version.slf4j>
+        <version.logback>1.2.3</version.logback>
 
         <!-- Maven Plugins -->
         <version.compiler.plugin>3.8.1</version.compiler.plugin>
@@ -126,6 +127,13 @@
                 <groupId>de.predikant</groupId>
                 <artifactId>conference-rest-web</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.predikant</groupId>
+                <artifactId>conference-arquillian-server</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <!-- Plattform -->
@@ -314,9 +322,16 @@
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <phase>package</phase>
+                            <phase>generate-sources</phase>
                             <goals>
                                 <goal>jar</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>attach-test-sources</id>
+                            <phase>generate-test-sources</phase>
+                            <goals>
+                                <goal>test-jar</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -326,17 +341,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${version.javadoc.plugin}</version>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                     <configuration>
-                        <source>${maven.compiler.target}</source>
+                        <source>${maven.compiler.source}</source>
                     </configuration>
                 </plugin>
 
@@ -344,6 +350,14 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${version.assembly.plugin}</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <plugin>

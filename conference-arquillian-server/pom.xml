@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>conference-wildfly-ueber</artifactId>
+    <artifactId>conference-arquillian-server</artifactId>
     <packaging>jar</packaging>
 
     <profiles>
         <profile>
-            <id>hollow-wildfly</id>
+            <id>integration-test</id>
             <build>
                 <plugins>
                     <plugin>

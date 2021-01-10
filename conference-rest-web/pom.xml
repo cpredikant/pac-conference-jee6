@@ -85,17 +85,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.wildfly.arquillian</groupId>
-            <artifactId>wildfly-arquillian-container-bootable</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
-
 
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
@@ -122,17 +115,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!--
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-            <scope>test</scope>
-        </dependency>
-        -->
-
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.predikant</groupId>
+            <artifactId>conference-arquillian-server</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -184,64 +175,22 @@
 
         <profile>
             <id>integration-test</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-bootable</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>de.predikant</groupId>
+                    <artifactId>conference-arquillian-server</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-jar-maven-plugin</artifactId>
-                        <configuration>
-                            <feature-pack-location>
-                                wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly.bom}
-                            </feature-pack-location>
-                            <layers>
-                                <layer>core-server</layer>
-                                <layer>core-security-realms</layer>
-                                <layer>security-manager</layer>
-                                <layer>legacy-security</layer>
-                                <layer>web-console</layer>
-                                <layer>core-tools</layer>
-                                <layer>logging</layer>
-                                <layer>datasources</layer>
-                                <layer>h2-driver</layer>
-                                <layer>h2-datasource</layer>
-                                <layer>h2-default-datasource</layer>
-                                <layer>ejb</layer>
-                                <layer>cdi</layer>
-                                <layer>jpa</layer>
-                                <layer>web-server</layer>
-                                <layer>jaxrs</layer>
-                                <layer>jsf</layer>
-                                <layer>microprofile-config</layer>
-                                <layer>microprofile-health</layer>
-                                <layer>microprofile-metrics</layer>
-                                <layer>microprofile-openapi</layer>
-                                <layer>open-tracing</layer>
-                            </layers>
-                            <excluded-layers>
-                                <layer>deployment-scanner</layer>
-                            </excluded-layers>
-                            <cli-sessions>
-                                <cli-session>
-                                    <script-files>
-                                        <script>../cli/add-user.cli</script>
-                                        <script>../cli/datasource.cli</script>
-                                        <script>../cli/messaging.cli</script>
-                                    </script-files>
-                                </cli-session>
-                            </cli-sessions>
-                            <plugin-options>
-                                <jboss-fork-embedded>true</jboss-fork-embedded>
-                            </plugin-options>
-                            <hollow-jar>true</hollow-jar>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>package</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -260,7 +209,7 @@
                                     </includes>
                                     <systemPropertyVariables>
                                         <bootable.jar>
-                                            ${project.build.directory}/${project.artifactId}-${project.version}-bootable.jar
+                                            ${project.parent.basedir}/conference-arquillian-server/target/conference-arquillian-server-${project.version}-bootable.jar
                                         </bootable.jar>
                                         <install-dir>
                                             ${project.build.directory}/${project.artifactId}-${project.version}-bootable-temp

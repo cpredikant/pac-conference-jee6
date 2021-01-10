@@ -7,48 +7,48 @@
                 xmlns:prime="http://primefaces.org/ui"
                 template="/WEB-INF/templates/default.xhtml">
 
-	<f:metadata>
-		<f:viewParam name="conferenceId"
-			value="#{editConferenceController.conferenceId}" />
-		<f:viewAction action="#{editConferenceController.initViewParams}"/>
-	</f:metadata>
+    <f:metadata>
+        <f:viewParam name="conferenceId"
+                     value="#{editConferenceController.conferenceId}"/>
+        <f:viewAction action="#{editConferenceController.initViewParams}"/>
+    </f:metadata>
 
-	<ui:define name="content">
-		<prime:messages showDetail="true" showSummary="true" autoUpdate="true" />
+    <ui:define name="content">
 
-		<h:form>
+        <h:form>
+            <prime:messages showDetail="true" showSummary="true" autoUpdate="true"/>
 
-			<prime:outputPanel>
-				<h1>Conference - #{editConferenceController.conference.name}</h1>
-			</prime:outputPanel>
+            <prime:outputPanel>
+                <h1>Conference - #{editConferenceController.conference.name}</h1>
+            </prime:outputPanel>
 
-			<h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
+            <h:panelGrid columns="2" columnClasses="labelColumn,fieldColumn">
 
-				<prime:outputLabel value="Name:" />
-				<prime:inputText value="#{editConferenceController.conference.name}" />
+                <prime:outputLabel value="Name:"/>
+                <prime:inputText value="#{editConferenceController.conference.name}"/>
 
-				<prime:outputLabel value="Start Date:" />
-				<prime:calendar value="#{editConferenceController.conference.start}"
-					pattern="dd.MM.yyyy HH:mm" stepMinute="15" />
+                <prime:outputLabel value="Start Date:"/>
+                <prime:calendar value="#{editConferenceController.conference.start}"
+                                pattern="dd.MM.yyyy HH:mm" stepMinute="15"/>
 
 
-				<prime:outputLabel value="End Date:" />
-				<prime:calendar value="#{editConferenceController.conference.end}"
-					pattern="dd.MM.yyyy HH:mm" stepMinute="15" />
+                <prime:outputLabel value="End Date:"/>
+                <prime:calendar value="#{editConferenceController.conference.end}"
+                                pattern="dd.MM.yyyy HH:mm" stepMinute="15"/>
 
-				<prime:outputLabel value="Description:" />
-				<prime:inputTextarea
-					value="#{editConferenceController.conference.description}" />
+                <prime:outputLabel value="Description:"/>
+                <prime:inputTextarea
+                        value="#{editConferenceController.conference.description}"/>
 
-			</h:panelGrid>
+            </h:panelGrid>
 
-			<prime:commandButton value="Save"
-				action="#{editConferenceController.saveConferenceAction()}"
-				update="@form" />
-			<prime:button value="Back" outcome="admin" />
+            <prime:commandButton value="Save"
+                                 action="#{editConferenceController.saveConferenceAction()}"
+                                 update="@form"/>
+            <prime:button value="Back" outcome="admin"/>
 
-		</h:form>
-	
+        </h:form>
 
-	</ui:define>
+
+    </ui:define>
 </ui:composition>
