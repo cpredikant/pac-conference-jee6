@@ -1,5 +1,5 @@
 language: java
-script: mvn clean package
+script: mvn -P integration-test clean verify
 
 jdk:
   - openjdk11
