@@ -1,6 +1,6 @@
 dist: focal
 language: java
-script: mvn -P integration-test clean package
+script: mvn clean package
 
 jdk:
-  - oraclejdk11
+  - openjdk11
