@@ -3,4 +3,4 @@ language: java
 script: mvn -P integration-test clean package
 
 jdk:
-  - openjdk11
+  - oraclejdk11
