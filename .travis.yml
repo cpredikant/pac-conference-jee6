@@ -1,3 +1,4 @@
+dist: focal
 language: java
 script: mvn -P integration-test clean verify
 
