@@ -14,7 +14,7 @@
         <dependency>
             <groupId>de.predikant</groupId>
             <artifactId>conference-common</artifactId>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
