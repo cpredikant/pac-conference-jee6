@@ -8,9 +8,6 @@ workflows:
     jobs:
       - maven/test # checkout, build, test, and upload test results
 
-executors:
-  default:
-    docker:
-      - image: cimg/openjdk:<<parameters.tag>>
-    parameters:
-      tag: "11.0.9"
+executor:
+  name: default
+  tag: "11.0.9"
