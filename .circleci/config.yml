@@ -8,3 +8,4 @@ workflows:
     jobs:
       - maven/test: # checkout, build, test, and upload test results
           command: '-P integration-test clean verify'
+          test_results_path: /target/failsafe-reports
